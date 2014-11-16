@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace SuperBoy
+namespace SuperBoyView
 {
     /// <summary>
     /// 读取文件与写入文件类

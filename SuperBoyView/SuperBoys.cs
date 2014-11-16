@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace SuperBoyView
 {
-    public partial class SuperBoy : Form
+    public partial class SuperBoys : Form
     {
-        public SuperBoy()
+        public SuperBoys()
         {
             InitializeComponent();
         }

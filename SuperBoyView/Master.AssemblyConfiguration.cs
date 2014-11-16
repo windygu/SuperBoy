@@ -20,6 +20,7 @@ namespace SuperBoyView
             DefaultAdminiName[] Administrators = { DefaultAdminiName.Admini, DefaultAdminiName.System, DefaultAdminiName.Users};
             MasterDiction.Add(Master.AdministratorName, Administrators);    //管理员名字
             string[] item = new string[3];
+            item[1] = "load";
             MasterDiction.Add(Master.configAtrry, item);                  //配置文件集合
             //System.Windows.Forms.Form forms = new Mains();
             //MasterDiction.Add(Master.StartForm, forms);

@@ -54,8 +54,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadAndWrite.cs" />
-    <Compile Include="SuperBoy.cs">
-      <SubType>form</SubType>
+    <Compile Include="SuperBoys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SuperBoys.Designer.cs">
+      <DependentUpon>SuperBoys.cs</DependentUpon>
     </Compile>
     <Compile Include="Workspace.cs">
       <SubType>Form</SubType>
@@ -73,8 +76,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SuperBoy.resx">
-      <DependentUpon>SuperBoy.cs</DependentUpon>
+    <EmbeddedResource Include="SuperBoys.resx">
+      <DependentUpon>SuperBoys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Workspace.resx">
       <DependentUpon>Workspace.cs</DependentUpon>
