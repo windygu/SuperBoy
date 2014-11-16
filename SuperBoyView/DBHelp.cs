@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace SuperBoy
+namespace SuperBoyView
 {
     /// <summary>
     /// 程序集数据库帮助类

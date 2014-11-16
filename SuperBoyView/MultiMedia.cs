@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace SuperBoy
+namespace SuperBoyView
 {
     /// <summary>
     /// 多媒体类，此类存放多媒体资料，数据以及调用多媒体方法

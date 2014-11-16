@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace SuperBoy
+namespace SuperBoyView
 {
     /// <summary>
     /// 

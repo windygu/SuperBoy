@@ -1,5 +1,5 @@
 ﻿
-namespace SuperBoy
+namespace SuperBoyView
 {
     /// <summary>
     /// 枚举类

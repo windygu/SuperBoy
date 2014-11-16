@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SuperBoy
+namespace SuperBoyView
 {
     class AssemblyConfiguration : EnumArry
     {
