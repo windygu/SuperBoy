@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace SuperBoyView
 {
     /// <summary>
     /// This class is often used to control the program to the class
     /// </summary>
-    public class ControlForms
+    public class ControlSuperBoy
     {
 
 
@@ -39,6 +41,11 @@ namespace SuperBoyView
                 //load method
             }
             return true;
+        }
+
+        public static DataSet select()
+        {
+            
         }
 
         /// <summary>

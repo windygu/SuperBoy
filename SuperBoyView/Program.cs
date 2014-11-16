@@ -15,7 +15,7 @@ namespace SuperBoyView
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SuperBoy());
+            Application.Run(new SuperBoys());
         }
     }
 }

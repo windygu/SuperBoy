@@ -54,6 +54,10 @@ namespace SuperBoyView
             /// 头文件标示
             /// </summary>
             HeadText,
+            /// <summary>
+            /// 默认条数
+            /// </summary>
+            DataDefaultCount,
         }
 
         /// <summary>

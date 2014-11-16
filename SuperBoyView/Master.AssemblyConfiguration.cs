@@ -19,6 +19,7 @@ namespace SuperBoyView
             MasterDiction.Add(Master.TextFormat, ConfigFormat.Array);       //键值对集合
             DefaultAdminiName[] Administrators = { DefaultAdminiName.Admini, DefaultAdminiName.System, DefaultAdminiName.Users};
             MasterDiction.Add(Master.AdministratorName, Administrators);    //管理员名字
+            MasterDiction.Add(Master.DataDefaultCount,30);                  //数据默认条数
             string[] item = new string[3];
             item[1] = "load";
             MasterDiction.Add(Master.configAtrry, item);                  //配置文件集合

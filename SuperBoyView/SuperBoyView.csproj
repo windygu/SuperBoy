@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDAL.cs" />
-    <Compile Include="ControlForms.cs" />
+    <Compile Include="ControlSuperBoy.cs" />
     <Compile Include="DBHelp.cs" />
     <Compile Include="Dynamic.cs" />
     <Compile Include="EnumArry.cs" />

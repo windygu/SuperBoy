@@ -406,6 +406,7 @@
             this.Controls.Add(this.MenuScriptMains);
             this.Name = "SuperBoys";
             this.Text = "SuperBoys";
+            this.Load += new System.EventHandler(this.SuperBoys_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Views)).EndInit();
             this.RightKey.ResumeLayout(false);
             this.MenuScriptMains.ResumeLayout(false);

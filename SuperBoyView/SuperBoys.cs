@@ -15,5 +15,10 @@ namespace SuperBoyView
         {
             InitializeComponent();
         }
+
+        private void SuperBoys_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
