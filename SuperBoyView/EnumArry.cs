@@ -2,86 +2,86 @@
 namespace SuperBoyView
 {
     /// <summary>
-    /// 枚举类
+    /// enumeration class
     /// </summary>
     public class EnumArry
     {
-        #region 程序集所属配置(系统)
+        #region the programs configuration (system)
 
         public enum Master
         {
             /// <summary>
-            /// 程序集主配置文件路径(string)
+            /// programs master path(string)
             /// </summary>
             MasterPath,
             /// <summary>
-            /// 程序集配置文件格式(json or html or Atrry)
+            /// programs config file format(json or HTML or Array)
             /// </summary>
             TextFormat,
             /// <summary>
-            /// 程序集权限等级(int)
+            /// the programs access level(int)
             /// </summary>
             Jurisdiction,
             /// <summary>
-            /// 默认管理员（Administrator）
+            /// default（Administrator）
             /// </summary>
             DefaultAdministrator,
             /// <summary>
-            /// 是否密钥保护（false）
+            /// Is key protect（false）
             /// </summary>
             ISkeyProtection,
             /// <summary>
-            /// 是否打开配置文件保护（false）
+            /// is open config protect（false）
             /// </summary>
             ConfigurationProtection,
             /// <summary>
-            /// 管理员名字（Array）
+            /// administrator Name（Array）
             /// </summary>
             AdministratorName,
             /// <summary>
-            /// 密钥保护集合（Array）
+            /// Key protect List（Array）
             /// </summary>
             keyProtectionS,
             /// <summary>
-            /// 配置文件集合
+            /// config file List
             /// </summary>
             configAtrry,
             /// <summary>
-            /// 起始窗体
+            /// start windows
             /// </summary>
             StartForm,
             /// <summary>
-            /// 头文件标示
+            /// head file mark
             /// </summary>
             HeadText,
             /// <summary>
-            /// 默认条数
+            /// default file count
             /// </summary>
             DataDefaultCount,
         }
 
         /// <summary>
-        /// 配置文件格式
+        /// config file format
         /// </summary>
         public enum ConfigFormat
         {
             /// <summary>
-            /// 普通数据集合（Key:Value）
+            /// common data List（Key:Value)
             /// </summary>
             Array,
-            //json or html or Atrry
+            //json or HTML or Array
             /// <summary>
-            /// json格式的数据([{key:Value},{key,Value}])
+            /// json format for data([{key:Value},{key,Value}])
             /// </summary>
             Json,
             /// <summary>
-            /// XML格式的数据存储（<Key>Value<Key>）
+            /// XML format of data storage(<Key>Value<Key>）
             /// </summary>
             XML
 
         }
         /// <summary>
-        /// 管理员名字集合（自定义）
+        /// administrator Name（custom）
         /// </summary>
         public enum DefaultAdminiName
         {
@@ -91,89 +91,91 @@ namespace SuperBoyView
         }
 
         /// <summary>
-        /// 配置文件集合（系统）
+        /// configuration file List（System）
         /// </summary>
         public enum configAtrry
         {
             /// <summary>
-            /// 启动配置(读取一次不允许用户更改)
+            /// start configuration (don't allow the user to change the read only once)
             /// </summary>
             StartConfig,
             /// <summary>
-            /// 启动配置地址(读取一次不允许用户更改)
+            /// start config address(don't allow the user to change the read only once)
             /// </summary>
             StartConfigFile,
 
             /// <summary>
-            /// 皮肤配置（读取一次可随用户更改）
+            /// Skin configuration（read once , can be change)
             /// </summary>
             SkinConfig,
             /// <summary>
-            /// 皮肤配置地址（读取一次可随用户更改）
+            /// Skin ConfigFile（read once , can be change）
             /// </summary>
             SkinConfigFile,
 
             /// <summary>
-            /// 运行配置（读取多次）
+            /// read config（repeatedly）
             /// </summary>
             FuncConfig,
             /// <summary>
-            /// 运行配置（读取多次）
+            /// read config address（repeatedly）
             /// </summary>
             FuncConfigFile,
 
             /// <summary>
-            /// 关闭配置（一般用于写入）
+            /// closed config（current used read）
             /// </summary>
             CloseConfig,
             /// <summary>
-            /// 关闭配置地址（一般用于写入）
+            /// closed config address（current used read）
             /// </summary>
             CloseConfigFile,
 
             /// <summary>
-            /// 临时配置文件（用完后删除）
+            /// Temporary config file（Use up to delete）
             /// </summary>
             TemporaryConfig,
             /// <summary>
-            /// 临时配置文件地址（用完后删除）
+            /// Temporary config file address（Use up to delete）
             /// </summary>
             TemporaryConfigFile
         }
-
+        /// <summary>
+        /// Super Boy
+        /// </summary>
         public enum HeadType
         {
             /// <summary>
-            /// 普通文本
+            /// common text
             /// </summary>
             Plain,
             /// <summary>
-            /// 日志文本
+            /// log text
             /// </summary>
             Log,
             /// <summary>
-            /// 系统文本
+            /// system text
             /// </summary>
             System,
             /// <summary>
-            /// 系统主文件
+            /// system master text
             /// </summary>
             Master,
             /// <summary>
-            /// 操作还原文件
+            /// backups test
             /// </summary>
             bak,
             /// <summary>
-            /// 临时文件
+            /// temp test
             /// </summary>
             odb,
         }
 
         #endregion
 
-        #region 各国语言（自定义|系统默认）
+        #region language
         /// <summary>
-        /// 语言信息（自定义|系统默认）
+        /// language
         /// </summary>
         public enum Language
         {

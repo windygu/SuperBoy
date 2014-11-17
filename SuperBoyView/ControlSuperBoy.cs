@@ -24,7 +24,7 @@ namespace SuperBoyView
         }
         /// <summary>
         /// the first is to load .config,if this file is null ,
-        ///  Use the program to set the default configuration file
+        /// Use the program to set the default configuration file
         /// According to the configuration file to change the assembly
         /// </summary>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace SuperBoyView
 
         public static DataSet select()
         {
-            
+            return null;
         }
 
         /// <summary>

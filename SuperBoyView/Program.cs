@@ -13,6 +13,7 @@ namespace SuperBoyView
         [STAThread]
         static void Main(string [] arge)
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SuperBoys());

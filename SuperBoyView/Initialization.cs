@@ -6,11 +6,13 @@ using System.Text;
 namespace SuperBoyView
 {
     /// <summary>
-    /// 程序初始化类
+    /// The program initialization class
     /// </summary>
     class Initialization : EnumArry
     {
 
+
+        
         /// <summary>
         /// 配置文件初始化字典，此字典将运行的集合整合在一起
         /// </summary>

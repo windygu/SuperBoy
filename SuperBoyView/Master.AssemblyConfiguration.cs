@@ -5,27 +5,27 @@ namespace SuperBoyView
     class AssemblyConfiguration : EnumArry
     {
         /// <summary>
-        ///创建一个全局系统配置文件
+        ///create a application configuration files List
         /// </summary>
         public static Dictionary<Master, object> MasterDiction = new Dictionary<Master, object>();
 
         static AssemblyConfiguration()
         {
-            MasterDiction.Add(Master.ConfigurationProtection, false);       //默认关闭配置文件保护
-            MasterDiction.Add(Master.DefaultAdministrator, "Administrator");//默认管理员账户为Administrator
-            MasterDiction.Add(Master.ISkeyProtection, false);               //默认关闭密钥保护
-            MasterDiction.Add(Master.Jurisdiction, 3);                      //默认管理员等级
-            MasterDiction.Add(Master.MasterPath, "\\Master\\");             //默认文件夹名字为Master
-            MasterDiction.Add(Master.TextFormat, ConfigFormat.Array);       //键值对集合
+            MasterDiction.Add(Master.ConfigurationProtection, false);       //default closed configuration files protect
+            MasterDiction.Add(Master.DefaultAdministrator, "Administrator");//The default administrator account for the administrator
+            MasterDiction.Add(Master.ISkeyProtection, false);               //Off by default the secret key protection
+            MasterDiction.Add(Master.Jurisdiction, 3);                      //default administrator grade
+            MasterDiction.Add(Master.MasterPath, "\\Master\\");             //default by Master
+            MasterDiction.Add(Master.TextFormat, ConfigFormat.Array);       //configuration files type  List
             DefaultAdminiName[] Administrators = { DefaultAdminiName.Admini, DefaultAdminiName.System, DefaultAdminiName.Users};
-            MasterDiction.Add(Master.AdministratorName, Administrators);    //管理员名字
-            MasterDiction.Add(Master.DataDefaultCount,30);                  //数据默认条数
+            MasterDiction.Add(Master.AdministratorName, Administrators);    //Administrator Name
+            MasterDiction.Add(Master.DataDefaultCount,30);                  //data default count
             string[] item = new string[3];
             item[1] = "load";
-            MasterDiction.Add(Master.configAtrry, item);                  //配置文件集合
+            MasterDiction.Add(Master.configAtrry, item);                  //configuration files list
             //System.Windows.Forms.Form forms = new Mains();
             //MasterDiction.Add(Master.StartForm, forms);
-            MasterDiction.Add(Master.HeadText, "#*,*#|/*,*/");//头文件标识字符串
+            MasterDiction.Add(Master.HeadText, "#*,*#|/*,*/");//head file mark file string
         }
     }
 }

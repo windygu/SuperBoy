@@ -6,12 +6,16 @@ using System.Text;
 namespace SuperBoyView
 {
     /// <summary>
-    /// 运行类库
+    /// run time class library
+    /// the run time class library used for data calls after software startup
+    /// the class at the time of initialization , at the end of the closed
     /// </summary>
     class Dynamic : EnumArry
     {
+
+
         /// <summary>
-        /// 语音提示
+        /// Speech class library
         /// </summary>
         /// <param name="language"></param>
         public static void LangUageConfig(Language language)
