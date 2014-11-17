@@ -5,8 +5,8 @@ using System.Text;
 
 namespace SuperBoyView
 {
-    class DBHelp
+    interface Idatabase
     {
-        private string connectionStr = ""; 
+
     }
 }

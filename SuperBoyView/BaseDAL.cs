@@ -10,7 +10,7 @@ namespace SuperBoyView
 
 
         /// <summary>
-        /// 主动绑定方法
+        /// band 
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
@@ -20,12 +20,13 @@ namespace SuperBoyView
             return 0;
         }
         /// <summary>
-        /// 加载方法
+        /// load
         /// </summary>
         /// <returns></returns>
         public static DataTable Loads()
         {
-            return DBHelp.Query("select  top 30 * from China_News").Tables[0];
+            // return DBHelp.Query("select  top 30 * from China_News").Tables[0];
+            return null;
         }
     }
 }

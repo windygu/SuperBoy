@@ -48,6 +48,7 @@
     <Compile Include="DBHelp.cs" />
     <Compile Include="Dynamic.cs" />
     <Compile Include="EnumArry.cs" />
+    <Compile Include="Idatabase.cs" />
     <Compile Include="Initialization.cs" />
     <Compile Include="Master.AssemblyConfiguration.cs" />
     <Compile Include="MultiMedia.cs" />

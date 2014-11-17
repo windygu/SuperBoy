@@ -11,8 +11,6 @@ namespace SuperBoyView
     class Initialization : EnumArry
     {
 
-
-        
         /// <summary>
         /// 配置文件初始化字典，此字典将运行的集合整合在一起
         /// </summary>
