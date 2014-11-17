@@ -1,12 +1,94 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace SuperBoyView
 {
+    /// <summary>
+    /// the project database helper class
+    /// </summary>
     class DBHelp
     {
-        private string connectionStr = ""; 
+        //connection config
+        //private static string connectionString = ConfigurationManager.ConnectionStrings[""].ConnectionString;
+
+        #region return a table
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="SQLString"></param>
+        /// <param name="cmdParms"></param>
+        /// <returns></returns>
+        public static DataSet Query(string SQLString, params SqlParameter[] cmdParms)
+        {
+            using (SqlConnection connection = new SqlConnection("server=.;database=CW100_develop;uid=sa;pwd=123;"))
+            {
+                SqlCommand cmd = new SqlCommand();
+                PrepareCommand(cmd, connection, null, SQLString, cmdParms);
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    DataSet ds = new DataSet();
+                    try
+                    {
+                        da.Fill(ds, "ds");
+                        cmd.Parameters.Clear();
+                    }
+                    catch (System.Data.SqlClient.SqlException ex)
+                    {
+                        throw new Exception(ex.Message);
+                    }
+                    return ds;
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <param name="conn"></param>
+        /// <param name="trans"></param>
+        /// <param name="cmdText"></param>
+        /// <param name="cmdParms"></param>
+        private static void PrepareCommand(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, string cmdText, SqlParameter[] cmdParms)
+        {
+            if (conn.State != ConnectionState.Open)
+                conn.Open();
+            cmd.Connection = conn;
+            cmd.CommandText = cmdText;
+            if (trans != null)
+                cmd.Transaction = trans;
+            cmd.CommandType = CommandType.Text;//cmdType;
+            if (cmdParms != null)
+            {
+                foreach (SqlParameter parameter in cmdParms)
+                {
+                    if ((parameter.Direction == ParameterDirection.InputOutput || parameter.Direction == ParameterDirection.Input) &&
+                        (parameter.Value == null))
+                    {
+                        parameter.Value = DBNull.Value;
+                    }
+                    cmd.Parameters.Add(parameter);
+                }
+            }
+        }
+        #endregion
+
+        #region return the affected rows
+
+        public static int CUD(string sql, List<SqlParameter> list)
+        {
+            SqlConnection con = new SqlConnection("");
+            SqlCommand com = new SqlCommand(sql, con);
+            if (list != null && list.Count > 0)
+            {
+                com.Parameters.Add(list.ToArray());
+            }
+            con.Open();
+            return com.ExecuteNonQuery();
+        }
+        #endregion
+
+
     }
 }

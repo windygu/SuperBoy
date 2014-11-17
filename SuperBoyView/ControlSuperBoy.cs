@@ -10,7 +10,7 @@ namespace SuperBoyView
     /// <summary>
     /// This class is often used to control the program to the class
     /// </summary>
-    public class ControlSuperBoy
+    public static class ControlSuperBoy
     {
 
 
@@ -31,7 +31,7 @@ namespace SuperBoyView
         public static Boolean load()
         {
             //load in master config
-            Dictionary<EnumArry.Master, object> DicConfig = AssemblyConfiguration.MasterDiction;
+            Dictionary<EnumArry.Master, object> DicConfig = ProgramConfiguration.MasterDiction;
             //read in start first configuration file
             string[] fileAddress = (string[])DicConfig[EnumArry.Master.configAtrry];
             string masterFileAddress = fileAddress[0].ToString();
@@ -42,11 +42,27 @@ namespace SuperBoyView
             }
             return true;
         }
-
-        public static DataSet select()
+        /// <summary>
+        /// this method is the query ALL
+        /// </summary>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public static DataSet select(int count)
         {
+            Idatabase Idata = new BaseDAL();
+            return Idata.SelectALL(count);
+        }
 
-            return null;
+        /// <summary>
+        /// this method is the query ALL (Where)
+        /// </summary>
+        /// <param name="Where">Where</param>
+        /// <param name="count">Count</param>
+        /// <returns></returns>
+        public static DataSet select(string Where, int count)
+        {
+            Idatabase Idata = new BaseDAL();
+            return Idata.SelectALL(Where, count);
         }
 
         /// <summary>
@@ -55,10 +71,8 @@ namespace SuperBoyView
         /// <returns>return Current index</returns>
         public static string current()
         {
+
             return null;
         }
-
-
-
     }
 }

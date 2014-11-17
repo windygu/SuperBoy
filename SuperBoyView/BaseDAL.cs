@@ -5,28 +5,29 @@ namespace SuperBoyView
     /// <summary>
     /// 
     /// </summary>
-    class BaseDAL
+    class BaseDAL : Idatabase
     {
-
-
         /// <summary>
-        /// band 
+        /// According count request database ALL value
         /// </summary>
-        /// <param name="sql"></param>
+        /// <param name="count">count</param>
         /// <returns></returns>
-        public static int Mains(string sql)
+        public DataSet SelectALL(int count)
+        {
+            //The future "value" will be in a configuration file
+            string sqlStr = "SELECT TOP " + count + " * FROM CW100_COMMENT";
+            return DBHelp.Query(null, sqlStr);
+        }
+        public DataSet SelectALL(string Where, int count)
+        {
+            //The future "value" will be in a configuration file
+            string sqlStr = "SELECT TOP " + count + " * FROM CW100_COMMENT";
+            return DBHelp.Query(null, sqlStr);
+        }
+        public int Update(string Where)
         {
 
             return 0;
-        }
-        /// <summary>
-        /// load
-        /// </summary>
-        /// <returns></returns>
-        public static DataTable Loads()
-        {
-            // return DBHelp.Query("select  top 30 * from China_News").Tables[0];
-            return null;
         }
     }
 }

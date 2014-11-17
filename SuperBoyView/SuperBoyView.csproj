@@ -50,7 +50,7 @@
     <Compile Include="EnumArry.cs" />
     <Compile Include="Idatabase.cs" />
     <Compile Include="Initialization.cs" />
-    <Compile Include="Master.AssemblyConfiguration.cs" />
+    <Compile Include="Master.ProgramConfiguration.cs" />
     <Compile Include="MultiMedia.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
