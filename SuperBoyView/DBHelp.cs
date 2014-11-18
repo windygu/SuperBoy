@@ -11,7 +11,7 @@ namespace SuperBoyView
     class DBHelp
     {
         //connection config
-        //private static string connectionString = ConfigurationManager.ConnectionStrings[""].ConnectionString;
+        private static string connectionString = "server=182.92.228.4;database=CW100_develop;uid=cw100New;pwd=txdkj@@abc128(##)(##.)ABa";
 
         #region return a table
         /// <summary>
@@ -22,7 +22,7 @@ namespace SuperBoyView
         /// <returns></returns>
         public static DataSet Query(string SQLString, params SqlParameter[] cmdParms)
         {
-            using (SqlConnection connection = new SqlConnection("server=.;database=CW100_develop;uid=sa;pwd=123;"))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
                 PrepareCommand(cmd, connection, null, SQLString, cmdParms);
@@ -78,7 +78,7 @@ namespace SuperBoyView
 
         public static int CUD(string sql, List<SqlParameter> list)
         {
-            SqlConnection con = new SqlConnection("");
+            SqlConnection con = new SqlConnection(connectionString);
             SqlCommand com = new SqlCommand(sql, con);
             if (list != null && list.Count > 0)
             {

@@ -49,7 +49,7 @@ namespace SuperBoyView
         /// <returns></returns>
         public static DataSet select(int count)
         {
-            Idatabase Idata = new BaseDAL();
+            Idatabase Idata = new SQLServer();
             return Idata.SelectALL(count);
         }
 
@@ -61,10 +61,15 @@ namespace SuperBoyView
         /// <returns></returns>
         public static DataSet select(string Where, int count)
         {
-            Idatabase Idata = new BaseDAL();
+            Idatabase Idata = new SQLServer();
             return Idata.SelectALL(Where, count);
         }
 
+        public static int Update(string sql) {
+            Idatabase Idate = new SQLServer();
+            int count = Idate.Update(sql);
+            return count; 
+        }
         /// <summary>
         /// this is a current workspace
         /// </summary>
