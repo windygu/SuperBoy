@@ -19,6 +19,7 @@ namespace SuperBoyView
         // Dictionary<EnumArry.Master, object> dict = ProgramConfiguration.MasterDiction;
         private void SuperBoys_Load(object sender, EventArgs e)
         {
+            this.Views.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             //request master default count
             int count = (int)ProgramConfiguration.MasterDiction[EnumArry.Master.DataDefaultCount];
             //select database, request data
@@ -52,9 +53,36 @@ namespace SuperBoyView
             string FirstCol = Views.Rows[Views.CurrentCell.RowIndex].Cells[0].Value.ToString();
             //the current change lines of text
             string item = Views.Rows[rowindex].Cells[Views.CurrentCell.ColumnIndex].Value.ToString();
-            string Where = "update [dbo].[CW100_Comment] set " + currentsColTitle + "='" + item + "' where id = '" + FirstCol + "'";
-            MessageBox.Show(ControlSuperBoy.Update(Where).ToString());
 
+            string Where = "update [dbo].[CW100_Comment] set " + currentsColTitle + "='" + item + "' where id = '" + FirstCol + "'";
+            //MessageBox.Show();
+            if (ControlSuperBoy.Update(Where) > 0)
+            {
+                Mess();
+            }
+
+        }
+
+        private void reToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Views.DataSource = ControlSuperBoy.CurrentFresh().Tables[0];
+        }
+        int countTime = 0;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            countTime++;
+            if (countTime > 1)
+            {
+                this.label1.Visible = false;
+                this.timer1.Stop();
+            }
+        }
+        public void Mess()
+        {
+            this.label1.Visible = true;
+            this.label1.Text = "Save";
+            timer1.Start();
+            //this.label1.Visible = false;
         }
     }
 }

@@ -73,17 +73,16 @@
             this.comboBox1.Font = new System.Drawing.Font("STZhongsong", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
+            "productName",
             "label",
             "praise",
             "Wname",
-            "ProductUserHeart",
-            "ReplyNum",
-            "score"});
+            "ProductUserHeart"});
             this.comboBox1.Location = new System.Drawing.Point(11, 38);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(158, 283);
             this.comboBox1.TabIndex = 4;
-            this.comboBox1.Text = "Label";
+            this.comboBox1.Text = "ProductName";
             // 
             // button1
             // 

@@ -11,11 +11,13 @@ namespace SuperBoyView
 {
     public partial class Query : Form
     {
+
         public Query(SuperBoys sup)
         {
             InitializeComponent();
             sups = sup;
         }
+
         private SuperBoys sups;
         private void button1_Click(object sender, EventArgs e)
         {

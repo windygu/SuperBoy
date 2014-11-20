@@ -15,31 +15,15 @@ namespace SuperBoyView
         public DataSet SelectALL(int count)
         {
             //The future "value" will be in a configuration file
-            string sqlStr = "SELECT TOP " + count + @" [Id]
-      ,[CommentTime]
-      ,[ProductUserHeart]
-      ,[UserID]
-      ,[Label]
-      ,[Score]
-      ,[ReplyNum]
-      ,[Praise]
-      ,[Wname]
-  FROM[CW100_develop].[dbo].[CW100_Comment]";
+            string sqlStr = "SELECT TOP " + count + @" c.Id,p.[productName],c.[ProductID],c.[CommentTime],c.[CommentTitle],c.[ProductUserHeart],c.[Label],c.[Score] ,c.[ReplyNum],c.[Praise],c.[Wname]
+FROM [CW100_develop].[dbo].[CW100_Comment] c inner JOIN [dbo].[CW100_Product] p on p.pID = c.productid";
             return DBHelp.Query(sqlStr);
         }
         public DataSet SelectALL(string Where, int count)
         {
             //The future "value" will be in a configuration file
-            string sqlStr = "SELECT TOP " + count + @" [Id]
-      ,[CommentTime]
-      ,[ProductUserHeart]
-      ,[UserID]
-      ,[Label]
-      ,[Score]
-      ,[ReplyNum]
-      ,[Praise]
-      ,[Wname]
-  FROM[CW100_develop].[dbo].[CW100_Comment] " + Where;
+            string sqlStr = "SELECT TOP " + count + @" c.Id,p.[productName],c.[ProductID],c.[CommentTime],c.[CommentTitle],c.[ProductUserHeart],c.[Label],c.[Score] ,c.[ReplyNum],c.[Praise],c.[Wname]
+FROM [CW100_develop].[dbo].[CW100_Comment] c inner JOIN [dbo].[CW100_Product] p on p.pID = c.productid " + Where;
             return DBHelp.Query(sqlStr);
         }
         public int Update(string Where)

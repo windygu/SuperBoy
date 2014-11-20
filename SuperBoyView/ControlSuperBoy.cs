@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace SuperBoyView
 {
@@ -14,6 +15,20 @@ namespace SuperBoyView
     {
 
 
+
+        public static int CurrentCount = 0;
+        public static string CurrentWhere = "";
+        public static DataSet CurrentFresh()
+        {
+            if (CurrentWhere.Length.Equals(0))
+            {
+                return select(CurrentCount);
+            }
+            else
+            {
+                return select(CurrentWhere, CurrentCount);
+            }
+        }
         /// <summary>
         /// this is a self Test method , If return Value is true is run!
         /// </summary>
@@ -42,6 +57,7 @@ namespace SuperBoyView
             }
             return true;
         }
+
         /// <summary>
         /// this method is the query ALL
         /// </summary>
@@ -49,6 +65,7 @@ namespace SuperBoyView
         /// <returns></returns>
         public static DataSet select(int count)
         {
+            CurrentWhere = "";
             Idatabase Idata = new SQLServer();
             return Idata.SelectALL(count);
         }
@@ -61,14 +78,17 @@ namespace SuperBoyView
         /// <returns></returns>
         public static DataSet select(string Where, int count)
         {
+            CurrentWhere = Where;
+            CurrentCount = count;
             Idatabase Idata = new SQLServer();
             return Idata.SelectALL(Where, count);
         }
 
-        public static int Update(string sql) {
+        public static int Update(string sql)
+        {
             Idatabase Idate = new SQLServer();
             int count = Idate.Update(sql);
-            return count; 
+            return count;
         }
         /// <summary>
         /// this is a current workspace
@@ -78,6 +98,18 @@ namespace SuperBoyView
         {
 
             return null;
+        }
+        [DllImport("wininet.dll", EntryPoint = "InternetGetConnectedState")]
+
+        //判断网络状况的方法,返回值true为连接，false为未连接
+        public extern static bool InternetGetConnectedState(out int conState, int reder);
+
+        //在你的button事件中写下如下代码就行
+
+        public static Boolean IsIneter()
+        {
+            int n = 0;
+            return (InternetGetConnectedState(out n, 0));
         }
     }
 }

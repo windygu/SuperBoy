@@ -11,12 +11,14 @@ namespace SuperBoyView
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string [] arge)
+        static void Main(string[] arge)
         {
-
+            //Not connected to the Internet
+            //ControlSuperBoy.IsIneter();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SuperBoys());
+
         }
     }
 }
