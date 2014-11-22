@@ -111,5 +111,11 @@ namespace SuperBoyView
             int n = 0;
             return (InternetGetConnectedState(out n, 0));
         }
+
+        public static void ControlSuperBoys()
+        {
+            super
+        }
+
     }
 }

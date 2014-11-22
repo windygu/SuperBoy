@@ -61,6 +61,7 @@
       <DependentUpon>Query.cs</DependentUpon>
     </Compile>
     <Compile Include="ReadAndWrite.cs" />
+    <Compile Include="SuperBoy.Information.cs" />
     <Compile Include="SuperBoys.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -58,6 +58,10 @@ namespace SuperBoyView
             /// default file count
             /// </summary>
             DataDefaultCount,
+            /// <summary>
+            /// Is Auto
+            /// </summary>
+            IsAuto
         }
 
         /// <summary>
