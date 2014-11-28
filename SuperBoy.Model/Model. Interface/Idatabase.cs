@@ -5,7 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace SuperBoy.Cloud
+namespace SuperBoy.Model
 {
     interface Idatabase
     {

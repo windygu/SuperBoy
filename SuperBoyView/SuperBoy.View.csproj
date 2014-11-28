@@ -64,7 +64,6 @@
     <Compile Include="Workspace.Designer.cs">
       <DependentUpon>Workspace.cs</DependentUpon>
     </Compile>
-    <Compile Include="YSXL.HeadMessModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
