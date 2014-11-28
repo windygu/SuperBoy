@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SuperBoyView.Properties
+namespace SuperBoy.View.Properties
 {
 
 

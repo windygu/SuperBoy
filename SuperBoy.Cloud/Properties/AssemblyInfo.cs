@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Cloud")]
+[assembly: AssemblyTitle("SuperBoy.Cloud")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Cloud")]
+[assembly: AssemblyProduct("SuperBoy.Cloud")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2a68a33c-9093-48c6-be7c-9da4d0ddf880")]
+[assembly: Guid("3ed3d4df-79f6-4057-9542-49874d02f538")]
 
 // Version information for an assembly consists of the following four values:
 //

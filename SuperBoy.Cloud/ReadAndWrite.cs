@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace SuperBoyView
+namespace SuperBoy.Cloud
 {
     /// <summary>
     /// 读取文件与写入文件类

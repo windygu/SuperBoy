@@ -1,4 +1,4 @@
-﻿namespace SuperBoyView
+﻿namespace SuperBoy.View
 {
     partial class Query
     {

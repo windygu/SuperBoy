@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SuperBoyView
+namespace SuperBoy.Cloud
 {
     /// <summary>
     /// run time class library

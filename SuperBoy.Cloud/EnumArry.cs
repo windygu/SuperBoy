@@ -1,5 +1,5 @@
 ﻿
-namespace SuperBoyView
+namespace SuperBoy.Cloud
 {
     /// <summary>
     /// enumeration class

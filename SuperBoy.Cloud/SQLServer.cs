@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace SuperBoyView
+namespace SuperBoy.Cloud
 {
     /// <summary>
     /// 

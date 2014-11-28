@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SuperBoyView
+namespace SuperBoy.View
 {
     public partial class Workspace : Form
     {

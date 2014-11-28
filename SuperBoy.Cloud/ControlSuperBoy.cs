@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices;
 
-namespace SuperBoyView
+namespace SuperBoy.Cloud
 {
     /// <summary>
     /// This class is often used to control the program to the class

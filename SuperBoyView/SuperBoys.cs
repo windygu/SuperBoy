@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 //using System.Data;
 
-namespace SuperBoyView
+namespace SuperBoy.View
 {
     public partial class SuperBoys : Form
     {
