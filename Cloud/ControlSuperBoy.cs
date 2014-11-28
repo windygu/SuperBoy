@@ -101,10 +101,8 @@ namespace SuperBoyView
         }
         [DllImport("wininet.dll", EntryPoint = "InternetGetConnectedState")]
 
-        //判断网络状况的方法,返回值true为连接，false为未连接
+        //Is Inter
         public extern static bool InternetGetConnectedState(out int conState, int reder);
-
-        //在你的button事件中写下如下代码就行
 
         public static Boolean IsIneter()
         {
@@ -114,7 +112,7 @@ namespace SuperBoyView
 
         public static void ControlSuperBoys()
         {
-            super
+           // super
         }
 
     }

@@ -9,43 +9,43 @@ namespace SuperBoyView
     {
         public string DataBase { get; set; }
         /// <summary>
-        /// 版本号
+        /// versions number
         /// </summary>
         public string VersionNumber { get; set; }
         /// <summary>
-        /// 版本类型
+        /// versions type
         /// </summary>
         public EnumArry.HeadType VersionType { get; set; }
         /// <summary>
-        /// 创建时间
+        /// create time
         /// </summary>
         public string CreationDate { get; set; }
         /// <summary>
-        /// 最后修改时间
+        /// last update time
         /// </summary>
         public string LastUpdateDate { get; set; }
         /// <summary>
-        /// 创建时间
+        /// create time
         /// </summary>
         public string CreateMan { get; set; }
         /// <summary>
-        /// 命名空间
+        /// name space 
         /// </summary>
         public string Namespace { get; set; }
         /// <summary>
-        /// 修改次数
+        /// Modify the number of times 
         /// </summary>
         public string UpdateCode { get; set; }
         /// <summary>
-        /// 备份还原命名空间
+        /// Backup restore namespace 
         /// </summary>
         public string BackUp { get; set; }
         /// <summary>
-        /// 数据格式
+        /// data format
         /// </summary>
         public EnumArry.ConfigFormat DateType { get; set; }
         /// <summary>
-        /// 无参构造函数
+        /// not parameter
         /// </summary>
         public ModelHead()
         {
@@ -61,7 +61,7 @@ namespace SuperBoyView
         }
 
         /// <summary>
-        /// 无参构造函数,默认创建时候调用默认
+        /// not parameter create function ,default create time call default
         /// </summary>
         public ModelHead(bool IsCreate)
         {
@@ -79,14 +79,14 @@ namespace SuperBoyView
         }
         /*
         /// <summary>
-        /// 构造函数全部重写
+        /// create function all override
         /// </summary>
-        /// <param name="versionNumber">版本号</param>
-        /// <param name="versionType">文本属性</param>
-        /// <param name="creationDate">创建时间</param>
-        /// <param name="createMan">创建人</param>
-        /// <param name="lastUpdateDate">最后修改时间</param>
-        /// <param name="Namespace">命名空间</param>
+        /// <param name="versionNumber">versions number</param>
+        /// <param name="versionType">text type</param>
+        /// <param name="creationDate">create time</param>
+        /// <param name="createMan">create person</param>
+        /// <param name="lastUpdateDate">last update time</param>
+        /// <param name="Namespace">Namespace</param>
         public HeadMessModel(string versionNumber, EnumArry.HeadType versionType, DateTime creationDate, string createMan, string nameSpace, int updateCode)
         {
             this.VersionNumber = versionNumber;
@@ -99,11 +99,11 @@ namespace SuperBoyView
         }
         */
         /// <summary>
-        /// 普通文本创建与修改
+        /// Plain text creation and modification
         /// </summary>
-        /// <param name="creationDate">创建的时间</param>
-        /// <param name="versionNumber">版本号</param>
-        /// <param name="nameSpace">命名空间</param>
+        /// <param name="tableName">table Name</param>
+        /// <param name="creationDate">create time</param>
+        /// <param name="versionNumber">versions number</param>
         public ModelHead(string tableName, DateTime creationDate, string versionNumber)
             : this(false)
         {

@@ -15,7 +15,7 @@ namespace SuperBoyView
 
         #region 基本操作（basic）
         /// <summary>
-        /// 读取配置文件所有数据（ALL）
+        /// read config all（ALL）
         /// </summary>
         /// <param name="Path"></param>
         /// <returns></returns>
