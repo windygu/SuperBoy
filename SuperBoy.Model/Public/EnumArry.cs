@@ -1,5 +1,5 @@
 ﻿
-namespace SuperBoy.Model
+namespace SuperBoy.Model.Public
 {
     /// <summary>
     /// enumeration class
@@ -62,6 +62,13 @@ namespace SuperBoy.Model
             /// Is Auto
             /// </summary>
             IsAuto
+        }
+
+        public enum ProgramStatus
+        {
+            StartProgram,
+            DynamicProgram,
+            CloseProgram
         }
 
         /// <summary>

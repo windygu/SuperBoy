@@ -5,25 +5,25 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace SuperBoy.Model
+namespace SuperBoy.Model.Interface
 {
-    interface Idatabase
+    public interface Idatabase
     {
         /// <summary>
         /// this method is used to query all the data in the database
         /// </summary>
         /// <param name="count"></param>
-        DataSet SelectALL(int count);
+         DataSet SelectALL(int count);
         /// <summary>
         /// this method is used to query all data with conditions
         /// </summary>
         /// <param name="Where"></param>
         /// <param name="count"></param>
-        DataSet SelectALL(string Where, int count);
+         DataSet SelectALL(string Where, int count);
         /// <summary>
         /// this method is used to modify a data
         /// </summary>
         /// <param name="Where"></param>
-        int Update(string Where);
+         int Update(string Where);
     }
 }

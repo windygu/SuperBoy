@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace SuperBoy.Model
+namespace SuperBoy.Model.Public
 {
     /// <summary>
     /// the project database helper class

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
-using System.Data.SqlClient;
 using System.Runtime.InteropServices;
+using SuperBoy.Model;
+using SuperBoy.Model.Interface;
+using SuperBoy.Model.Public;
 
 namespace SuperBoy.Cloud
 {
@@ -14,10 +14,13 @@ namespace SuperBoy.Cloud
     public static class ControlSuperBoy
     {
 
-
-
         public static int CurrentCount = 0;
         public static string CurrentWhere = "";
+
+
+        //New Idata
+        public static Idatabase Idata = new SQLServer();
+
         public static DataSet CurrentFresh()
         {
             if (CurrentWhere.Length.Equals(0))
@@ -66,7 +69,6 @@ namespace SuperBoy.Cloud
         public static DataSet select(int count)
         {
             CurrentWhere = "";
-            Idatabase Idata = new SQLServer();
             return Idata.SelectALL(count);
         }
 
@@ -80,14 +82,12 @@ namespace SuperBoy.Cloud
         {
             CurrentWhere = Where;
             CurrentCount = count;
-            Idatabase Idata = new SQLServer();
             return Idata.SelectALL(Where, count);
         }
 
         public static int Update(string sql)
         {
-            Idatabase Idate = new SQLServer();
-            int count = Idate.Update(sql);
+            int count = Idata.Update(sql);
             return count;
         }
         /// <summary>
@@ -112,7 +112,7 @@ namespace SuperBoy.Cloud
 
         public static void ControlSuperBoys()
         {
-           // super
+            // super
         }
 
     }

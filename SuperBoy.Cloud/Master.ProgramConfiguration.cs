@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using SuperBoy.Model;
+using SuperBoy.Model.Public;
 
 namespace SuperBoy.Cloud
 {

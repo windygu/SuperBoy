@@ -1,11 +1,12 @@
-﻿using System.Data;
+﻿using SuperBoy.Model.Public;
+using System.Data;
 
 namespace SuperBoy.Model
 {
     /// <summary>
     /// 
     /// </summary>
-    class SQLServer : Idatabase
+    public class SQLServer : Interface.Idatabase
     {
         /// <summary>
         /// According count request database ALL value

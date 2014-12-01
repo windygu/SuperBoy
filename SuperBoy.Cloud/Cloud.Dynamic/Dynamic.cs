@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SuperBoy.Model;
+using SuperBoy.Model.Public;
 
 namespace SuperBoy.Cloud
 {

@@ -51,7 +51,6 @@
             this.setCDKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Views = new System.Windows.Forms.DataGridView();
             this.RightKey = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,13 +73,13 @@
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuScriptMains = new System.Windows.Forms.MenuStrip();
             this.reToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
+            this.MenuScriptMains = new System.Windows.Forms.MenuStrip();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.Views)).BeginInit();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.RightKey.SuspendLayout();
             this.MenuScriptMains.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // setCloudToolStripMenuItem
@@ -116,7 +115,7 @@
             this.ganttChartToolStripMenuItem,
             this.pieChartToolStripMenuItem});
             this.outInputToolStripMenuItem.Name = "outInputToolStripMenuItem";
-            this.outInputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.outInputToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.outInputToolStripMenuItem.Text = "Out Input";
             this.outInputToolStripMenuItem.Visible = false;
             // 
@@ -157,7 +156,7 @@
             this.wordToolStripMenuItem1,
             this.textToolStripMenuItem1});
             this.inputToolStripMenuItem.Name = "inputToolStripMenuItem";
-            this.inputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.inputToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.inputToolStripMenuItem.Text = "Input";
             this.inputToolStripMenuItem.Visible = false;
             // 
@@ -166,14 +165,12 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Visible = false;
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
-            this.toolsToolStripMenuItem.Visible = false;
             // 
             // viewToolStripMenuItem
             // 
@@ -184,7 +181,6 @@
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "View";
-            this.viewToolStripMenuItem.Visible = false;
             // 
             // viewAllToolStripMenuItem
             // 
@@ -209,7 +205,6 @@
             this.configToolStripMenuItem1.Name = "configToolStripMenuItem1";
             this.configToolStripMenuItem1.Size = new System.Drawing.Size(55, 20);
             this.configToolStripMenuItem1.Text = "Config";
-            this.configToolStripMenuItem1.Visible = false;
             // 
             // aboutToolStripMenuItem
             // 
@@ -219,7 +214,6 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.aboutToolStripMenuItem.Text = "Help";
-            this.aboutToolStripMenuItem.Visible = false;
             // 
             // setCDKToolStripMenuItem
             // 
@@ -232,7 +226,6 @@
             this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
             this.selectToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.selectToolStripMenuItem.Text = "Select";
-            this.selectToolStripMenuItem.Visible = false;
             // 
             // startToolStripMenuItem
             // 
@@ -242,20 +235,6 @@
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
             this.startToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.startToolStripMenuItem.Text = "File";
-            // 
-            // Views
-            // 
-            this.Views.AllowUserToOrderColumns = true;
-            this.Views.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Views.ContextMenuStrip = this.RightKey;
-            this.Views.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Views.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Views.Location = new System.Drawing.Point(0, 24);
-            this.Views.Name = "Views";
-            this.Views.RowTemplate.Height = 23;
-            this.Views.Size = new System.Drawing.Size(943, 505);
-            this.Views.TabIndex = 2;
-            this.Views.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.Views_CellValueChanged);
             // 
             // RightKey
             // 
@@ -279,7 +258,6 @@
             this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
             this.editToolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
             this.editToolStripMenuItem1.Text = "Selete";
-            this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem2
             // 
@@ -295,7 +273,6 @@
             this.findAndRelpceToolStripMenuItem.Name = "findAndRelpceToolStripMenuItem";
             this.findAndRelpceToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.findAndRelpceToolStripMenuItem.Text = "Find And Replace";
-            this.findAndRelpceToolStripMenuItem.Visible = false;
             // 
             // currentlyTreeToolStripMenuItem1
             // 
@@ -332,7 +309,6 @@
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
             this.addToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Visible = false;
             // 
             // newNodeToolStripMenuItem
             // 
@@ -355,7 +331,6 @@
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Visible = false;
             // 
             // currentToolStripMenuItem
             // 
@@ -385,7 +360,6 @@
             this.moveToolStripMenuItem.Name = "moveToolStripMenuItem";
             this.moveToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.moveToolStripMenuItem.Text = "Move";
-            this.moveToolStripMenuItem.Visible = false;
             // 
             // currentlyTreeToolStripMenuItem
             // 
@@ -410,22 +384,24 @@
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
             this.clearToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.clearToolStripMenuItem.Text = "Clear";
-            this.clearToolStripMenuItem.Visible = false;
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Visible = false;
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Visible = false;
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // reToolStripMenuItem
+            // 
+            this.reToolStripMenuItem.Name = "reToolStripMenuItem";
+            this.reToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.reToolStripMenuItem.Text = "ReFresh";
             // 
             // MenuScriptMains
             // 
@@ -439,48 +415,37 @@
             this.aboutToolStripMenuItem});
             this.MenuScriptMains.Location = new System.Drawing.Point(0, 0);
             this.MenuScriptMains.Name = "MenuScriptMains";
-            this.MenuScriptMains.Size = new System.Drawing.Size(943, 24);
+            this.MenuScriptMains.Size = new System.Drawing.Size(863, 24);
             this.MenuScriptMains.TabIndex = 3;
             this.MenuScriptMains.Text = "MainMenus";
-            // 
-            // reToolStripMenuItem
-            // 
-            this.reToolStripMenuItem.Name = "reToolStripMenuItem";
-            this.reToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.reToolStripMenuItem.Text = "ReFresh";
-            this.reToolStripMenuItem.Click += new System.EventHandler(this.reToolStripMenuItem_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Sitka Display", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(426, 244);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 30);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
-            this.label1.Visible = false;
             // 
             // timer1
             // 
             this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 24);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(863, 544);
+            this.dataGridView1.TabIndex = 4;
             // 
             // SuperBoys
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(943, 529);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.Views);
+            this.ClientSize = new System.Drawing.Size(863, 568);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.MenuScriptMains);
             this.Name = "SuperBoys";
             this.Text = "SuperBoys";
             this.Load += new System.EventHandler(this.SuperBoys_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Views)).EndInit();
             this.RightKey.ResumeLayout(false);
             this.MenuScriptMains.ResumeLayout(false);
             this.MenuScriptMains.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -530,12 +495,11 @@
         private System.Windows.Forms.ToolStripMenuItem otherTreeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem newTreeToolStripMenuItem1;
         private System.Windows.Forms.MenuStrip MenuScriptMains;
-        public System.Windows.Forms.DataGridView Views;
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reToolStripMenuItem;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

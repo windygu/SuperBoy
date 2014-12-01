@@ -7,18 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+//using System.Data;
+
 namespace SuperBoy.View
 {
-    public partial class Workspace : Form
+    public partial class SuperBoys : Form
     {
-        public Workspace()
+        public SuperBoys()
         {
             InitializeComponent();
         }
-        public string status = "";
-        private void Workspace_Load(object sender, EventArgs e)
+        //this is a load
+        private void SuperBoys_Load(object sender, EventArgs e)
         {
 
         }
+        // get My default parameter
+       
     }
 }
