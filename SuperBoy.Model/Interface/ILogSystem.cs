@@ -4,7 +4,7 @@ namespace SuperBoy.Model.Interface
 
     public interface ILogSystem
     {
-        void CommonLog(string txt);
-        void CommonLog(EnumArry.LogType logType, string txt);
+        bool CommonLog(string systemInformation);
+        bool CommonLog(EnumArry.LogType format, string SystemInformation);
     }
 }

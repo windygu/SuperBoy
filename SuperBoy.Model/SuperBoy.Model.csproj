@@ -41,22 +41,15 @@
   <ItemGroup>
     <Compile Include="Interface\IReadAndWrite.cs" />
     <Compile Include="Interface\ISystemControl.cs" />
-    <Compile Include="Controller\ModelController.cs" />
-    <Compile Include="Controller\SystemNeed.cs" />
-    <Compile Include="Parameter\LogSystem.cs" />
-    <Compile Include="Parameter\ReadAndWrite.cs" />
+    <Compile Include="Public\LogSystem.cs" />
+    <Compile Include="Public\ReadAndWrite.cs" />
     <Compile Include="Public\ViewDefault.cs" />
-    <Compile Include="Public\DBHelp.cs" />
     <Compile Include="Public\EnumArry.cs" />
-    <Compile Include="Interface\Idatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLServer\SQLServer.cs" />
-    <Compile Include="Public\YSXL.HeadMessModel.cs" />
     <Compile Include="Interface\ILogSystem.cs" />
+    <Compile Include="Public\LoadModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SuperBoy\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -4,12 +4,12 @@ using System.IO;
 using System.Collections.Generic;
 using SuperBoy.Model.Interface;
 
-namespace SuperBoy.Model.Parameter
+namespace SuperBoy.Model.Public
 {
     /// <summary>
     /// 读取文件与写入文件类
     /// </summary>
-    public class ReadAndWrite : SuperBoy.Model.Interface.IReadAndWrite
+    public class ReadAndWrite : IReadAndWrite
     {
         private static Encoding FondDefault = Encoding.UTF8;
         // public static string PathDefault = SuperBoy.Model.Controller.ModelController.Dicts[Public.EnumArry.Master.MasterPath].ToString() + "\\Temp.log";
@@ -42,8 +42,6 @@ namespace SuperBoy.Model.Parameter
             return read(Path, Fond)[Index];
         }
         #endregion
-
-
 
         #region write
         public void write(string text, string Path)
