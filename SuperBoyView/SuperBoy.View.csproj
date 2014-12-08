@@ -80,7 +80,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SuperBoy.Model\SuperBoy.Model.csproj">
       <Project>{6c6f0b3e-8873-4981-9128-fc7490df315b}</Project>

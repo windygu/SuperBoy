@@ -25,9 +25,10 @@ namespace SuperBoy.Cloud
             string[] item = new string[3];
             item[1] = "load";
             MasterDiction.Add(Master.configAtrry, item);                  //configuration files list
+            MasterDiction.Add(Master.DataTimeFormat, "yyyy-MM-dd HH-mm-ss");//dataTime forMater
             //System.Windows.Forms.Form forms = new Mains();
             //MasterDiction.Add(Master.StartForm, forms);
-            MasterDiction.Add(Master.HeadText, "#*,*#|/*,*/");//head file mark file string
+            MasterDiction.Add(Master.HeadText, "#*,*#");//head file mark file string
             //is auto control，if the value equ false not auto.
             MasterDiction.Add(Master.IsAuto, false);
         }

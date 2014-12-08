@@ -61,7 +61,11 @@ namespace SuperBoy.Model.Public
             /// <summary>
             /// Is Auto
             /// </summary>
-            IsAuto
+            IsAuto,
+            /// <summary>
+            /// DataTimeFormat
+            /// </summary>
+            DataTimeFormat,
         }
 
         public enum ProgramStatus
@@ -154,7 +158,7 @@ namespace SuperBoy.Model.Public
         /// <summary>
         /// Super Boy
         /// </summary>
-        public enum HeadType
+        public enum LogType
         {
             /// <summary>
             /// common text

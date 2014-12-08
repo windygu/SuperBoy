@@ -2,6 +2,7 @@
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
+using SuperBoy.Model.Interface;
 
 namespace SuperBoy.Model.Parameter
 {
@@ -10,35 +11,14 @@ namespace SuperBoy.Model.Parameter
     /// </summary>
     public class ReadAndWrite : SuperBoy.Model.Interface.IReadAndWrite
     {
-        public static Encoding FondDefault = Encoding.UTF8;
+        private static Encoding FondDefault = Encoding.UTF8;
         // public static string PathDefault = SuperBoy.Model.Controller.ModelController.Dicts[Public.EnumArry.Master.MasterPath].ToString() + "\\Temp.log";
-        public static string PathDefault = "\\Master\\Temp.log";
+        private static string PathDefault = "\\Master\\Temp.log";
+
+
         #region read
-        public List<string> read()
-        {
-            return read(PathDefault, FondDefault);
-        }
-
-        public string read(int Index)
-        {
-            return read(PathDefault, FondDefault)[Index];
-        }
-
-        public List<string> read(string Path)
-        {
-
-            return read(Path, Encoding.Default);
-        }
-
-        public string read(string Path, int Index)
-        {
-            return read(Path, FondDefault)[Index];
-        }
-
         public List<string> read(string Path, Encoding Fond)
         {
-            FondDefault = Fond;
-            PathDefault = Path;
             List<string> list = new List<string>();
             if (File.Exists(Path))
             {
@@ -53,43 +33,30 @@ namespace SuperBoy.Model.Parameter
             }
             else
             {
-
                 return list;
-                throw new Exception("文件地址不存在！");
+                //throw new Exception("文件地址不存在！");
             }
         }
-
         public string read(string Path, Encoding Fond, int Index)
         {
-            FondDefault = Fond;
-            PathDefault = Path;
             return read(Path, Fond)[Index];
         }
         #endregion
 
 
 
-        public bool write(string text)
-        {
-            return write(text, PathDefault);
-        }
-        public bool write(string text, int Index)
-        {
-            return write(text, Index, PathDefault);
-        }
-        public bool write(string text, string Path)
+        #region write
+        public void write(string text, string Path)
         {
             try
             {
-                PathDefault = Path;
                 StreamWriter write = new StreamWriter(Path);
-                write.WriteLine(text, Encoding.Default);
+                write.WriteLine(text);
                 write.Close();
-                return true;
             }
             catch (Exception)
             {
-                return false;
+
             }
         }
 
@@ -100,14 +67,14 @@ namespace SuperBoy.Model.Parameter
         /// <param name="Index">插入的下标1为起始值</param>
         /// <param name="Path">插入的文本，如果没有则自动新建</param>
         /// <returns></returns>
-        public bool write(string text, int Index, string Path)
+        public void write(string text, int Index, string Path)
         {
             //这个是是否进入过插入
             int ist = 0;
             //默认函数值改为当前路径
             PathDefault = Path;
             //取出所有的数据并存入数组
-            List<string> textRead = read(Path);
+            List<string> textRead = read(Path, Encoding.UTF8);
 
             //申明
             StreamWriter write = new StreamWriter(Path);
@@ -152,8 +119,9 @@ namespace SuperBoy.Model.Parameter
             }
             //关闭
             write.Close();
-            return true;
         }
+
+        #endregion
 
     }
 }

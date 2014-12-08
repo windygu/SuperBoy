@@ -1,23 +1,35 @@
-﻿using SuperBoy.Model.Public;
+﻿using SuperBoy.Model.Interface;
+using SuperBoy.Model.Public;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SuperBoy.Model.Controller;
 
 namespace SuperBoy.Model.Parameter
 {
-    public class LogSystem : SuperBoy.Model.ILogSystem
+    public class LogSystem : SuperBoy.Model.Interface.ILogSystem
     {
-
+        IReadAndWrite log = new ReadAndWrite();
         public bool CommonLog(string systemInformation)
         {
 
             try
             {
-                //call read
-               
-               
 
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        public bool CommonLog(EnumArry.LogType format, string SystemInformation)
+        {
+            try
+            {
                 return true;
             }
             catch (Exception)
@@ -26,16 +38,14 @@ namespace SuperBoy.Model.Parameter
             }
         }
 
-        public bool CommonLogs(EnumArry.ConfigFormat format, string SystemInformation)
+        void ILogSystem.CommonLog(string txt)
         {
-            try
-            {
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            throw new NotImplementedException();
+        }
+
+        void ILogSystem.CommonLog(EnumArry.LogType logType, string txt)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace SuperBoy.View
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new SuperBoys());
             SuperBoy.Model.Interface.IReadAndWrite read = new SuperBoy.Model.Parameter.ReadAndWrite();
-            read.write("中国风", 5, "d:\\a.txt");
+           // read.write("中国风", 5, "d:\\a.txt");
 
         }
     }
