@@ -188,6 +188,55 @@ namespace SuperBoy.Model.Public
 
         #endregion
 
+        public enum SendType
+        {
+            SELECT,
+            UPDATE,
+            DELETE,
+            INSTER,
+        }
+
+        public enum Database
+        {
+            TOP,
+            WHERE,
+            WHERETYPE,
+            DATA,
+            Value,
+            Key,
+            UpdateKey,
+            UpdateValue,
+            TableName,
+        }
+        public enum WhereType
+        {
+            /// <summary>
+            ///等于参数
+            /// </summary>
+            Equal,
+            /// <summary>
+            ///大于参数
+            /// </summary>
+            Greater,
+            /// <summary>
+            /// 小于参数
+            /// </summary>
+            Less,
+            /// <summary>
+            /// 类似参数
+            /// </summary>
+            Like,
+            /// <summary>
+            /// 左类似
+            /// </summary>
+            LiftLike,
+            /// <summary>
+            /// 右类似
+            /// </summary>
+            RightLike
+        }
+
+
         #region language
         /// <summary>
         /// language

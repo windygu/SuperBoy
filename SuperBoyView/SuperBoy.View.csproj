@@ -38,6 +38,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -51,6 +53,11 @@
     <Compile Include="Media\MultiMedia.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\SuperBoyControl\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="View\SuperBoys.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,12 +87,41 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\SuperBoyControl\SuperBoyControl.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SuperBoyControl\SuperBoyControl1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SuperBoyControl\SuperBoyICloud.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SuperBoy.Model\SuperBoy.Model.csproj">
       <Project>{6c6f0b3e-8873-4981-9128-fc7490df315b}</Project>
       <Name>SuperBoy.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SuperBoyControl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SuperBoyControl\SuperBoyControl.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SuperBoyControl\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SuperBoyControl\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SuperBoyControl\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
