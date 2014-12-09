@@ -78,6 +78,7 @@
     <EmbeddedResource Include="View\SuperBoys.resx">
       <DependentUpon>SuperBoys.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +94,12 @@
     <None Include="Service References\SuperBoyControl\SuperBoyControl1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\SuperBoyControl\SuperBoyControl2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SuperBoyControl\SuperBoyControl21.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\SuperBoyControl\SuperBoyICloud.wsdl" />
   </ItemGroup>
   <ItemGroup>
@@ -104,7 +111,6 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\SuperBoyControl\" />
   </ItemGroup>

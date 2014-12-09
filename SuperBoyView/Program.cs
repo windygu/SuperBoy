@@ -34,9 +34,7 @@ namespace SuperBoy.View
             Model.Public.DatabseSend sendSelect = new Model.Public.DatabseSend(EnumArry.SendType.SELECT, DicSelect);
 
             SuperBoyICloudClient client = new SuperBoyICloudClient();
-            client.SuperBoyC();
-
-
+            client.SuperBoyC(sendSelect);
 
             #endregion
 

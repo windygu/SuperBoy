@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8e814921-05cb-4f6f-8510-0703f0562e76" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d52adbdb-8a15-4bfa-bc85-0d29894d29ca" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -8,7 +8,9 @@
     <GenerateInternalTypes>false</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
-    <CollectionMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
@@ -21,10 +23,12 @@
     <MetadataSource Address="http://localhost:3178/SuperBoyControl.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SuperBoyControl.xsd" MetadataType="Schema" ID="298b089e-bbd7-417f-85fc-5dc6f323d43a" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?xsd=xsd0" />
-    <MetadataFile FileName="SuperBoyICloud.wsdl" MetadataType="Wsdl" ID="890b540a-549c-4d2a-94f3-e09138eb452a" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?wsdl" />
-    <MetadataFile FileName="SuperBoyControl1.xsd" MetadataType="Schema" ID="224e7128-9c25-448a-aca3-767448c0e81f" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?xsd=xsd1" />
-    <MetadataFile FileName="SuperBoyControl.disco" MetadataType="Disco" ID="df36c997-0f2e-4494-93c6-1e731c5313fc" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?disco" />
+    <MetadataFile FileName="SuperBoyICloud.wsdl" MetadataType="Wsdl" ID="9414e520-f40d-45a7-8c02-9f2a110e9043" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?wsdl" />
+    <MetadataFile FileName="SuperBoyControl.disco" MetadataType="Disco" ID="ca85117f-112f-44ad-b589-57590ef2d9e6" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?disco" />
+    <MetadataFile FileName="SuperBoyControl1.xsd" MetadataType="Schema" ID="ecc1d6a4-c80e-4bf3-836d-2733162925f0" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?xsd=xsd1" />
+    <MetadataFile FileName="SuperBoyControl.xsd" MetadataType="Schema" ID="c13b3ce9-7ed1-4093-8c37-5f9ec9dbc89c" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?xsd=xsd0" />
+    <MetadataFile FileName="SuperBoyControl2.xsd" MetadataType="Schema" ID="dd7099ac-6ead-46fa-8c47-fe2acde26375" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?xsd=xsd3" />
+    <MetadataFile FileName="SuperBoyControl21.xsd" MetadataType="Schema" ID="247b5932-9aca-4107-aa86-d67e7c084fbe" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
