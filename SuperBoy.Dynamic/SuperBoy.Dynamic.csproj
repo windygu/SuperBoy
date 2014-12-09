@@ -39,12 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Control\ControlSuperBoyCloud.cs" />
     <Compile Include="Database\DBHelp.cs" />
     <Compile Include="Dynamic\Dynamic.cs" />
-    <Compile Include="Interface\IControlSuperBoyCloud.cs" />
-    <Compile Include="Intialization\Initialization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Public\Master.ProgramConfiguration.cs" />
   </ItemGroup>
@@ -53,6 +50,9 @@
       <Project>{6c6f0b3e-8873-4981-9128-fc7490df315b}</Project>
       <Name>SuperBoy.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

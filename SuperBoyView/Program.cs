@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using SuperBoy.Model.Public;
 using System.Data;
 using SuperBoyView.SuperBoyControl;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace SuperBoy.View
 {
@@ -14,7 +16,7 @@ namespace SuperBoy.View
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] arge)
+        public static void Main(string[] arge)
         {
             #region 单数据查询
             Dictionary<EnumArry.Database, object> DicSelect = new Dictionary<EnumArry.Database, object>();
@@ -33,7 +35,10 @@ namespace SuperBoy.View
 
             Model.Public.DatabseSend sendSelect = new Model.Public.DatabseSend(EnumArry.SendType.SELECT, DicSelect);
 
+            string item = Serialize(sendSelect);
+
             SuperBoyICloudClient client = new SuperBoyICloudClient();
+           // string item = client.ToString();
             client.SuperBoyC(sendSelect);
 
             #endregion
@@ -93,6 +98,48 @@ namespace SuperBoy.View
              
             #endregion
             */
+        }
+
+        /// <summary>
+
+        /// 序列化成xml字符串
+
+        /// </summary>
+
+        /// <param name="obj"></param>
+
+        /// <returns>序列化后的字符串</returns>
+        public static string Serialize(object obj)
+        {
+
+            XmlSerializer xs = new XmlSerializer(obj.GetType());
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+
+                System.Xml.XmlTextWriter xtw = new System.Xml.XmlTextWriter(ms, System.Text.Encoding.UTF8);
+
+                xtw.Formatting = System.Xml.Formatting.Indented;
+
+                xs.Serialize(xtw, obj);
+
+                ms.Seek(0, SeekOrigin.Begin);
+
+                using (StreamReader sr = new StreamReader(ms))
+                {
+
+                    string str = sr.ReadToEnd();
+
+                    xtw.Close();
+
+                    ms.Close();
+
+                    return str;
+
+                }
+
+            }
+
         }
     }
 }
