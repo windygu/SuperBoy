@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SuperBoy.Model.Interface
 {
-    public interface ISystemControl
+    public interface ISystemControlModel
     {
         /// <summary>
         /// this is a start program

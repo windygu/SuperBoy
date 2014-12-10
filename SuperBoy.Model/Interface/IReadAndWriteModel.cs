@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SuperBoy.Model.Interface
 {
-    public interface IReadAndWrite
+    public interface IReadAndWriteModel
     {
         List<string> read(string Path, Encoding Fond);
         string read(string Path, Encoding Fond, int Index);

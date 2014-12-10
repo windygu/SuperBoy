@@ -7,6 +7,7 @@ using System.Data;
 using SuperBoyView.SuperBoyControl;
 using System.IO;
 using System.Xml.Serialization;
+using SuperBoy.Model.Interface;
 
 namespace SuperBoy.View
 {
@@ -18,29 +19,38 @@ namespace SuperBoy.View
         [STAThread]
         public static void Main(string[] arge)
         {
-            #region 单数据查询
-            Dictionary<EnumArry.Database, object> DicSelect = new Dictionary<EnumArry.Database, object>();
-            //带条件
-            DicSelect.Add(EnumArry.Database.WHERE, true);
-            //小于参数
-            DicSelect.Add(EnumArry.Database.WHERETYPE, EnumArry.WhereType.Less);
-            //显示10条
-            DicSelect.Add(EnumArry.Database.TOP, 10);
-            //参数名
-            DicSelect.Add(EnumArry.Database.Key, "BrandID");
-            //值
-            DicSelect.Add(EnumArry.Database.Value, 25);
-            //表名
-            DicSelect.Add(EnumArry.Database.TableName, "CW100_Product");
+            #region data Query
+            Dictionary<EnumArryModel.Database, object> DicSelect = new Dictionary<EnumArryModel.Database, object>();
+            //+ where
+            DicSelect.Add(EnumArryModel.Database.WHERE, true);
+            //less Parameters
+            DicSelect.Add(EnumArryModel.Database.WHERETYPE, EnumArryModel.WhereType.RightLike);
+            //show 10 count
+            DicSelect.Add(EnumArryModel.Database.TOP, 10);
+            string[] Field = { "*" };
+            DicSelect.Add(EnumArryModel.Database.Field, Field);
+            //database Name
+            DicSelect.Add(EnumArryModel.Database.DatabaseName, "CW100_develop");
+            //parameter Name
+            DicSelect.Add(EnumArryModel.Database.Key, "BrandID");
+            //Value
+            DicSelect.Add(EnumArryModel.Database.Value, "2");
+            //Table Name
+            DicSelect.Add(EnumArryModel.Database.TableName, "CW100_Product");
+            //Model
+            Model.Public.DatabseSend sendSelect = new Model.Public.DatabseSend(EnumArryModel.SendType.SELECT, DicSelect, EnumArryModel.ReturnType.JSON);
 
-            Model.Public.DatabseSend sendSelect = new Model.Public.DatabseSend(EnumArry.SendType.SELECT, DicSelect);
-
-            string item = Serialize(sendSelect);
+            ISerializationModel ser = new SerializationModel();
+            //send
+            string parameter = ser.SuperBoyAnalytical(sendSelect);
 
             SuperBoyICloudClient client = new SuperBoyICloudClient();
-           // string item = client.ToString();
-            client.SuperBoyC(sendSelect);
+            //get a return value 
+            string returnValue = client.SuperBoyCloud(parameter);
+            if (returnValue != null)
+            {
 
+            }
             #endregion
 
             /*
@@ -98,48 +108,6 @@ namespace SuperBoy.View
              
             #endregion
             */
-        }
-
-        /// <summary>
-
-        /// 序列化成xml字符串
-
-        /// </summary>
-
-        /// <param name="obj"></param>
-
-        /// <returns>序列化后的字符串</returns>
-        public static string Serialize(object obj)
-        {
-
-            XmlSerializer xs = new XmlSerializer(obj.GetType());
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-
-                System.Xml.XmlTextWriter xtw = new System.Xml.XmlTextWriter(ms, System.Text.Encoding.UTF8);
-
-                xtw.Formatting = System.Xml.Formatting.Indented;
-
-                xs.Serialize(xtw, obj);
-
-                ms.Seek(0, SeekOrigin.Begin);
-
-                using (StreamReader sr = new StreamReader(ms))
-                {
-
-                    string str = sr.ReadToEnd();
-
-                    xtw.Close();
-
-                    ms.Close();
-
-                    return str;
-
-                }
-
-            }
-
         }
     }
 }

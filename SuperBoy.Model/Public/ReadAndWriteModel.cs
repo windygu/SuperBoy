@@ -9,7 +9,7 @@ namespace SuperBoy.Model.Public
     /// <summary>
     /// 读取文件与写入文件类
     /// </summary>
-    public class ReadAndWrite : IReadAndWrite
+    public class ReadAndWriteModel : IReadAndWriteModel
     {
         private static Encoding FondDefault = Encoding.UTF8;
         // public static string PathDefault = SuperBoy.Model.Controller.ModelController.Dicts[Public.EnumArry.Master.MasterPath].ToString() + "\\Temp.log";

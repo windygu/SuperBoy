@@ -15,8 +15,8 @@ namespace SuperBoyView.SuperBoyControl {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SuperBoyControl.ISuperBoyICloud")]
     public interface ISuperBoyICloud {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISuperBoyICloud/SuperBoyC", ReplyAction="http://tempuri.org/ISuperBoyICloud/SuperBoyCResponse")]
-        string SuperBoyC(SuperBoy.Model.Public.DatabseSend database);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISuperBoyICloud/SuperBoyCloud", ReplyAction="http://tempuri.org/ISuperBoyICloud/SuperBoyCloudResponse")]
+        string SuperBoyCloud(string CloudJson);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -46,8 +46,8 @@ namespace SuperBoyView.SuperBoyControl {
                 base(binding, remoteAddress) {
         }
         
-        public string SuperBoyC(SuperBoy.Model.Public.DatabseSend database) {
-            return base.Channel.SuperBoyC(database);
+        public string SuperBoyCloud(string CloudJson) {
+            return base.Channel.SuperBoyCloud(CloudJson);
         }
     }
 }

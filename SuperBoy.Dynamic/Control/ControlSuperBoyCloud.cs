@@ -12,7 +12,7 @@ namespace SuperBoy.Cloud.Control
     /// <summary>
     /// This class is often used to control the program to the class
     /// </summary>
-    public class ControlSuperBoyAnalytical : IControlSuperBoyAnalytical
+    public class ControlSuperBoyAnalytical : ISuperBoyAnalytical
     {
         Dictionary<EnumArry.Database, object> Dic = new Dictionary<EnumArry.Database, object>();
         public object SELECT(Model.Public.DatabseSend database)

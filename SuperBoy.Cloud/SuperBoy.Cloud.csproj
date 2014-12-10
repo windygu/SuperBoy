@@ -59,14 +59,14 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SuperBoyControl.svc" />
+    <Content Include="SuperBoyCloud.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SuperBoyControl.svc.cs">
-      <DependentUpon>SuperBoyControl.svc</DependentUpon>
+    <Compile Include="SuperBoyCloud.svc.cs">
+      <DependentUpon>SuperBoyCloud.svc</DependentUpon>
     </Compile>
-    <Compile Include="ISuperBoyControl.cs" />
+    <Compile Include="ISuperBoyCloud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

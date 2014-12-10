@@ -4,26 +4,24 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:3178/SuperBoyControl.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:3178/SuperBoyControl.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:3178/SuperBoyControl.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SuperBoy.Model.Public" />
-      <xsd:import schemaLocation="http://localhost:3178/SuperBoyControl.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="ISuperBoyICloud_SuperBoyC_InputMessage">
-    <wsdl:part name="parameters" element="tns:SuperBoyC" />
+  <wsdl:message name="ISuperBoyICloud_SuperBoyCloud_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuperBoyCloud" />
   </wsdl:message>
-  <wsdl:message name="ISuperBoyICloud_SuperBoyC_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SuperBoyCResponse" />
+  <wsdl:message name="ISuperBoyICloud_SuperBoyCloud_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuperBoyCloudResponse" />
   </wsdl:message>
   <wsdl:portType name="ISuperBoyICloud">
-    <wsdl:operation name="SuperBoyC">
-      <wsdl:input wsaw:Action="http://tempuri.org/ISuperBoyICloud/SuperBoyC" message="tns:ISuperBoyICloud_SuperBoyC_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ISuperBoyICloud/SuperBoyCResponse" message="tns:ISuperBoyICloud_SuperBoyC_OutputMessage" />
+    <wsdl:operation name="SuperBoyCloud">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISuperBoyICloud/SuperBoyCloud" message="tns:ISuperBoyICloud_SuperBoyCloud_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISuperBoyICloud/SuperBoyCloudResponse" message="tns:ISuperBoyICloud_SuperBoyCloud_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISuperBoyICloud" type="tns:ISuperBoyICloud">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="SuperBoyC">
-      <soap:operation soapAction="http://tempuri.org/ISuperBoyICloud/SuperBoyC" style="document" />
+    <wsdl:operation name="SuperBoyCloud">
+      <soap:operation soapAction="http://tempuri.org/ISuperBoyICloud/SuperBoyCloud" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

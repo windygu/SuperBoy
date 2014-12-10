@@ -94,12 +94,6 @@
     <None Include="Service References\SuperBoyControl\SuperBoyControl1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SuperBoyControl\SuperBoyControl2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SuperBoyControl\SuperBoyControl21.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\SuperBoyControl\SuperBoyICloud.wsdl" />
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,7 @@ namespace SuperBoy.Model.Public
         /// <summary>
         /// versions type
         /// </summary>
-        public EnumArry.LogType VersionType { get; set; }
+        public EnumArryModel.LogType VersionType { get; set; }
         /// <summary>
         /// create time
         /// </summary>
@@ -41,17 +41,13 @@ namespace SuperBoy.Model.Public
         /// </summary>
         public string BackUp { get; set; }
         /// <summary>
-        /// data format
-        /// </summary>
-        public EnumArry.ConfigFormat DateType { get; set; }
-        /// <summary>
         /// not parameter
         /// </summary>
         public ModelHead()
         {
             this.DataBase = "TableName";
             this.VersionNumber = "VersionNumber";
-            this.VersionType = EnumArry.LogType.bak;
+            this.VersionType = EnumArryModel.LogType.bak;
             this.CreationDate = "CreationDate";
             this.LastUpdateDate = "LastUpdateDate";
             this.CreateMan = "CreateMan";
@@ -69,7 +65,7 @@ namespace SuperBoy.Model.Public
             {
                 this.DataBase = "TableName";
                 this.VersionNumber = "Default ysxl_1.0";
-                this.VersionType = EnumArry.LogType.Plain;
+                this.VersionType = EnumArryModel.LogType.Plain;
                 this.CreationDate = DateTime.Now.ToString();
                 this.CreateMan = "MasterUser";
                 this.LastUpdateDate = DateTime.Now.ToString();

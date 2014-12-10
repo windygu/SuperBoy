@@ -2,9 +2,9 @@
 namespace SuperBoy.Model.Interface
 {
 
-    public interface ILogSystem
+    public interface ILogSystemModel
     {
         bool CommonLog(string systemInformation);
-        bool CommonLog(EnumArry.LogType format, string SystemInformation);
+        bool CommonLog(EnumArryModel.LogType format, string SystemInformation);
     }
 }

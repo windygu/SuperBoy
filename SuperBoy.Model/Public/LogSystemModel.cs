@@ -7,9 +7,9 @@ using System.Text;
 
 namespace SuperBoy.Model.Public
 {
-    public class LogSystem : ILogSystem
+    public class LogSystemModel : ILogSystemModel
     {
-        IReadAndWrite log = new ReadAndWrite();
+        IReadAndWriteModel log = new ReadAndWriteModel();
 
         Model.Public.LoadModel model = new Public.LoadModel();
         public bool CommonLog(string systemInformation)
@@ -26,29 +26,29 @@ namespace SuperBoy.Model.Public
             }
         }
 
-        public bool CommonLog(EnumArry.LogType format, string systemInformation)
+        public bool CommonLog(EnumArryModel.LogType format, string systemInformation)
         {
             try
             {
                 string formatTxt = "";
                 switch (format)
                 {
-                    case EnumArry.LogType.Plain:
+                    case EnumArryModel.LogType.Plain:
                         formatTxt = "Plain";
                         break;
-                    case EnumArry.LogType.Log:
+                    case EnumArryModel.LogType.Log:
                         formatTxt = "Log";
                         break;
-                    case EnumArry.LogType.System:
+                    case EnumArryModel.LogType.System:
                         formatTxt = "System";
                         break;
-                    case EnumArry.LogType.Master:
+                    case EnumArryModel.LogType.Master:
                         formatTxt = "Master";
                         break;
-                    case EnumArry.LogType.bak:
+                    case EnumArryModel.LogType.bak:
                         formatTxt = "bak";
                         break;
-                    case EnumArry.LogType.odb:
+                    case EnumArryModel.LogType.odb:
                         formatTxt = "odb";
                         break;
                     default:

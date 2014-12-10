@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SuperBoy.Model.Interface
 {
-    interface ISerialization
+    public interface ISerializationModel
     {
         string SuperBoyAnalytical(Model.Public.DatabseSend database);
     }

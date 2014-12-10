@@ -2,7 +2,7 @@
 
 namespace SuperBoy.View.Controller
 {
-    class SuperBoyController : SuperBoy.Model.Interface.ISystemControl
+    class SuperBoyController : SuperBoy.Model.Interface.ISystemControlModel
     {
 
         public bool StartProgram()

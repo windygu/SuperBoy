@@ -13,6 +13,6 @@ namespace SuperBoy.Cloud
     public interface ISuperBoyICloud
     {
         [OperationContract]
-         string SuperBoyC(Model.Public.DatabseSend database);
+        string SuperBoyCloud(string CloudJson);
     }
 }
