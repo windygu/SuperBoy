@@ -1,0 +1,146 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Runtime.InteropServices;
+using SuperBoy.Model;
+using System.Text;
+using SuperBoy.Model.Public;
+using SuperBoy.Model.Interface;
+
+namespace SuperBoy.Model.Public
+{
+    /// <summary>
+    /// This class is often used to control the program to the class
+    /// </summary>
+    public class SuperBoyAnalytical : ISuperBoyAnalytical
+    {
+        Dictionary<EnumArry.Database, object> Dic = new Dictionary<EnumArry.Database, object>();
+        public string SELECT(Model.Public.DatabseSend database)
+        {
+            Dic = database.Dic;
+            //通过权限表
+            //权限审核通过后执行拆分并组装
+            StringBuilder SQLStr = new StringBuilder();
+            SQLStr.Append("{\"Type\":\"SELECT\"");
+            //行数
+            if (Dic.ContainsKey(EnumArry.Database.TOP))
+            {
+                SQLStr.Append(",\"TOP\":\"" + Dic[EnumArry.Database.TOP] + "\"");
+            }
+            else
+            {
+                SQLStr.Append(",\"TOP\":\"false\"");
+            }
+
+
+            //字段名
+            if (Dic.ContainsKey(EnumArry.Database.Field))
+            {
+                SQLStr.Append(",\"Field\":\"");
+                string[] str = (string[])Dic[EnumArry.Database.Field];
+                if (str[0].Trim() != "*")
+                {
+
+                    string item = string.Join(",", str);
+                    SQLStr.Append(item + "\"");
+                }
+                else
+                {
+                    SQLStr.Append("*\"");
+                }
+            }
+            else
+            {
+                SQLStr.Append(",\"Field\":*");
+            }
+
+            //表名
+            SQLStr.Append(",\"From\":\"" + Dic[EnumArry.Database.TableName] + "\"");
+            //条件,如果条件存在，并且条件不等于false
+            if (Dic.ContainsKey(EnumArry.Database.WHERE) && Convert.ToBoolean(Dic[EnumArry.Database.WHERE]))
+            {
+                /*
+                 public static Object Parse(Type enumType,string value)
+                    例如：(Colors)Enum.Parse(typeof(Colors), "Red")
+                 */
+                //对比
+                EnumArry.WhereType whereType = (EnumArry.WhereType)Enum.Parse(typeof(EnumArry.WhereType), Dic[EnumArry.Database.WHERETYPE].ToString());
+                SQLStr.Append(",\"Key\":" + "\"" + Dic[EnumArry.Database.Key] + "\"");
+                SQLStr.Append(",\"Value\":" + "\"" + Dic[EnumArry.Database.Value] + "\"");
+                SQLStr.Append(",\"Where\":\"true\"");
+                SQLStr.Append(",\"WhereType\":");
+                switch (whereType)
+                {
+                    case EnumArry.WhereType.Equal:
+                        SQLStr.Append("\"Equal\"");
+                        break;
+                    case EnumArry.WhereType.Greater:
+                        SQLStr.Append("\"Greater\"");
+                        break;
+                    case EnumArry.WhereType.Less:
+                        SQLStr.Append("\"Less\"");
+                        break;
+                    case EnumArry.WhereType.Like:
+                        SQLStr.Append("\"Like\"");
+                        break;
+                    case EnumArry.WhereType.LiftLike:
+                        SQLStr.Append("\"LiftLike\"");
+                        break;
+                    case EnumArry.WhereType.RightLike:
+                        SQLStr.Append("\"RightLike\"");
+                        break;
+                    default:
+                        break;
+                }
+            }
+            switch (database.ReturnType)
+            {
+                case EnumArry.ReturnType.JSON:
+                    SQLStr.Append(",\"ReturnType\":\"JSON\"");
+                    break;
+                case EnumArry.ReturnType.XML:
+
+                    SQLStr.Append(",\"ReturnType\":\"XML\"");
+                    break;
+                case EnumArry.ReturnType.KeyValue:
+
+                    SQLStr.Append(",\"ReturnType\":\"ReturnType\"");
+                    break;
+                case EnumArry.ReturnType.LIST:
+
+                    SQLStr.Append(",\"ReturnType\":\"LIST\"");
+                    break;
+                case EnumArry.ReturnType.DICT:
+
+                    SQLStr.Append(",\"ReturnType\":\"DICT\"");
+                    break;
+                default:
+                    break;
+            }
+
+            SQLStr.Append("}");
+            return SQLStr.ToString();
+        }
+
+        public string INSTER(Model.Public.DatabseSend database)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string UPDATE(Model.Public.DatabseSend database)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string DELTE(Model.Public.DatabseSend database)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public string ONLINE(DatabseSend database)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
