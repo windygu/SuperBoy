@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
-using SuperBoy.Dynamic;
+﻿using SuperBoy.Dynamic;
+using SuperBoy.Dynamic.Interface;
 
 namespace SuperBoy.Cloud
 {
@@ -17,7 +11,8 @@ namespace SuperBoy.Cloud
         public string SuperBoyCloud(string CloudJson)
         {
             //调用页面序列化器皿
-
+            ISerializationDynamic ser = new SerializationDynamic();
+            ser.AnalyticalMain(CloudJson);
             return "";
         }
     }

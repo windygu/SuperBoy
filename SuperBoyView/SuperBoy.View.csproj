@@ -88,13 +88,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\SuperBoyControl\SuperBoyControl.xsd">
+    <None Include="Service References\SuperBoyControl\SuperBoyCloud.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SuperBoyControl\SuperBoyControl1.xsd">
+    <None Include="Service References\SuperBoyControl\SuperBoyCloud1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\SuperBoyControl\SuperBoyICloud.wsdl" />
+    <None Include="Service References\SuperBoyControl\SuperBoyICloud1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SuperBoy.Model\SuperBoy.Model.csproj">
@@ -109,9 +109,6 @@
     <WCFMetadataStorage Include="Service References\SuperBoyControl\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\SuperBoyControl\SuperBoyControl.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\SuperBoyControl\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +119,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SuperBoyControl\SuperBoyCloud.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

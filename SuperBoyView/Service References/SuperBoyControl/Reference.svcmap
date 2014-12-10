@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:3178/SuperBoyControl.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:3178/SuperBoyCloud.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SuperBoyControl1.xsd" MetadataType="Schema" ID="a8d5f818-5123-4c45-be59-98211431b44f" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?xsd=xsd0" />
-    <MetadataFile FileName="SuperBoyICloud.wsdl" MetadataType="Wsdl" ID="cbada0ec-8f3a-4f8c-99bf-c6a24a2ad5cd" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?wsdl" />
-    <MetadataFile FileName="SuperBoyControl.xsd" MetadataType="Schema" ID="6908e1ae-af46-4920-a846-c8649ba8f286" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?xsd=xsd1" />
-    <MetadataFile FileName="SuperBoyControl.disco" MetadataType="Disco" ID="ce493003-aad5-4b1b-9bda-f78aeb97f6d5" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyControl.svc?disco" />
+    <MetadataFile FileName="SuperBoyCloud.xsd" MetadataType="Schema" ID="0c2a8224-7dc6-41f6-99fd-38896b8f78e3" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyCloud.svc?xsd=xsd0" />
+    <MetadataFile FileName="SuperBoyCloud.disco" MetadataType="Disco" ID="ab737101-50df-4abf-a383-74cbca2619c8" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyCloud.svc?disco" />
+    <MetadataFile FileName="SuperBoyCloud1.xsd" MetadataType="Schema" ID="954eb4de-3dc4-40e4-a68a-eb805f29a711" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyCloud.svc?xsd=xsd1" />
+    <MetadataFile FileName="SuperBoyICloud1.wsdl" MetadataType="Wsdl" ID="7ea2134c-8743-4bf4-b7ee-99d6a7e7480b" SourceId="1" SourceUrl="http://localhost:3178/SuperBoyCloud.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

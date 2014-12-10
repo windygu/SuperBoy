@@ -5,10 +5,8 @@ using System.Text;
 
 namespace SuperBoy.Dynamic.Interface
 {
-    interface ISerializationDynamic
+    public interface ISerializationDynamic
     {
-
-
         string AnalyticalMain(string AnalyticalString);
     }
 }

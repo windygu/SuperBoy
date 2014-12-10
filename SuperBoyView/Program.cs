@@ -54,8 +54,6 @@ namespace SuperBoy.View
 
             }
             #endregion
-             
-
             /*
 
             #region 单数据修改

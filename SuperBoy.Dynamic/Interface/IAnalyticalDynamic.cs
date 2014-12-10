@@ -13,5 +13,6 @@ namespace SuperBoy.Dynamic.Interface
         string Inster(Dictionary<string, string> Dic);
         string Delete(Dictionary<string, string> Dic);
         string Update(Dictionary<string, string> Dic);
+        string MANAGE(Dictionary<string, string> Dic);
     }
 }
