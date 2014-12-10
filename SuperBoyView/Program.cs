@@ -47,6 +47,8 @@ namespace SuperBoy.View
             SuperBoyICloudClient client = new SuperBoyICloudClient();
             //get a return value 
             string returnValue = client.SuperBoyCloud(parameter);
+
+
             if (returnValue != null)
             {
 
