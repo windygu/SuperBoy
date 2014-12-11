@@ -35,11 +35,12 @@ namespace SuperBoy.Dynamic
         public Dictionary<string, string> DictAnalytical(string JsonArray)
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
+            // string[] item = JsonArray.Replace("\"", "").Split(',');
             string[] item = JsonArray.Split(',');
             for (int index = 0; index < item.Length; index++)
             {
                 string[] KeyValue = item[index].Split(':');
-                dic.Add(KeyValue[0].ToLower(), KeyValue[1]);
+                dic.Add(KeyValue[0].Trim().Trim('\"').ToLower(), KeyValue[1].Trim().Trim('\"'));
             }
             return dic;
         }

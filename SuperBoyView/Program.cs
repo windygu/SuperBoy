@@ -8,6 +8,7 @@ using SuperBoyView.SuperBoyControl;
 using System.IO;
 using System.Xml.Serialization;
 using SuperBoy.Model.Interface;
+using SuperBoyView;
 
 namespace SuperBoy.View
 {
@@ -19,6 +20,7 @@ namespace SuperBoy.View
         [STAThread]
         public static void Main(string[] arge)
         {
+
             #region data Query
             Dictionary<EnumArryModel.Database, object> DicSelect = new Dictionary<EnumArryModel.Database, object>();
             //+ where

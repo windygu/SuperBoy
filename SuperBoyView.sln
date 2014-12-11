@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperBoy.Cloud", "SuperBoy.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperBoy.Intialization", "SuperBoy.Intialization\SuperBoy.Intialization.csproj", "{B7E6EB7F-19D0-4C17-9DF6-ACE701B5636F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperBoy.Database", "SuperBoy.Database\SuperBoy.Database.csproj", "{6F46BEE5-A639-4106-8DAB-E845A47D8E97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperBoy.YSQL", "SuperBoy.YSQL\SuperBoy.YSQL.csproj", "{3C8895BD-C0CD-4D21-AB92-2671F4E6655E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +52,14 @@ Global
 		{B7E6EB7F-19D0-4C17-9DF6-ACE701B5636F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7E6EB7F-19D0-4C17-9DF6-ACE701B5636F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7E6EB7F-19D0-4C17-9DF6-ACE701B5636F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F46BEE5-A639-4106-8DAB-E845A47D8E97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F46BEE5-A639-4106-8DAB-E845A47D8E97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F46BEE5-A639-4106-8DAB-E845A47D8E97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F46BEE5-A639-4106-8DAB-E845A47D8E97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C8895BD-C0CD-4D21-AB92-2671F4E6655E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C8895BD-C0CD-4D21-AB92-2671F4E6655E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C8895BD-C0CD-4D21-AB92-2671F4E6655E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C8895BD-C0CD-4D21-AB92-2671F4E6655E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

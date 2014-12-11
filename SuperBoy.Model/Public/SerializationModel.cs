@@ -8,6 +8,7 @@ namespace SuperBoy.Model.Public
 {
     public class SerializationModel : ISerializationModel
     {
+        public delegate object SerializationReturn(object obj);
         public string SuperBoyAnalytical(Model.Public.DatabseSend database)
         {
             // Model.Public.DatabseSend database = new Model.Public.DatabseSend();
@@ -38,6 +39,38 @@ namespace SuperBoy.Model.Public
             }
 
             return sendStr;
+        }
+
+
+
+        public object DataSuperBoyAnalytical(EnumArryModel.ReturnType returnValue, object txt)
+        {
+            object obj = "Null";
+            IReturnValueAnalytical retV = new ReturnValueAnalytical();
+            switch (returnValue)
+            {
+                case EnumArryModel.ReturnType.JSON:
+                    obj = retV.AnalyticalJson(txt);
+                    break;
+                case EnumArryModel.ReturnType.XML:
+                    obj = retV.AnalyticalXML(txt);
+                    break;
+                case EnumArryModel.ReturnType.KeyValue:
+
+                    obj = retV.AnalyticalKeyValue(txt);
+                    break;
+                case EnumArryModel.ReturnType.LIST:
+
+                    obj = retV.AnalyticalLIST(txt);
+                    break;
+                case EnumArryModel.ReturnType.DICT:
+
+                    obj = retV.AnalyticalDICT(txt);
+                    break;
+                default:
+                    break;
+            }
+            return obj;
         }
     }
 }

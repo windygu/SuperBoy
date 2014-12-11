@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{82EEBF18-77DF-4FD8-AFA0-A32CF75A75A3}</ProjectGuid>
+    <ProjectGuid>{3C8895BD-C0CD-4D21-AB92-2671F4E6655E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SuperBoy.Dynamic</RootNamespace>
-    <AssemblyName>SuperBoy.Dynamic</AssemblyName>
+    <RootNamespace>SuperBoy.YSQL</RootNamespace>
+    <AssemblyName>SuperBoy.Y_SQL</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,25 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control\Analytical.cs" />
-    <Compile Include="Dynamic\AnalyticalDynamic.cs" />
-    <Compile Include="Dynamic\SerializationDynamic.cs" />
-    <Compile Include="Interface\IAnalyticalDynamic.cs" />
-    <Compile Include="Interface\ISerializationDynamic.cs" />
+    <Compile Include="Interface\IOperatingLibYSQL.cs" />
+    <Compile Include="Parameter\OperatingLibYSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Public\Master.ProgramConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SuperBoy.Database\SuperBoy.Database.csproj">
-      <Project>{6f46bee5-a639-4106-8dab-e845a47d8e97}</Project>
-      <Name>SuperBoy.Database</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SuperBoy.Model\SuperBoy.Model.csproj">
       <Project>{6c6f0b3e-8873-4981-9128-fc7490df315b}</Project>
       <Name>SuperBoy.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

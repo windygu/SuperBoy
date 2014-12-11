@@ -41,11 +41,13 @@
   <ItemGroup>
     <Compile Include="Interface\IAnalyticalModel.cs" />
     <Compile Include="Interface\IReadAndWriteModel.cs" />
+    <Compile Include="Interface\IReturnValueAnalytical.cs" />
     <Compile Include="Interface\ISerializationModel.cs" />
     <Compile Include="Interface\ISystemControlModel.cs" />
     <Compile Include="Public\ConputModel.cs" />
     <Compile Include="Public\LogSystemModel.cs" />
     <Compile Include="Public\ReadAndWriteModel.cs" />
+    <Compile Include="Public\ReturnValueAnalytical..cs" />
     <Compile Include="Public\SendDatabseModel.cs" />
     <Compile Include="Public\EnumArryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
