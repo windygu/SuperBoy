@@ -12,27 +12,27 @@ namespace SuperBoy.Model.Public
         public string SuperBoyAnalytical(Model.Public.DatabseSend database)
         {
             // Model.Public.DatabseSend database = new Model.Public.DatabseSend();
-            IAnalyticalModel Analytical = new AnalyticalModel();
+            IAnalyticalModel analytical = new AnalyticalModel();
             string sendStr = "";
             switch (database.SendType)
             {
                 case SuperBoy.Model.Public.EnumArryModel.SendType.SELECT:
-                    sendStr = Analytical.SELECT(database);
+                    sendStr = analytical.SELECT(database);
                     break;
                 case SuperBoy.Model.Public.EnumArryModel.SendType.UPDATE:
-                    sendStr = Analytical.UPDATE(database);
+                    sendStr = analytical.UPDATE(database);
                     break;
                 case SuperBoy.Model.Public.EnumArryModel.SendType.DELETE:
-                    sendStr = Analytical.DELTE(database);
+                    sendStr = analytical.DELTE(database);
                     break;
                 case SuperBoy.Model.Public.EnumArryModel.SendType.INSTER:
-                    sendStr = Analytical.INSTER(database);
+                    sendStr = analytical.INSTER(database);
                     break;
                 case SuperBoy.Model.Public.EnumArryModel.SendType.ONLINE:
-                    sendStr = Analytical.ONLINE(database);
+                    sendStr = analytical.ONLINE(database);
                     break;
                 case SuperBoy.Model.Public.EnumArryModel.SendType.MANAGE:
-                    sendStr = Analytical.MANAGE(database);
+                    sendStr = analytical.MANAGE(database);
                     break;
                 default:
                     break;
@@ -50,22 +50,22 @@ namespace SuperBoy.Model.Public
             switch (returnValue)
             {
                 case EnumArryModel.ReturnType.JSON:
-                    obj = retV.AnalyticalJson(txt);
+                    return obj = retV.AnalyticalJson(txt);
                     break;
                 case EnumArryModel.ReturnType.XML:
-                    obj = retV.AnalyticalXML(txt);
+                    return obj = retV.AnalyticalXml(txt);
                     break;
                 case EnumArryModel.ReturnType.KeyValue:
 
-                    obj = retV.AnalyticalKeyValue(txt);
+                    return obj = retV.AnalyticalKeyValue(txt);
                     break;
                 case EnumArryModel.ReturnType.LIST:
 
-                    obj = retV.AnalyticalLIST(txt);
+                    return obj = retV.AnalyticalList(txt);
                     break;
                 case EnumArryModel.ReturnType.DICT:
 
-                    obj = retV.AnalyticalDICT(txt);
+                    return obj = retV.AnalyticalDict(txt);
                     break;
                 default:
                     break;

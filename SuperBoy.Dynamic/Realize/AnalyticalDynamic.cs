@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using SuperBoy.Database.Realize;
 
 namespace SuperBoy.Dynamic
 {
@@ -88,7 +89,7 @@ namespace SuperBoy.Dynamic
         public static void AutoCheckUpdate()
         {
             //获取数据库执行类库
-            Idatabase inter = new Database.Parameter.Database();
+            IDatabaseControl inter = new DatabaseControl();
             //获取字典，写入文本
             inter.AutoCallDatabaseInfo();
 

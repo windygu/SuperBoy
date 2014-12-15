@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Data;
 using System.Collections;
-using System.Net.Mail;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Net;
+using System.Net.Mail;
 
-namespace SuperBoy.Database.Parameter
+namespace SuperBoy.Database.Realize
 {
-    class DBHelper
+    class DbHelper
     {
-        private static string connectionString = "server=192.168.1.5;database=CW100;uid=jyf;pwd=123";
+        private static readonly string ConnectionString = PubConstant.ConnectionString;
         #region 公用方法
         /// <summary>
         /// 判断是否存在某表的某个字段
@@ -130,7 +128,7 @@ namespace SuperBoy.Database.Parameter
         /// 
         public static int ExecuteSql(string SQLString)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQLString, connection))
                 {
@@ -152,7 +150,7 @@ namespace SuperBoy.Database.Parameter
 
         public static int ExecuteSqlByTime(string SQLString, int Times)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQLString, connection))
                 {
@@ -178,7 +176,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns></returns>
         public static DataTable GetTable(string SQLString)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 DataTable dt = new DataTable();
                 try
@@ -200,7 +198,7 @@ namespace SuperBoy.Database.Parameter
         /// <param name="SQLStringList">多条SQL语句</param>		
         public static int ExecuteSqlTran(List<String> SQLStringList)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand();
@@ -238,7 +236,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>影响的记录数</returns>
         public static int ExecuteSql(string SQLString, string content)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand(SQLString, connection);
                 System.Data.SqlClient.SqlParameter myParameter = new System.Data.SqlClient.SqlParameter("@content", SqlDbType.NText);
@@ -270,7 +268,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>影响的记录数</returns>
         public static object ExecuteSqlGet(string SQLString, string content)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand(SQLString, connection);
                 System.Data.SqlClient.SqlParameter myParameter = new System.Data.SqlClient.SqlParameter("@content", SqlDbType.NText);
@@ -309,7 +307,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>影响的记录数</returns>
         public static int ExecuteSqlInsertImg(string strSQL, byte[] fs)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand(strSQL, connection);
                 System.Data.SqlClient.SqlParameter myParameter = new System.Data.SqlClient.SqlParameter("@fs", SqlDbType.Image);
@@ -341,7 +339,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>查询结果（object）</returns>
         public static object GetSingle(string SQLString)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQLString, connection))
                 {
@@ -369,7 +367,7 @@ namespace SuperBoy.Database.Parameter
 
         public static object GetSingle(string SQLString, int Times)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(SQLString, connection))
                 {
@@ -403,7 +401,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>SqlDataReader</returns>
         public static SqlDataReader ExecuteReader(string strSQL)
         {
-            SqlConnection connection = new SqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand(strSQL, connection);
             try
             {
@@ -425,7 +423,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>DataSet</returns>
         public static DataSet Query(string SQLString)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 DataSet ds = new DataSet();
                 try
@@ -443,7 +441,7 @@ namespace SuperBoy.Database.Parameter
         }
         public static DataSet Query(string SQLString, int Times)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 DataSet ds = new DataSet();
                 try
@@ -472,7 +470,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>影响的记录数</returns>
         public static int ExecuteSql(string SQLString, params SqlParameter[] cmdParms)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
@@ -498,7 +496,7 @@ namespace SuperBoy.Database.Parameter
         /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
         public static void ExecuteSqlTran(Hashtable SQLStringList)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 using (SqlTransaction trans = conn.BeginTransaction())
@@ -532,7 +530,7 @@ namespace SuperBoy.Database.Parameter
         /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
         public static int ExecuteSqlTran(System.Collections.Generic.List<CommandInfo> cmdList)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 using (SqlTransaction trans = conn.BeginTransaction())
@@ -603,7 +601,7 @@ namespace SuperBoy.Database.Parameter
         /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
         public static void ExecuteSqlTranWithIndentity(System.Collections.Generic.List<CommandInfo> SQLStringList)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 using (SqlTransaction trans = conn.BeginTransaction())
@@ -652,7 +650,7 @@ namespace SuperBoy.Database.Parameter
         /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
         public static void ExecuteSqlTranWithIndentity(Hashtable SQLStringList)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 using (SqlTransaction trans = conn.BeginTransaction())
@@ -702,7 +700,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>查询结果（object）</returns>
         public static object GetSingle(string SQLString, params SqlParameter[] cmdParms)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
@@ -735,7 +733,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>SqlDataReader</returns>
         public static SqlDataReader ExecuteReader(string SQLString, params SqlParameter[] cmdParms)
         {
-            SqlConnection connection = new SqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(ConnectionString);
             SqlCommand cmd = new SqlCommand();
             try
             {
@@ -757,7 +755,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>DataSet</returns>
         public static DataSet Query(string SQLString, params SqlParameter[] cmdParms)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand();
                 PrepareCommand(cmd, connection, null, SQLString, cmdParms);
@@ -812,7 +810,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>SqlDataReader</returns>
         public static SqlDataReader RunProcedure(string storedProcName, IDataParameter[] parameters)
         {
-            SqlConnection connection = new SqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(ConnectionString);
             SqlDataReader returnReader;
             connection.Open();
             SqlCommand command = BuildQueryCommand(connection, storedProcName, parameters);
@@ -832,7 +830,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns>DataSet</returns>
         public static DataSet RunProcedure(string storedProcName, IDataParameter[] parameters, string tableName)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 DataSet dataSet = new DataSet();
                 connection.Open();
@@ -846,7 +844,7 @@ namespace SuperBoy.Database.Parameter
 
         public static DataSet RunProcedure(string storedProcName, IDataParameter[] parameters, string tableName, int Times)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 DataSet dataSet = new DataSet();
                 connection.Open();
@@ -897,7 +895,7 @@ namespace SuperBoy.Database.Parameter
         /// <returns></returns>
         public static int RunProcedure(string storedProcName, IDataParameter[] parameters, out int rowsAffected)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
                 int result;
                 connection.Open();
@@ -976,7 +974,7 @@ namespace SuperBoy.Database.Parameter
         {
             try
             {
-                SqlConnection con = new SqlConnection(connectionString);
+                SqlConnection con = new SqlConnection(ConnectionString);
                 SqlCommand com = new SqlCommand(sql, con);
                 if (list != null && list.Count > 0)
                 {
@@ -1002,7 +1000,7 @@ namespace SuperBoy.Database.Parameter
         {
             try
             {
-                SqlConnection con = new SqlConnection(connectionString);
+                SqlConnection con = new SqlConnection(ConnectionString);
                 SqlCommand com = new SqlCommand(sql, con);
                 if (list != null && list.Count > 0)
                 {

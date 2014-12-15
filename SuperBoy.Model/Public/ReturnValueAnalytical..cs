@@ -13,7 +13,7 @@ namespace SuperBoy.Model.Public
             throw new NotImplementedException();
         }
 
-        public object AnalyticalXML(object txt)
+        public object AnalyticalXml(object txt)
         {
             throw new NotImplementedException();
         }
@@ -23,12 +23,12 @@ namespace SuperBoy.Model.Public
             throw new NotImplementedException();
         }
 
-        public List<string> AnalyticalLIST(object txt)
+        public List<string> AnalyticalList(object txt)
         {
             throw new NotImplementedException();
         }
 
-        public Dictionary<string, string> AnalyticalDICT(object txt)
+        public Dictionary<string, string> AnalyticalDict(object txt)
         {
             throw new NotImplementedException();
         }

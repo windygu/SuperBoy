@@ -40,11 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parameter\CommandInfo.cs" />
-    <Compile Include="Parameter\Database.cs" />
+    <Compile Include="Realize\CommandInfo.cs" />
+    <Compile Include="Realize\Database.cs" />
     <Compile Include="Interface\Idatabase.cs" />
-    <Compile Include="Parameter\DBHelper.cs" />
-    <Compile Include="Parameter\PubConstant.cs" />
+    <Compile Include="Realize\DBHelper.cs" />
+    <Compile Include="Realize\PubConstant.cs" />
     <Compile Include="Private\EnumArrayDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

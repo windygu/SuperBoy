@@ -7,6 +7,6 @@ namespace SuperBoy.Dynamic.Interface
 {
     public interface ISerializationDynamic
     {
-        string AnalyticalMain(string AnalyticalString);
+        string AnalyticalMain(string analyticalString);
     }
 }

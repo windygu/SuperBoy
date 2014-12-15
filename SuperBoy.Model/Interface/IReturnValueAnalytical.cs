@@ -14,7 +14,7 @@ namespace SuperBoy.Model.Interface
         /// <returns></returns>
         object AnalyticalJson(object txt);
 
-        object AnalyticalXML(object txt);
+        object AnalyticalXml(object txt);
         /// <summary>
         /// 简单键值对组合，键盘为列名，值为内容,
         /// $列名
@@ -30,8 +30,8 @@ namespace SuperBoy.Model.Interface
         /// </summary>
         /// <param name="txt"></param>
         /// <returns></returns>
-        List<string> AnalyticalLIST(object txt);
+        List<string> AnalyticalList(object txt);
 
-        Dictionary<string, string> AnalyticalDICT(object txt);
+        Dictionary<string, string> AnalyticalDict(object txt);
     }
 }

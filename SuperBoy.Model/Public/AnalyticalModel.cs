@@ -22,43 +22,43 @@ namespace SuperBoy.Model.Public
             Dic = database.Dic;
             //通过权限表
             //权限审核通过后执行拆分并组装
-            StringBuilder SQLStr = new StringBuilder();
-            SQLStr.Append("[" + getNoJson(database) + ",");
-            SQLStr.Append("{\"Type\":\"SELECT\"");
+            StringBuilder sqlStr = new StringBuilder();
+            sqlStr.Append("[" + getNoJson(database) + ",");
+            sqlStr.Append("{\"Type\":\"SELECT\"");
             //行数
             if (Dic.ContainsKey(EnumArryModel.Database.TOP))
             {
-                SQLStr.Append(",\"TOP\":\"" + Dic[EnumArryModel.Database.TOP] + "\"");
+                sqlStr.Append(",\"TOP\":\"" + Dic[EnumArryModel.Database.TOP] + "\"");
             }
             else
             {
-                SQLStr.Append(",\"TOP\":\"false\"");
+                sqlStr.Append(",\"TOP\":\"false\"");
             }
 
 
             //字段名
             if (Dic.ContainsKey(EnumArryModel.Database.Field))
             {
-                SQLStr.Append(",\"Field\":\"");
+                sqlStr.Append(",\"Field\":\"");
                 string[] str = (string[])Dic[EnumArryModel.Database.Field];
                 if (str[0].Trim() != "*")
                 {
 
                     string item = string.Join(",", str);
-                    SQLStr.Append(item + "\"");
+                    sqlStr.Append(item + "\"");
                 }
                 else
                 {
-                    SQLStr.Append("*\"");
+                    sqlStr.Append("*\"");
                 }
             }
             else
             {
-                SQLStr.Append(",\"Field\":*");
+                sqlStr.Append(",\"Field\":*");
             }
 
             //表名
-            SQLStr.Append(",\"From\":\"" + Dic[EnumArryModel.Database.TableName] + "\"");
+            sqlStr.Append(",\"From\":\"" + Dic[EnumArryModel.Database.TableName] + "\"");
             //条件,如果条件存在，并且条件不等于false
             if (Dic.ContainsKey(EnumArryModel.Database.WHERE) && Convert.ToBoolean(Dic[EnumArryModel.Database.WHERE]))
             {
@@ -68,29 +68,29 @@ namespace SuperBoy.Model.Public
                  */
                 //对比
                 EnumArryModel.WhereType whereType = (EnumArryModel.WhereType)Enum.Parse(typeof(EnumArryModel.WhereType), Dic[EnumArryModel.Database.WHERETYPE].ToString());
-                SQLStr.Append(",\"Key\":" + "\"" + Dic[EnumArryModel.Database.Key] + "\"");
-                SQLStr.Append(",\"Value\":" + "\"" + Dic[EnumArryModel.Database.Value] + "\"");
-                SQLStr.Append(",\"Where\":\"true\"");
-                SQLStr.Append(",\"WhereType\":");
+                sqlStr.Append(",\"Key\":" + "\"" + Dic[EnumArryModel.Database.Key] + "\"");
+                sqlStr.Append(",\"Value\":" + "\"" + Dic[EnumArryModel.Database.Value] + "\"");
+                sqlStr.Append(",\"Where\":\"true\"");
+                sqlStr.Append(",\"WhereType\":");
                 switch (whereType)
                 {
                     case EnumArryModel.WhereType.Equal:
-                        SQLStr.Append("\"Equal\"");
+                        sqlStr.Append("\"Equal\"");
                         break;
                     case EnumArryModel.WhereType.Greater:
-                        SQLStr.Append("\"Greater\"");
+                        sqlStr.Append("\"Greater\"");
                         break;
                     case EnumArryModel.WhereType.Less:
-                        SQLStr.Append("\"Less\"");
+                        sqlStr.Append("\"Less\"");
                         break;
                     case EnumArryModel.WhereType.Like:
-                        SQLStr.Append("\"Like\"");
+                        sqlStr.Append("\"Like\"");
                         break;
                     case EnumArryModel.WhereType.LiftLike:
-                        SQLStr.Append("\"LiftLike\"");
+                        sqlStr.Append("\"LiftLike\"");
                         break;
                     case EnumArryModel.WhereType.RightLike:
-                        SQLStr.Append("\"RightLike\"");
+                        sqlStr.Append("\"RightLike\"");
                         break;
                     default:
                         break;
@@ -99,31 +99,31 @@ namespace SuperBoy.Model.Public
             switch (database.ReturnType)
             {
                 case EnumArryModel.ReturnType.JSON:
-                    SQLStr.Append(",\"ReturnType\":\"JSON\"");
+                    sqlStr.Append(",\"ReturnType\":\"JSON\"");
                     break;
                 case EnumArryModel.ReturnType.XML:
 
-                    SQLStr.Append(",\"ReturnType\":\"XML\"");
+                    sqlStr.Append(",\"ReturnType\":\"XML\"");
                     break;
                 case EnumArryModel.ReturnType.KeyValue:
 
-                    SQLStr.Append(",\"ReturnType\":\"KeyValue\"");
+                    sqlStr.Append(",\"ReturnType\":\"KeyValue\"");
                     break;
                 case EnumArryModel.ReturnType.LIST:
 
-                    SQLStr.Append(",\"ReturnType\":\"LIST\"");
+                    sqlStr.Append(",\"ReturnType\":\"LIST\"");
                     break;
                 case EnumArryModel.ReturnType.DICT:
 
-                    SQLStr.Append(",\"ReturnType\":\"DICT\"");
+                    sqlStr.Append(",\"ReturnType\":\"DICT\"");
                     break;
                 default:
-                    SQLStr.Append(",\"ReturnType\":\"KeyValue\"");
+                    sqlStr.Append(",\"ReturnType\":\"KeyValue\"");
                     break;
             }
 
-            SQLStr.Append("}]");
-            return SQLStr.ToString();
+            sqlStr.Append("}]");
+            return sqlStr.ToString();
         }
 
         public string INSTER(Model.Public.DatabseSend database)

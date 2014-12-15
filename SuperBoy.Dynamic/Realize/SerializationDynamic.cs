@@ -11,38 +11,30 @@ namespace SuperBoy.Dynamic
         /// <summary>
         /// 第一步序列化参数
         /// </summary>
-        /// <param name="AnalyticalString"></param>
+        /// <param name="analyticalString"></param>
         /// <returns></returns>
-        public string AnalyticalMain(string AnalyticalString)
+        public string AnalyticalMain(string analyticalString)
         {
             //IAnalyticalDynamic Iad = new AnalyticalDynamic();
-            int liftInt = AnalyticalString.IndexOf("{") + 1;
-            int rightInt = AnalyticalString.IndexOf("}");
-            int LastliftInt = AnalyticalString.LastIndexOf("{") + 1;
-            int LastrightInt = AnalyticalString.LastIndexOf("}");
-            string head = AnalyticalString.Substring(liftInt, rightInt - liftInt);
-            string body = AnalyticalString.Substring(LastliftInt, LastrightInt - LastliftInt);
+            var liftInt = analyticalString.IndexOf("{", StringComparison.Ordinal) + 1;
+            var rightInt = analyticalString.IndexOf("}", StringComparison.Ordinal);
+            var lastliftInt = analyticalString.LastIndexOf("{", StringComparison.Ordinal) + 1;
+            var lastrightInt = analyticalString.LastIndexOf("}", StringComparison.Ordinal);
+            var head = analyticalString.Substring(liftInt, rightInt - liftInt);
+            var body = analyticalString.Substring(lastliftInt, lastrightInt - lastliftInt);
 
-            IAnalyticalDynamic Iand = new AnalyticalDynamic();
-            Dictionary<string, string> HeadDic = DictAnalytical(head);
-            HeadAnalytical(HeadDic);
-            Dictionary<string, string> bodyDic = DictAnalytical(body);
+            IAnalyticalDynamic iand = new AnalyticalDynamic();
+            var headDic = DictAnalytical(head);
+            HeadAnalytical(headDic);
+            var bodyDic = DictAnalytical(body);
             BodyAnalytical(bodyDic);
-
-
             return head;
         }
-        public Dictionary<string, string> DictAnalytical(string JsonArray)
+        public Dictionary<string, string> DictAnalytical(string jsonArray)
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
             // string[] item = JsonArray.Replace("\"", "").Split(',');
-            string[] item = JsonArray.Split(',');
-            for (int index = 0; index < item.Length; index++)
-            {
-                string[] KeyValue = item[index].Split(':');
-                dic.Add(KeyValue[0].Trim().Trim('\"').ToLower(), KeyValue[1].Trim().Trim('\"'));
-            }
-            return dic;
+            var item = jsonArray.Split(',');
+            return item.Select(t => t.Split(':')).ToDictionary(keyValue => keyValue[0].Trim().Trim('\"').ToLower(), keyValue => keyValue[1].Trim().Trim('\"'));
         }
 
         public string HeadAnalytical(Dictionary<string, string> headDic)
@@ -55,7 +47,7 @@ namespace SuperBoy.Dynamic
         public string BodyAnalytical(Dictionary<string, string> boduDic)
         {
             IAnalyticalDynamic anly = new AnalyticalDynamic();
-            string returnValue = "";
+            string returnValue;
             //岔开分支
             switch (boduDic["type"])
             {

@@ -5,8 +5,8 @@ using System.Text;
 
 namespace SuperBoy.Database.Interface
 {
-    public interface Idatabase
+    public interface IDatabaseControl
     {
-        Dictionary<string, object> AutoCallDatabaseInfo();
+        Dictionary<string, string> AutoCallDatabaseInfo();
     }
 }
