@@ -1,8 +1,9 @@
 ﻿using System;
+using SuperBoy.Model.Interface;
 
 namespace SuperBoy.View.Controller
 {
-    class SuperBoyController : SuperBoy.Model.Interface.ISystemControlModel
+    class SuperBoyController : ISystemControlModel
     {
 
         public bool StartProgram()

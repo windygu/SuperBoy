@@ -1,34 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Runtime.InteropServices;
-using SuperBoy.Model;
 using System.Text;
-using SuperBoy.Model.Public;
 using SuperBoy.Model.Interface;
 
 namespace SuperBoy.Model.Public
 {
     /// <summary>
-    /// This class is often used to control the program to the class
+    ///     This class is often used to control the program to the class
     /// </summary>
     public class AnalyticalModel : IAnalyticalModel
     {
+        private Dictionary<EnumArryModel.Database, object> _dic = new Dictionary<EnumArryModel.Database, object>();
 
-        Dictionary<EnumArryModel.Database, object> Dic = new Dictionary<EnumArryModel.Database, object>();
-        public string SELECT(Model.Public.DatabseSend database)
+        public string Select(DatabseSend database)
         {
-
-            Dic = database.Dic;
+            _dic = database.Dic;
             //通过权限表
             //权限审核通过后执行拆分并组装
-            StringBuilder sqlStr = new StringBuilder();
-            sqlStr.Append("[" + getNoJson(database) + ",");
+            var sqlStr = new StringBuilder();
+            sqlStr.Append("[" + GetNoJson(database) + ",");
             sqlStr.Append("{\"Type\":\"SELECT\"");
             //行数
-            if (Dic.ContainsKey(EnumArryModel.Database.TOP))
+            if (_dic.ContainsKey(EnumArryModel.Database.Top))
             {
-                sqlStr.Append(",\"TOP\":\"" + Dic[EnumArryModel.Database.TOP] + "\"");
+                sqlStr.Append(",\"TOP\":\"" + _dic[EnumArryModel.Database.Top] + "\"");
             }
             else
             {
@@ -37,14 +32,13 @@ namespace SuperBoy.Model.Public
 
 
             //字段名
-            if (Dic.ContainsKey(EnumArryModel.Database.Field))
+            if (_dic.ContainsKey(EnumArryModel.Database.Field))
             {
                 sqlStr.Append(",\"Field\":\"");
-                string[] str = (string[])Dic[EnumArryModel.Database.Field];
+                var str = (string[]) _dic[EnumArryModel.Database.Field];
                 if (str[0].Trim() != "*")
                 {
-
-                    string item = string.Join(",", str);
+                    var item = string.Join(",", str);
                     sqlStr.Append(item + "\"");
                 }
                 else
@@ -58,18 +52,20 @@ namespace SuperBoy.Model.Public
             }
 
             //表名
-            sqlStr.Append(",\"From\":\"" + Dic[EnumArryModel.Database.TableName] + "\"");
+            sqlStr.Append(",\"From\":\"" + _dic[EnumArryModel.Database.TableName] + "\"");
             //条件,如果条件存在，并且条件不等于false
-            if (Dic.ContainsKey(EnumArryModel.Database.WHERE) && Convert.ToBoolean(Dic[EnumArryModel.Database.WHERE]))
+            if (_dic.ContainsKey(EnumArryModel.Database.Where) && Convert.ToBoolean(_dic[EnumArryModel.Database.Where]))
             {
                 /*
                  public static Object Parse(Type enumType,string value)
                     例如：(Colors)Enum.Parse(typeof(Colors), "Red")
                  */
                 //对比
-                EnumArryModel.WhereType whereType = (EnumArryModel.WhereType)Enum.Parse(typeof(EnumArryModel.WhereType), Dic[EnumArryModel.Database.WHERETYPE].ToString());
-                sqlStr.Append(",\"Key\":" + "\"" + Dic[EnumArryModel.Database.Key] + "\"");
-                sqlStr.Append(",\"Value\":" + "\"" + Dic[EnumArryModel.Database.Value] + "\"");
+                var whereType =
+                    (EnumArryModel.WhereType)
+                        Enum.Parse(typeof (EnumArryModel.WhereType), _dic[EnumArryModel.Database.Wheretype].ToString());
+                sqlStr.Append(",\"Key\":" + "\"" + _dic[EnumArryModel.Database.Key] + "\"");
+                sqlStr.Append(",\"Value\":" + "\"" + _dic[EnumArryModel.Database.Value] + "\"");
                 sqlStr.Append(",\"Where\":\"true\"");
                 sqlStr.Append(",\"WhereType\":");
                 switch (whereType)
@@ -98,10 +94,10 @@ namespace SuperBoy.Model.Public
             }
             switch (database.ReturnType)
             {
-                case EnumArryModel.ReturnType.JSON:
+                case EnumArryModel.ReturnType.Json:
                     sqlStr.Append(",\"ReturnType\":\"JSON\"");
                     break;
-                case EnumArryModel.ReturnType.XML:
+                case EnumArryModel.ReturnType.Xml:
 
                     sqlStr.Append(",\"ReturnType\":\"XML\"");
                     break;
@@ -109,11 +105,11 @@ namespace SuperBoy.Model.Public
 
                     sqlStr.Append(",\"ReturnType\":\"KeyValue\"");
                     break;
-                case EnumArryModel.ReturnType.LIST:
+                case EnumArryModel.ReturnType.List:
 
                     sqlStr.Append(",\"ReturnType\":\"LIST\"");
                     break;
-                case EnumArryModel.ReturnType.DICT:
+                case EnumArryModel.ReturnType.Dict:
 
                     sqlStr.Append(",\"ReturnType\":\"DICT\"");
                     break;
@@ -126,45 +122,42 @@ namespace SuperBoy.Model.Public
             return sqlStr.ToString();
         }
 
-        public string INSTER(Model.Public.DatabseSend database)
+        public string Inster(DatabseSend database)
         {
             throw new NotImplementedException();
         }
 
-        public string UPDATE(Model.Public.DatabseSend database)
+        public string Update(DatabseSend database)
         {
             throw new NotImplementedException();
         }
 
-        public string DELTE(Model.Public.DatabseSend database)
+        public string Delete(DatabseSend database)
         {
             throw new NotImplementedException();
         }
 
-
-        public string ONLINE(DatabseSend database)
+        public string Online(DatabseSend database)
         {
             throw new NotImplementedException();
         }
 
-
-        public string MANAGE(DatabseSend database)
+        public string Manage(DatabseSend database)
         {
             throw new NotImplementedException();
         }
 
-        public string getNoJson(DatabseSend database)
+        public string GetNoJson(DatabseSend database)
         {
-            computModel com = database.No;
-            StringBuilder sb = new StringBuilder();
+            var com = database.No;
+            var sb = new StringBuilder();
             sb.Append("{");
-            foreach (System.Reflection.PropertyInfo p in com.GetType().GetProperties())
+            foreach (var p in com.GetType().GetProperties())
             {
                 sb.Append("\"" + p.Name + "\":\"" + p.GetValue(com, null) + "\",");
             }
 
             return sb.ToString().TrimEnd(',') + "}";
-
         }
     }
 }

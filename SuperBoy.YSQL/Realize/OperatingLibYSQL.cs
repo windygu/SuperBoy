@@ -16,7 +16,7 @@ namespace SuperBoy.YSQL.Realize
         /// <param name="delege"></param>
         /// <param name="txt" />
         /// <returns></returns>
-        public bool CnnectionCud(OperatingLibYsql.Cud delege, string txt)
+        public bool CnnectionCud(Cud delege, string txt)
         {
             return delege(txt);
         }
@@ -35,7 +35,7 @@ namespace SuperBoy.YSQL.Realize
         /// <param name="returnType"></param>
         /// <param name="txt"></param>
         /// <returns></returns>
-        public virtual object CnnectionSelect(OperatingLibYsql.Select delege, EnumArryModel.ReturnType returnType, string txt)
+        public virtual object CnnectionSelect(Select delege, EnumArryModel.ReturnType returnType, string txt)
         {
             return delege(returnType, txt);
         }

@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using SuperBoy.Model.Public;
-using System.Data;
-using SuperBoyView.SuperBoyControl;
-using System.IO;
-using System.Xml.Serialization;
 using SuperBoy.Model.Interface;
-using SuperBoyView;
+using SuperBoy.Model.Public;
+using SuperBoyView.SuperBoyControl;
 
 namespace SuperBoy.View
 {
@@ -22,33 +16,33 @@ namespace SuperBoy.View
         {
 
             #region data Query
-            Dictionary<EnumArryModel.Database, object> DicSelect = new Dictionary<EnumArryModel.Database, object>();
+            var dicSelect = new Dictionary<EnumArryModel.Database, object>();
             //+ where
-            DicSelect.Add(EnumArryModel.Database.WHERE, true);
+            dicSelect.Add(EnumArryModel.Database.Where, true);
             //less Parameters
-            DicSelect.Add(EnumArryModel.Database.WHERETYPE, EnumArryModel.WhereType.RightLike);
+            dicSelect.Add(EnumArryModel.Database.Wheretype, EnumArryModel.WhereType.RightLike);
             //show 10 count
-            DicSelect.Add(EnumArryModel.Database.TOP, 10);
-            string[] Field = { "*" };
-            DicSelect.Add(EnumArryModel.Database.Field, Field);
+            dicSelect.Add(EnumArryModel.Database.Top, 10);
+            string[] field = { "*" };
+            dicSelect.Add(EnumArryModel.Database.Field, field);
             //database Name
-            DicSelect.Add(EnumArryModel.Database.DatabaseName, "CW100_develop");
+            dicSelect.Add(EnumArryModel.Database.DatabaseName, "CW100_develop");
             //parameter Name
-            DicSelect.Add(EnumArryModel.Database.Key, "BrandID");
+            dicSelect.Add(EnumArryModel.Database.Key, "BrandID");
             //Value
-            DicSelect.Add(EnumArryModel.Database.Value, "2");
+            dicSelect.Add(EnumArryModel.Database.Value, "2");
             //Table Name
-            DicSelect.Add(EnumArryModel.Database.TableName, "CW100_Product");
+            dicSelect.Add(EnumArryModel.Database.TableName, "CW100_Product");
             //Model
-            Model.Public.DatabseSend sendSelect = new Model.Public.DatabseSend(EnumArryModel.SendType.SELECT, DicSelect, EnumArryModel.ReturnType.JSON);
+            var sendSelect = new DatabseSend(EnumArryModel.SendType.Select, dicSelect, EnumArryModel.ReturnType.Json);
 
             ISerializationModel ser = new SerializationModel();
             //send
-            string parameter = ser.SuperBoyAnalytical(sendSelect);
+            var parameter = ser.SuperBoyAnalytical(sendSelect);
 
-            SuperBoyICloudClient client = new SuperBoyICloudClient();
+            var client = new SuperBoyICloudClient();
             //get a return value 
-            string returnValue = client.SuperBoyCloud(parameter);
+            var returnValue = client.SuperBoyCloud(parameter);
 
 
             if (returnValue != null)

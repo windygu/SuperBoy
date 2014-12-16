@@ -11,19 +11,19 @@ namespace SuperBoy.Database.Realize
         //自动获取表名表列
         public Dictionary<string, string> AutoCallDatabaseInfo()
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
+            var dic = new Dictionary<string, string>();
             var sql = "SELECT TABLE_NAME,column_name FROM INFORMATION_SCHEMA.COLUMNS";
-            string oldKey = string.Empty;
+            var oldKey = string.Empty;
             dic.Add("", "CW100_develop");
-            DataSet ds = DbHelper.Query(sql);
+            var ds = DbHelper.Query(sql);
             //循环行
-            for (int index = 0; index < ds.Tables[0].Rows.Count; index++)
+            for (var index = 0; index < ds.Tables[0].Rows.Count; index++)
             {
 
                 //如果键存在则追加值，
                 if (dic.ContainsKey(ds.Tables[0].Rows[index][0].ToString()))
                 {
-                    string item = ds.Tables[0].Rows[index][1].ToString() + ",";
+                    var item = ds.Tables[0].Rows[index][1].ToString() + ",";
                     dic[ds.Tables[0].Rows[index][0].ToString()] += item;
                 }
                 //否则追加键

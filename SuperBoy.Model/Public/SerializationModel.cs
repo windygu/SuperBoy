@@ -1,38 +1,34 @@
 ﻿using SuperBoy.Model.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SuperBoy.Model.Public
 {
     public class SerializationModel : ISerializationModel
     {
         public delegate object SerializationReturn(object obj);
-        public string SuperBoyAnalytical(Model.Public.DatabseSend database)
+        public string SuperBoyAnalytical(DatabseSend database)
         {
             // Model.Public.DatabseSend database = new Model.Public.DatabseSend();
             IAnalyticalModel analytical = new AnalyticalModel();
-            string sendStr = "";
+            var sendStr = "";
             switch (database.SendType)
             {
-                case SuperBoy.Model.Public.EnumArryModel.SendType.SELECT:
-                    sendStr = analytical.SELECT(database);
+                case EnumArryModel.SendType.Select:
+                    sendStr = analytical.Select(database);
                     break;
-                case SuperBoy.Model.Public.EnumArryModel.SendType.UPDATE:
-                    sendStr = analytical.UPDATE(database);
+                case EnumArryModel.SendType.Update:
+                    sendStr = analytical.Update(database);
                     break;
-                case SuperBoy.Model.Public.EnumArryModel.SendType.DELETE:
-                    sendStr = analytical.DELTE(database);
+                case EnumArryModel.SendType.Delete:
+                    sendStr = analytical.Delete(database);
                     break;
-                case SuperBoy.Model.Public.EnumArryModel.SendType.INSTER:
-                    sendStr = analytical.INSTER(database);
+                case EnumArryModel.SendType.Inster:
+                    sendStr = analytical.Inster(database);
                     break;
-                case SuperBoy.Model.Public.EnumArryModel.SendType.ONLINE:
-                    sendStr = analytical.ONLINE(database);
+                case EnumArryModel.SendType.Online:
+                    sendStr = analytical.Online(database);
                     break;
-                case SuperBoy.Model.Public.EnumArryModel.SendType.MANAGE:
-                    sendStr = analytical.MANAGE(database);
+                case EnumArryModel.SendType.Manage:
+                    sendStr = analytical.Manage(database);
                     break;
                 default:
                     break;
@@ -49,21 +45,21 @@ namespace SuperBoy.Model.Public
             IReturnValueAnalytical retV = new ReturnValueAnalytical();
             switch (returnValue)
             {
-                case EnumArryModel.ReturnType.JSON:
+                case EnumArryModel.ReturnType.Json:
                     return obj = retV.AnalyticalJson(txt);
                     break;
-                case EnumArryModel.ReturnType.XML:
+                case EnumArryModel.ReturnType.Xml:
                     return obj = retV.AnalyticalXml(txt);
                     break;
                 case EnumArryModel.ReturnType.KeyValue:
 
                     return obj = retV.AnalyticalKeyValue(txt);
                     break;
-                case EnumArryModel.ReturnType.LIST:
+                case EnumArryModel.ReturnType.List:
 
                     return obj = retV.AnalyticalList(txt);
                     break;
-                case EnumArryModel.ReturnType.DICT:
+                case EnumArryModel.ReturnType.Dict:
 
                     return obj = retV.AnalyticalDict(txt);
                     break;

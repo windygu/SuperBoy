@@ -1,23 +1,19 @@
-﻿using SuperBoy.Model.Interface;
-using SuperBoy.Model.Public;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
+using SuperBoy.Model.Interface;
 
 namespace SuperBoy.Model.Public
 {
     public class LogSystemModel : ILogSystemModel
     {
-        IReadAndWriteModel log = new ReadAndWriteModel();
+        readonly IReadAndWriteModel _log = new ReadAndWriteModel();
 
-        Model.Public.LoadModel model = new Public.LoadModel();
+        readonly LoadModel _model = new LoadModel();
         public bool CommonLog(string systemInformation)
         {
 
             try
             {
-                log.write(systemInformation, model.Address);
+                _log.write(systemInformation, _model.Address);
                 return true;
             }
             catch (Exception)
@@ -30,7 +26,7 @@ namespace SuperBoy.Model.Public
         {
             try
             {
-                string formatTxt = "";
+                var formatTxt = "";
                 switch (format)
                 {
                     case EnumArryModel.LogType.Plain:
@@ -45,17 +41,17 @@ namespace SuperBoy.Model.Public
                     case EnumArryModel.LogType.Master:
                         formatTxt = "Master";
                         break;
-                    case EnumArryModel.LogType.bak:
+                    case EnumArryModel.LogType.Bak:
                         formatTxt = "bak";
                         break;
-                    case EnumArryModel.LogType.odb:
+                    case EnumArryModel.LogType.Odb:
                         formatTxt = "odb";
                         break;
                     default:
                         break;
                 }
 
-                log.write("[" + formatTxt + "]\r\n" + systemInformation, model.Address);
+                _log.write("[" + formatTxt + "]\r\n" + systemInformation, _model.Address);
                 return true;
             }
             catch (Exception)

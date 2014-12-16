@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Text;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using SuperBoy.Model.Interface;
 
 namespace SuperBoy.Model.Public
@@ -11,19 +11,19 @@ namespace SuperBoy.Model.Public
     /// </summary>
     public class ReadAndWriteModel : IReadAndWriteModel
     {
-        private static Encoding FondDefault = Encoding.UTF8;
+        private static Encoding _fondDefault = Encoding.UTF8;
         // public static string PathDefault = SuperBoy.Model.Controller.ModelController.Dicts[Public.EnumArry.Master.MasterPath].ToString() + "\\Temp.log";
-        private static string PathDefault = "\\Master\\Temp.log";
+        private static string _pathDefault = "\\Master\\Temp.log";
 
 
         #region read
-        public List<string> read(string Path, Encoding Fond)
+        public List<string> read(string path, Encoding fond)
         {
-            List<string> list = new List<string>();
-            if (File.Exists(Path))
+            var list = new List<string>();
+            if (File.Exists(path))
             {
-                StreamReader sread = new StreamReader(Path, Encoding.UTF8);
-                string input = "";
+                var sread = new StreamReader(path, Encoding.UTF8);
+                var input = "";
                 while ((input = sread.ReadLine()) != null)
                 {
                     list.Add(input);
@@ -37,25 +37,25 @@ namespace SuperBoy.Model.Public
                 //throw new Exception("文件地址不存在！");
             }
         }
-        public string read(string Path, Encoding Fond, int Index)
+        public string read(string path, Encoding fond, int index)
         {
-            return read(Path, Fond)[Index];
+            return read(path, fond)[index];
         }
         #endregion
 
         #region write
-        public void write(string text, string Path)
+        /// <summary>
+        /// 追加
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="Path"></param>
+        public void write(string text, string path)
         {
-            try
-            {
-                StreamWriter write = new StreamWriter(Path);
-                write.WriteLine(text);
-                write.Close();
-            }
-            catch (Exception)
-            {
-
-            }
+            var fs = new FileStream(path, FileMode.Append);
+            var sw = new StreamWriter(fs);
+            sw.WriteLine(text);
+            sw.Close(); 
+            fs.Close();
         }
 
         /// <summary>
@@ -63,26 +63,26 @@ namespace SuperBoy.Model.Public
         /// </summary>
         /// <param name="text">插入的文本</param>
         /// <param name="Index">插入的下标1为起始值</param>
-        /// <param name="Path">插入的文本，如果没有则自动新建</param>
+        /// <param name="path">插入的文本，如果没有则自动新建</param>
         /// <returns></returns>
-        public void write(string text, int Index, string Path)
+        public void write(string text, int Index, string path)
         {
             //这个是是否进入过插入
-            int ist = 0;
+            var ist = 0;
             //默认函数值改为当前路径
-            PathDefault = Path;
+            _pathDefault = path;
             //取出所有的数据并存入数组
-            List<string> textRead = read(Path, Encoding.UTF8);
+            var textRead = read(path, Encoding.UTF8);
 
             //申明
-            StreamWriter write = new StreamWriter(Path);
+            var write = new StreamWriter(path);
             //如果总行数的行小于要插入的行数
             if (textRead.Count < Index)
             {
                 //声明一个空格
-                string kg = "";
+                var kg = "";
                 //循环这个空格的行，例如数据有两行就空两个
-                for (int index = textRead.Count; index < Index; index++)
+                for (var index = textRead.Count; index < Index; index++)
                 {
                     kg += "\r\n";
                 }
@@ -103,7 +103,7 @@ namespace SuperBoy.Model.Public
             else
             {
                 //数组转List
-                List<string> list = new List<string>(textRead);
+                var list = new List<string>(textRead);
                 list.Insert(Index - 1, text);
                 writes = string.Join("\r\n", list.ToArray());
             }
@@ -122,4 +122,5 @@ namespace SuperBoy.Model.Public
         #endregion
 
     }
+
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SuperBoy.Model.Public
 {
@@ -13,7 +10,7 @@ namespace SuperBoy.Model.Public
 
         public EnumArryModel.SendType SendType { get; set; }
         public Dictionary<EnumArryModel.Database, object> Dic { get; set; }
-        public computModel No { get; set; }
+        public ComputModel No { get; set; }
         public EnumArryModel.ReturnType ReturnType { get; set; }
         /// <summary>
         /// testinfo
@@ -21,8 +18,8 @@ namespace SuperBoy.Model.Public
         public DatabseSend()
         {
             //auto No
-            this.No = new computModel();
-            this.SendType = EnumArryModel.SendType.ONLINE;
+            this.No = new ComputModel();
+            this.SendType = EnumArryModel.SendType.Online;
             this.ReturnType = EnumArryModel.ReturnType.KeyValue;
         }
 

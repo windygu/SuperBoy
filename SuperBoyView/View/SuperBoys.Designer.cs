@@ -1,11 +1,14 @@
-﻿namespace SuperBoy.View
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace SuperBoy.View
 {
     partial class SuperBoys
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -453,53 +456,53 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStripMenuItem setCloudToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem wordToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem textToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem outInputToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wordToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem textToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ganttChartToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pieChartToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem inputToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewAllToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem selectViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem configToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem configToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setCDKToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem selectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip RightKey;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem findAndRelpceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem currentlyTreeToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem aLLTreeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem oneViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem moreViewsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newNodeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newTreeToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem currentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem otherTreeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newTreeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem moveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem currentlyTreeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem otherTreeToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem newTreeToolStripMenuItem1;
-        private System.Windows.Forms.MenuStrip MenuScriptMains;
-        private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reToolStripMenuItem;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private ToolStripMenuItem setCloudToolStripMenuItem;
+        private ToolStripMenuItem excelToolStripMenuItem1;
+        private ToolStripMenuItem wordToolStripMenuItem1;
+        private ToolStripMenuItem textToolStripMenuItem1;
+        private ToolStripMenuItem outInputToolStripMenuItem;
+        private ToolStripMenuItem excelToolStripMenuItem;
+        private ToolStripMenuItem wordToolStripMenuItem;
+        private ToolStripMenuItem textToolStripMenuItem;
+        private ToolStripMenuItem ganttChartToolStripMenuItem;
+        private ToolStripMenuItem pieChartToolStripMenuItem;
+        private ToolStripMenuItem inputToolStripMenuItem;
+        private ToolStripMenuItem editToolStripMenuItem;
+        private ToolStripMenuItem toolsToolStripMenuItem;
+        private ToolStripMenuItem viewToolStripMenuItem;
+        private ToolStripMenuItem viewAllToolStripMenuItem;
+        private ToolStripMenuItem selectViewToolStripMenuItem;
+        private ToolStripMenuItem configToolStripMenuItem;
+        private ToolStripMenuItem configToolStripMenuItem1;
+        private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripMenuItem setCDKToolStripMenuItem;
+        private ToolStripMenuItem selectToolStripMenuItem;
+        private ToolStripMenuItem startToolStripMenuItem;
+        private ContextMenuStrip RightKey;
+        private ToolStripMenuItem editToolStripMenuItem1;
+        private ToolStripMenuItem editToolStripMenuItem2;
+        private ToolStripMenuItem findAndRelpceToolStripMenuItem;
+        private ToolStripMenuItem currentlyTreeToolStripMenuItem1;
+        private ToolStripMenuItem aLLTreeToolStripMenuItem;
+        private ToolStripMenuItem oneViewToolStripMenuItem;
+        private ToolStripMenuItem moreViewsToolStripMenuItem;
+        private ToolStripMenuItem addToolStripMenuItem;
+        private ToolStripMenuItem newNodeToolStripMenuItem;
+        private ToolStripMenuItem newTreeToolStripMenuItem2;
+        private ToolStripMenuItem copyToolStripMenuItem;
+        private ToolStripMenuItem currentToolStripMenuItem;
+        private ToolStripMenuItem otherTreeToolStripMenuItem;
+        private ToolStripMenuItem newTreeToolStripMenuItem;
+        private ToolStripMenuItem moveToolStripMenuItem;
+        private ToolStripMenuItem currentlyTreeToolStripMenuItem;
+        private ToolStripMenuItem otherTreeToolStripMenuItem1;
+        private ToolStripMenuItem newTreeToolStripMenuItem1;
+        private MenuStrip MenuScriptMains;
+        private ToolStripMenuItem clearToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem;
+        private ToolStripMenuItem saveToolStripMenuItem;
+        private ToolStripMenuItem reToolStripMenuItem;
+        private Timer timer1;
+        private DataGridView dataGridView1;
     }
 }

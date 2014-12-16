@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
+﻿using System.ServiceModel;
 
 namespace SuperBoy.Cloud
 {
@@ -13,6 +7,6 @@ namespace SuperBoy.Cloud
     public interface ISuperBoyICloud
     {
         [OperationContract]
-        string SuperBoyCloud(string CloudJson);
+        string SuperBoyCloud(string cloudJson);
     }
 }

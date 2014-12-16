@@ -39,7 +39,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IOperatingLibYSQL.cs" />
+    <Compile Include="Control\YSQLService.cs" />
+    <Compile Include="Interface\IOperatingLibYSQL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interface\IYsqlControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interface\IYsqlServer.cs" />
+    <Compile Include="Model\EnumArrayYsql.cs" />
+    <Compile Include="Model\TableInfoModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\TriggerModel.cs" />
+    <Compile Include="Realize\YsqlControl.cs" />
     <Compile Include="Realize\OperatingLibYSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -48,6 +61,14 @@
       <Project>{6c6f0b3e-8873-4981-9128-fc7490df315b}</Project>
       <Name>SuperBoy.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tdb\SystemInfo.conf" />
+    <None Include="Config.conf" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Tdb\DataInfo.conf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

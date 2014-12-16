@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace SuperBoyView
+﻿namespace SuperBoyView
 {
-    public class test
+    public class Test
     {
-        public test()
+        public Test()
         {
 
         }
-        public static void mains()
+        public static void Mains()
         {
 
         }

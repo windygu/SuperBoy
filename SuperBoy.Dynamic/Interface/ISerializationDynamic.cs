@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SuperBoy.Dynamic.Interface
 {
     public interface ISerializationDynamic
     {
         string AnalyticalMain(string analyticalString);
+        string AnalyticalJson(Dictionary<string, string> dictionary);
     }
 }

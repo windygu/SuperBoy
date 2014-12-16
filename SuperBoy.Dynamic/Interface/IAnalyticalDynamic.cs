@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SuperBoy.Dynamic.Interface
 {
     interface IAnalyticalDynamic
     {
 
-        string OnLine(Dictionary<string, string> Dic);
-        string Select(Dictionary<string, string> Dic);
-        string Inster(Dictionary<string, string> Dic);
-        string Delete(Dictionary<string, string> Dic);
-        string Update(Dictionary<string, string> Dic);
-        string MANAGE(Dictionary<string, string> Dic);
+        string OnLine(Dictionary<string, string> dic);
+        string Select(Dictionary<string, string> dic);
+        string Inster(Dictionary<string, string> dic);
+        string Delete(Dictionary<string, string> dic);
+        string Update(Dictionary<string, string> dic);
+        string Manage(Dictionary<string, string> dic);
     }
 }

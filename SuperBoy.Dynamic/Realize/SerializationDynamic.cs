@@ -1,8 +1,8 @@
-﻿using SuperBoy.Dynamic.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SuperBoy.Dynamic.Interface;
 
 namespace SuperBoy.Dynamic
 {
@@ -67,7 +67,7 @@ namespace SuperBoy.Dynamic
                     returnValue = anly.OnLine(boduDic);
                     break;
                 case "MANAGE":
-                    returnValue = anly.MANAGE(boduDic);
+                    returnValue = anly.Manage(boduDic);
                     break;
                 default:
                     //配置问题
@@ -76,6 +76,29 @@ namespace SuperBoy.Dynamic
             }
 
             return returnValue;
+        }
+
+        /// <summary>
+        /// 序列化Json
+        /// </summary>
+        /// <param name="dictionary"></param>
+        /// <returns></returns>
+        public string AnalyticalJson(Dictionary<string, string> dictionary)
+        {
+            var list = dictionary.Keys.ToList();
+            var sb = new StringBuilder();
+            sb.Append('{');
+            string item;
+            foreach (var t in list)
+            {
+                //  string item = string.Join("\",\"", dictionary[list[index]].Split(','));
+                item = dictionary[t].Replace(",", "\",\"");
+                sb.Append("\"" + t + "\":[\"" + item + "\"],");
+            }
+            item = sb.ToString().Trim(',');
+           // sb.Append('}');
+            return item + "}";
+
         }
     }
 }

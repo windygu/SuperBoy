@@ -8,24 +8,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.CodeDom.Compiler;
+using System.Diagnostics;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+
 namespace SuperBoyView.SuperBoyControl {
     
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SuperBoyControl.ISuperBoyICloud")]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    [ServiceContract(ConfigurationName="SuperBoyControl.ISuperBoyICloud")]
     public interface ISuperBoyICloud {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISuperBoyICloud/SuperBoyCloud", ReplyAction="http://tempuri.org/ISuperBoyICloud/SuperBoyCloudResponse")]
+        [OperationContract(Action="http://tempuri.org/ISuperBoyICloud/SuperBoyCloud", ReplyAction="http://tempuri.org/ISuperBoyICloud/SuperBoyCloudResponse")]
         string SuperBoyCloud(string CloudJson);
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ISuperBoyICloudChannel : SuperBoyView.SuperBoyControl.ISuperBoyICloud, System.ServiceModel.IClientChannel {
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    public interface ISuperBoyICloudChannel : ISuperBoyICloud, IClientChannel {
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class SuperBoyICloudClient : System.ServiceModel.ClientBase<SuperBoyView.SuperBoyControl.ISuperBoyICloud>, SuperBoyView.SuperBoyControl.ISuperBoyICloud {
+    [DebuggerStepThrough()]
+    [GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    public partial class SuperBoyICloudClient : ClientBase<ISuperBoyICloud>, ISuperBoyICloud {
         
         public SuperBoyICloudClient() {
         }
@@ -38,11 +43,11 @@ namespace SuperBoyView.SuperBoyControl {
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public SuperBoyICloudClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public SuperBoyICloudClient(string endpointConfigurationName, EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public SuperBoyICloudClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public SuperBoyICloudClient(Binding binding, EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

@@ -40,8 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control\Analytical.cs" />
+    <Compile Include="Interface\IDynamicControl.cs" />
     <Compile Include="Realize\AnalyticalDynamic.cs" />
-    <Compile Include="Realize\DynamicControl.cs" />
+    <Compile Include="Control\DynamicControl.cs" />
     <Compile Include="Realize\SerializationDynamic.cs" />
     <Compile Include="Interface\IAnalyticalDynamic.cs" />
     <Compile Include="Interface\ISerializationDynamic.cs" />
@@ -56,6 +57,10 @@
     <ProjectReference Include="..\SuperBoy.Model\SuperBoy.Model.csproj">
       <Project>{6c6f0b3e-8873-4981-9128-fc7490df315b}</Project>
       <Name>SuperBoy.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SuperBoy.YSQL\SuperBoy.YSQL.csproj">
+      <Project>{3c8895bd-c0cd-4d21-ab92-2671f4e6655e}</Project>
+      <Name>SuperBoy.YSQL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

@@ -8,20 +8,58 @@ using System.Net.Mail;
 
 namespace SuperBoy.Database.Realize
 {
-    class DbHelper
+    internal class DbHelper
     {
         private static readonly string ConnectionString = PubConstant.ConnectionString;
+
+        #region 邮件通知
+
+        public static void SendEmailToArea(string to, string body, string subject)
+        {
+            //1.填写服务器的信息 
+            var smtp = new SmtpClient {Host = "smtp.139.com", Port = 25};
+
+            //第一个参数 发送者的邮箱号 第二个参数 发送者的密码 
+            var nc = new NetworkCredential("15253936412@139.com", "43dyar");
+            smtp.Credentials = nc;
+
+            //3.填写发送信息 
+            var mail = new MailMessage();
+            //发送人的邮箱地址 
+            mail.From = new MailAddress("15253936412@139.com");
+            //发送给谁？ 
+            mail.To.Add(to);
+            //发送的标题 
+            mail.Subject = subject;
+            //发送的内容 
+            mail.Body = body;
+
+            //4.发送 
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        #endregion
+
         #region 公用方法
+
         /// <summary>
-        /// 判断是否存在某表的某个字段
+        ///     判断是否存在某表的某个字段
         /// </summary>
         /// <param name="tableName">表名称</param>
         /// <param name="columnName">列名称</param>
         /// <returns>是否存在</returns>
         public static bool ColumnExists(string tableName, string columnName)
         {
-            string sql = "select count(1) from syscolumns where [id]=object_id('" + tableName + "') and [name]='" + columnName + "'";
-            object res = GetSingle(sql);
+            var sql = "select count(1) from syscolumns where [id]=object_id('" + tableName + "') and [name]='" +
+                      columnName + "'";
+            var res = GetSingle(sql);
             if (res == null)
             {
                 return false;
@@ -29,25 +67,18 @@ namespace SuperBoy.Database.Realize
             return Convert.ToInt32(res) > 0;
         }
 
-        public static int GetMaxID(string FieldName, string TableName)
+        public static int GetMaxId(string fieldName, string tableName)
         {
-            string strsql = "select max(" + FieldName + ")+1 from " + TableName;
-            object obj = GetSingle(strsql);
-            if (obj == null)
-            {
-                return 1;
-            }
-            else
-            {
-                return int.Parse(obj.ToString());
-            }
+            var strsql = "select max(" + fieldName + ")+1 from " + tableName;
+            var obj = GetSingle(strsql);
+            return obj == null ? 1 : int.Parse(obj.ToString());
         }
 
         public static bool Exists(string strSql)
         {
-            object obj = GetSingle(strSql);
+            var obj = GetSingle(strSql);
             int cmdresult;
-            if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
+            if ((Equals(obj, null)) || (Equals(obj, DBNull.Value)))
             {
                 cmdresult = 0;
             }
@@ -55,28 +86,22 @@ namespace SuperBoy.Database.Realize
             {
                 cmdresult = int.Parse(obj.ToString());
             }
-            if (cmdresult == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return cmdresult != 0;
         }
 
         /// <summary>
-        /// 表是否存在
+        ///     表是否存在
         /// </summary>
-        /// <param name="TableName"></param>
+        /// <param name="tableName"></param>
         /// <returns></returns>
-        public static bool TabExists(string TableName)
+        public static bool TabExists(string tableName)
         {
-            string strsql = "select count(*) from sysobjects where id = object_id(N'[" + TableName + "]') and OBJECTPROPERTY(id, N'IsUserTable') = 1";
+            var strsql = "select count(*) from sysobjects where id = object_id(N'[" + tableName +
+                         "]') and OBJECTPROPERTY(id, N'IsUserTable') = 1";
             //string strsql = "SELECT count(*) FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[" + TableName + "]') AND type in (N'U')";
-            object obj = GetSingle(strsql);
+            var obj = GetSingle(strsql);
             int cmdresult;
-            if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
+            if ((Equals(obj, null)) || (Equals(obj, DBNull.Value)))
             {
                 cmdresult = 0;
             }
@@ -84,21 +109,14 @@ namespace SuperBoy.Database.Realize
             {
                 cmdresult = int.Parse(obj.ToString());
             }
-            if (cmdresult == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return cmdresult != 0;
         }
 
         public static bool Exists(string strSql, params SqlParameter[] cmdParms)
         {
-            object obj = GetSingle(strSql, cmdParms);
+            var obj = GetSingle(strSql, cmdParms);
             int cmdresult;
-            if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
+            if ((Equals(obj, null)) || (Equals(obj, DBNull.Value)))
             {
                 cmdresult = 0;
             }
@@ -106,14 +124,7 @@ namespace SuperBoy.Database.Realize
             {
                 cmdresult = int.Parse(obj.ToString());
             }
-            if (cmdresult == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return cmdresult != 0;
         }
 
         #endregion
@@ -121,25 +132,46 @@ namespace SuperBoy.Database.Realize
         #region  执行简单SQL语句
 
         /// <summary>
-        /// 执行SQL语句，返回影响的记录数
+        ///     执行SQL语句，返回影响的记录数
         /// </summary>
-        /// <param name="SQLString">SQL语句</param>
+        /// <param name="sqlString">SQL语句</param>
         /// <returns>影响的记录数</returns>
-        /// 
-        public static int ExecuteSql(string SQLString)
+        public static int ExecuteSql(string sqlString)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(SQLString, connection))
+                using (var cmd = new SqlCommand(sqlString, connection))
                 {
                     try
                     {
                         connection.Open();
-                        int rows = cmd.ExecuteNonQuery();
+                        var rows = cmd.ExecuteNonQuery();
 
                         return rows;
                     }
-                    catch (System.Data.SqlClient.SqlException e)
+                    catch (SqlException)
+                    {
+                        connection.Close();
+                        throw;
+                    }
+                }
+            }
+        }
+
+        public static int ExecuteSqlByTime(string sqlString, int times)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                using (var cmd = new SqlCommand(sqlString, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        cmd.CommandTimeout = times;
+                        var rows = cmd.ExecuteNonQuery();
+                        return rows;
+                    }
+                    catch (SqlException e)
                     {
                         connection.Close();
                         throw e;
@@ -148,74 +180,52 @@ namespace SuperBoy.Database.Realize
             }
         }
 
-        public static int ExecuteSqlByTime(string SQLString, int Times)
-        {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand(SQLString, connection))
-                {
-                    try
-                    {
-                        connection.Open();
-                        cmd.CommandTimeout = Times;
-                        int rows = cmd.ExecuteNonQuery();
-                        return rows;
-                    }
-                    catch (System.Data.SqlClient.SqlException e)
-                    {
-                        connection.Close();
-                        throw e;
-                    }
-                }
-            }
-        }
         /// <summary>
-        /// 返回表
+        ///     返回表
         /// </summary>
-        /// <param name="SQLString"></param>
+        /// <param name="sqlString"></param>
         /// <returns></returns>
-        public static DataTable GetTable(string SQLString)
+        public static DataTable GetTable(string sqlString)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                DataTable dt = new DataTable();
+                var dt = new DataTable();
                 try
                 {
                     connection.Open();
-                    SqlDataAdapter command = new SqlDataAdapter(SQLString, connection);
+                    var command = new SqlDataAdapter(sqlString, connection);
                     command.Fill(dt);
                 }
-                catch (System.Data.SqlClient.SqlException ex)
+                catch (SqlException ex)
                 {
                     throw new Exception(ex.Message);
                 }
                 return dt;
             }
         }
+
         /// <summary>
-        /// 执行多条SQL语句，实现数据库事务。
+        ///     执行多条SQL语句，实现数据库事务。
         /// </summary>
-        /// <param name="SQLStringList">多条SQL语句</param>		
-        public static int ExecuteSqlTran(List<String> SQLStringList)
+        /// <param name="sqlStringList">多条SQL语句</param>
+        public static int ExecuteSqlTran(List<String> sqlStringList)
         {
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            using (var conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand();
+                var cmd = new SqlCommand();
                 cmd.Connection = conn;
-                SqlTransaction tx = conn.BeginTransaction();
+                var tx = conn.BeginTransaction();
                 cmd.Transaction = tx;
                 try
                 {
-                    int count = 0;
-                    for (int n = 0; n < SQLStringList.Count; n++)
+                    var count = 0;
+                    for (var n = 0; n < sqlStringList.Count; n++)
                     {
-                        string strsql = SQLStringList[n];
-                        if (strsql.Trim().Length > 1)
-                        {
-                            cmd.CommandText = strsql;
-                            count += cmd.ExecuteNonQuery();
-                        }
+                        var strsql = sqlStringList[n];
+                        if (strsql.Trim().Length <= 1) continue;
+                        cmd.CommandText = strsql;
+                        count += cmd.ExecuteNonQuery();
                     }
                     tx.Commit();
                     return count;
@@ -229,26 +239,25 @@ namespace SuperBoy.Database.Realize
         }
 
         /// <summary>
-        /// 执行带一个存储过程参数的的SQL语句。
+        ///     执行带一个存储过程参数的的SQL语句。
         /// </summary>
-        /// <param name="SQLString">SQL语句</param>
+        /// <param name="sqlString">SQL语句</param>
         /// <param name="content">参数内容,比如一个字段是格式复杂的文章，有特殊符号，可以通过这个方式添加</param>
         /// <returns>影响的记录数</returns>
-        public static int ExecuteSql(string SQLString, string content)
+        public static int ExecuteSql(string sqlString, string content)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand(SQLString, connection);
-                System.Data.SqlClient.SqlParameter myParameter = new System.Data.SqlClient.SqlParameter("@content", SqlDbType.NText);
-                myParameter.Value = content;
+                var cmd = new SqlCommand(sqlString, connection);
+                var myParameter = new SqlParameter("@content", SqlDbType.NText) {Value = content};
                 cmd.Parameters.Add(myParameter);
                 try
                 {
                     connection.Open();
-                    int rows = cmd.ExecuteNonQuery();
+                    var rows = cmd.ExecuteNonQuery();
                     return rows;
                 }
-                catch (System.Data.SqlClient.SqlException e)
+                catch (SqlException e)
                 {
                     throw e;
                 }
@@ -261,24 +270,23 @@ namespace SuperBoy.Database.Realize
         }
 
         /// <summary>
-        /// 执行带一个存储过程参数的的SQL语句。
+        ///     执行带一个存储过程参数的的SQL语句。
         /// </summary>
-        /// <param name="SQLString">SQL语句</param>
+        /// <param name="sqlString">SQL语句</param>
         /// <param name="content">参数内容,比如一个字段是格式复杂的文章，有特殊符号，可以通过这个方式添加</param>
         /// <returns>影响的记录数</returns>
-        public static object ExecuteSqlGet(string SQLString, string content)
+        public static object ExecuteSqlGet(string sqlString, string content)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand(SQLString, connection);
-                System.Data.SqlClient.SqlParameter myParameter = new System.Data.SqlClient.SqlParameter("@content", SqlDbType.NText);
-                myParameter.Value = content;
+                var cmd = new SqlCommand(sqlString, connection);
+                var myParameter = new SqlParameter("@content", SqlDbType.NText) {Value = content};
                 cmd.Parameters.Add(myParameter);
                 try
                 {
                     connection.Open();
-                    object obj = cmd.ExecuteScalar();
-                    if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
+                    var obj = cmd.ExecuteScalar();
+                    if ((Equals(obj, null)) || (Equals(obj, DBNull.Value)))
                     {
                         return null;
                     }
@@ -287,7 +295,7 @@ namespace SuperBoy.Database.Realize
                         return obj;
                     }
                 }
-                catch (System.Data.SqlClient.SqlException e)
+                catch (SqlException e)
                 {
                     throw e;
                 }
@@ -300,26 +308,26 @@ namespace SuperBoy.Database.Realize
         }
 
         /// <summary>
-        /// 向数据库里插入图像格式的字段(和上面情况类似的另一种实例)
+        ///     向数据库里插入图像格式的字段(和上面情况类似的另一种实例)
         /// </summary>
-        /// <param name="strSQL">SQL语句</param>
+        /// <param name="strSql">SQL语句</param>
         /// <param name="fs">图像字节,数据库的字段类型为image的情况</param>
         /// <returns>影响的记录数</returns>
-        public static int ExecuteSqlInsertImg(string strSQL, byte[] fs)
+        public static int ExecuteSqlInsertImg(string strSql, byte[] fs)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand(strSQL, connection);
-                System.Data.SqlClient.SqlParameter myParameter = new System.Data.SqlClient.SqlParameter("@fs", SqlDbType.Image);
+                var cmd = new SqlCommand(strSql, connection);
+                var myParameter = new SqlParameter("@fs", SqlDbType.Image);
                 myParameter.Value = fs;
                 cmd.Parameters.Add(myParameter);
                 try
                 {
                     connection.Open();
-                    int rows = cmd.ExecuteNonQuery();
+                    var rows = cmd.ExecuteNonQuery();
                     return rows;
                 }
-                catch (System.Data.SqlClient.SqlException e)
+                catch (SqlException e)
                 {
                     throw e;
                 }
@@ -333,30 +341,27 @@ namespace SuperBoy.Database.Realize
 
 
         /// <summary>
-        /// 执行一条计算查询结果语句，返回查询结果（object）。
+        ///     执行一条计算查询结果语句，返回查询结果（object）。
         /// </summary>
-        /// <param name="SQLString">计算查询结果语句</param>
+        /// <param name="sqlString">计算查询结果语句</param>
         /// <returns>查询结果（object）</returns>
-        public static object GetSingle(string SQLString)
+        public static object GetSingle(string sqlString)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(SQLString, connection))
+                using (var cmd = new SqlCommand(sqlString, connection))
                 {
                     try
                     {
                         connection.Open();
-                        object obj = cmd.ExecuteScalar();
-                        if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
+                        var obj = cmd.ExecuteScalar();
+                        if ((Equals(obj, null)) || (Equals(obj, DBNull.Value)))
                         {
                             return null;
                         }
-                        else
-                        {
-                            return obj;
-                        }
+                        return obj;
                     }
-                    catch (System.Data.SqlClient.SqlException e)
+                    catch (SqlException e)
                     {
                         connection.Close();
                         throw e;
@@ -365,27 +370,24 @@ namespace SuperBoy.Database.Realize
             }
         }
 
-        public static object GetSingle(string SQLString, int Times)
+        public static object GetSingle(string sqlString, int times)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(SQLString, connection))
+                using (var cmd = new SqlCommand(sqlString, connection))
                 {
                     try
                     {
                         connection.Open();
-                        cmd.CommandTimeout = Times;
-                        object obj = cmd.ExecuteScalar();
-                        if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
+                        cmd.CommandTimeout = times;
+                        var obj = cmd.ExecuteScalar();
+                        if ((Equals(obj, null)) || (Equals(obj, DBNull.Value)))
                         {
                             return null;
                         }
-                        else
-                        {
-                            return obj;
-                        }
+                        return obj;
                     }
-                    catch (System.Data.SqlClient.SqlException e)
+                    catch (SqlException e)
                     {
                         connection.Close();
                         throw e;
@@ -395,63 +397,63 @@ namespace SuperBoy.Database.Realize
         }
 
         /// <summary>
-        /// 执行查询语句，返回SqlDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
+        ///     执行查询语句，返回SqlDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
         /// </summary>
-        /// <param name="strSQL">查询语句</param>
+        /// <param name="strSql">查询语句</param>
         /// <returns>SqlDataReader</returns>
-        public static SqlDataReader ExecuteReader(string strSQL)
+        public static SqlDataReader ExecuteReader(string strSql)
         {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            SqlCommand cmd = new SqlCommand(strSQL, connection);
+            var connection = new SqlConnection(ConnectionString);
+            var cmd = new SqlCommand(strSql, connection);
             try
             {
                 connection.Open();
-                SqlDataReader myReader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                var myReader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 return myReader;
             }
-            catch (System.Data.SqlClient.SqlException e)
+            catch (SqlException e)
             {
                 throw e;
             }
-
         }
 
         /// <summary>
-        /// 执行查询语句，返回DataSet
+        ///     执行查询语句，返回DataSet
         /// </summary>
-        /// <param name="SQLString">查询语句</param>
+        /// <param name="sqlString">查询语句</param>
         /// <returns>DataSet</returns>
-        public static DataSet Query(string SQLString)
+        public static DataSet Query(string sqlString)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                DataSet ds = new DataSet();
+                var ds = new DataSet();
                 try
                 {
                     connection.Open();
-                    SqlDataAdapter command = new SqlDataAdapter(SQLString, connection);
+                    var command = new SqlDataAdapter(sqlString, connection);
                     command.Fill(ds, "ds");
                 }
-                catch (System.Data.SqlClient.SqlException ex)
+                catch (SqlException ex)
                 {
                     throw new Exception(ex.Message);
                 }
                 return ds;
             }
         }
-        public static DataSet Query(string SQLString, int Times)
+
+        public static DataSet Query(string sqlString, int times)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                DataSet ds = new DataSet();
+                var ds = new DataSet();
                 try
                 {
                     connection.Open();
-                    SqlDataAdapter command = new SqlDataAdapter(SQLString, connection);
-                    command.SelectCommand.CommandTimeout = Times;
+                    var command = new SqlDataAdapter(sqlString, connection);
+                    command.SelectCommand.CommandTimeout = times;
                     command.Fill(ds, "ds");
                 }
-                catch (System.Data.SqlClient.SqlException ex)
+                catch (SqlException ex)
                 {
                     throw new Exception(ex.Message);
                 }
@@ -464,24 +466,24 @@ namespace SuperBoy.Database.Realize
         #region 执行带参数的SQL语句
 
         /// <summary>
-        /// 执行SQL语句，返回影响的记录数
+        ///     执行SQL语句，返回影响的记录数
         /// </summary>
-        /// <param name="SQLString">SQL语句</param>
+        /// <param name="sqlString">SQL语句</param>
         /// <returns>影响的记录数</returns>
-        public static int ExecuteSql(string SQLString, params SqlParameter[] cmdParms)
+        public static int ExecuteSql(string sqlString, params SqlParameter[] cmdParms)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (var cmd = new SqlCommand())
                 {
                     try
                     {
-                        PrepareCommand(cmd, connection, null, SQLString, cmdParms);
-                        int rows = cmd.ExecuteNonQuery();
+                        PrepareCommand(cmd, connection, null, sqlString, cmdParms);
+                        var rows = cmd.ExecuteNonQuery();
                         cmd.Parameters.Clear();
                         return rows;
                     }
-                    catch (System.Data.SqlClient.SqlException e)
+                    catch (SqlException e)
                     {
                         throw e;
                     }
@@ -491,26 +493,26 @@ namespace SuperBoy.Database.Realize
 
 
         /// <summary>
-        /// 执行多条SQL语句，实现数据库事务。
+        ///     执行多条SQL语句，实现数据库事务。
         /// </summary>
-        /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
-        public static void ExecuteSqlTran(Hashtable SQLStringList)
+        /// <param name="sqlStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
+        public static void ExecuteSqlTran(Hashtable sqlStringList)
         {
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            using (var conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
-                using (SqlTransaction trans = conn.BeginTransaction())
+                using (var trans = conn.BeginTransaction())
                 {
-                    SqlCommand cmd = new SqlCommand();
+                    var cmd = new SqlCommand();
                     try
                     {
                         //循环
-                        foreach (DictionaryEntry myDE in SQLStringList)
+                        foreach (DictionaryEntry myDe in sqlStringList)
                         {
-                            string cmdText = myDE.Key.ToString();
-                            SqlParameter[] cmdParms = (SqlParameter[])myDE.Value;
+                            var cmdText = myDe.Key.ToString();
+                            var cmdParms = (SqlParameter[]) myDe.Value;
                             PrepareCommand(cmd, conn, trans, cmdText, cmdParms);
-                            int val = cmd.ExecuteNonQuery();
+                            var val = cmd.ExecuteNonQuery();
                             cmd.Parameters.Clear();
                         }
                         trans.Commit();
@@ -525,58 +527,58 @@ namespace SuperBoy.Database.Realize
         }
 
         /// <summary>
-        /// 执行多条SQL语句，实现数据库事务。
+        ///     执行多条SQL语句，实现数据库事务。
         /// </summary>
-        /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
-        public static int ExecuteSqlTran(System.Collections.Generic.List<CommandInfo> cmdList)
+        public static int ExecuteSqlTran(List<CommandInfo> cmdList)
         {
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            using (var conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
-                using (SqlTransaction trans = conn.BeginTransaction())
+                using (var trans = conn.BeginTransaction())
                 {
-                    SqlCommand cmd = new SqlCommand();
+                    var cmd = new SqlCommand();
                     try
                     {
-                        int count = 0;
+                        var count = 0;
                         //循环
-                        foreach (CommandInfo myDE in cmdList)
+                        foreach (var myDe in cmdList)
                         {
-                            string cmdText = myDE.CommandText;
-                            SqlParameter[] cmdParms = (SqlParameter[])myDE.Parameters;
+                            var cmdText = myDe.CommandText;
+                            var cmdParms = (SqlParameter[]) myDe.Parameters;
                             PrepareCommand(cmd, conn, trans, cmdText, cmdParms);
 
-                            if (myDE.EffentNextType == EffentNextType.WhenHaveContine || myDE.EffentNextType == EffentNextType.WhenNoHaveContine)
+                            if (myDe.EffentNextType == EffentNextType.WhenHaveContine ||
+                                myDe.EffentNextType == EffentNextType.WhenNoHaveContine)
                             {
-                                if (myDE.CommandText.ToLower().IndexOf("count(") == -1)
+                                if (myDe.CommandText.ToLower().IndexOf("count(") == -1)
                                 {
                                     trans.Rollback();
                                     return 0;
                                 }
 
-                                object obj = cmd.ExecuteScalar();
-                                bool isHave = false;
+                                var obj = cmd.ExecuteScalar();
+                                var isHave = false;
                                 if (obj == null && obj == DBNull.Value)
                                 {
                                     isHave = false;
                                 }
                                 isHave = Convert.ToInt32(obj) > 0;
 
-                                if (myDE.EffentNextType == EffentNextType.WhenHaveContine && !isHave)
+                                if (myDe.EffentNextType == EffentNextType.WhenHaveContine && !isHave)
                                 {
                                     trans.Rollback();
                                     return 0;
                                 }
-                                if (myDE.EffentNextType == EffentNextType.WhenNoHaveContine && isHave)
+                                if (myDe.EffentNextType == EffentNextType.WhenNoHaveContine && isHave)
                                 {
                                     trans.Rollback();
                                     return 0;
                                 }
                                 continue;
                             }
-                            int val = cmd.ExecuteNonQuery();
+                            var val = cmd.ExecuteNonQuery();
                             count += val;
-                            if (myDE.EffentNextType == EffentNextType.ExcuteEffectRows && val == 0)
+                            if (myDe.EffentNextType == EffentNextType.ExcuteEffectRows && val == 0)
                             {
                                 trans.Rollback();
                                 return 0;
@@ -596,26 +598,26 @@ namespace SuperBoy.Database.Realize
         }
 
         /// <summary>
-        /// 执行多条SQL语句，实现数据库事务。
+        ///     执行多条SQL语句，实现数据库事务。
         /// </summary>
-        /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
-        public static void ExecuteSqlTranWithIndentity(System.Collections.Generic.List<CommandInfo> SQLStringList)
+        /// <param name="sqlStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
+        public static void ExecuteSqlTranWithIndentity(List<CommandInfo> sqlStringList)
         {
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            using (var conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
-                using (SqlTransaction trans = conn.BeginTransaction())
+                using (var trans = conn.BeginTransaction())
                 {
-                    SqlCommand cmd = new SqlCommand();
+                    var cmd = new SqlCommand();
                     try
                     {
-                        int indentity = 0;
+                        var indentity = 0;
                         //循环
-                        foreach (CommandInfo myDE in SQLStringList)
+                        foreach (var myDe in sqlStringList)
                         {
-                            string cmdText = myDE.CommandText;
-                            SqlParameter[] cmdParms = (SqlParameter[])myDE.Parameters;
-                            foreach (SqlParameter q in cmdParms)
+                            var cmdText = myDe.CommandText;
+                            var cmdParms = (SqlParameter[]) myDe.Parameters;
+                            foreach (var q in cmdParms)
                             {
                                 if (q.Direction == ParameterDirection.InputOutput)
                                 {
@@ -623,8 +625,8 @@ namespace SuperBoy.Database.Realize
                                 }
                             }
                             PrepareCommand(cmd, conn, trans, cmdText, cmdParms);
-                            int val = cmd.ExecuteNonQuery();
-                            foreach (SqlParameter q in cmdParms)
+                            var val = cmd.ExecuteNonQuery();
+                            foreach (var q in cmdParms)
                             {
                                 if (q.Direction == ParameterDirection.Output)
                                 {
@@ -645,26 +647,26 @@ namespace SuperBoy.Database.Realize
         }
 
         /// <summary>
-        /// 执行多条SQL语句，实现数据库事务。
+        ///     执行多条SQL语句，实现数据库事务。
         /// </summary>
-        /// <param name="SQLStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
-        public static void ExecuteSqlTranWithIndentity(Hashtable SQLStringList)
+        /// <param name="sqlStringList">SQL语句的哈希表（key为sql语句，value是该语句的SqlParameter[]）</param>
+        public static void ExecuteSqlTranWithIndentity(Hashtable sqlStringList)
         {
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            using (var conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
-                using (SqlTransaction trans = conn.BeginTransaction())
+                using (var trans = conn.BeginTransaction())
                 {
-                    SqlCommand cmd = new SqlCommand();
+                    var cmd = new SqlCommand();
                     try
                     {
-                        int indentity = 0;
+                        var indentity = 0;
                         //循环
-                        foreach (DictionaryEntry myDE in SQLStringList)
+                        foreach (DictionaryEntry myDe in sqlStringList)
                         {
-                            string cmdText = myDE.Key.ToString();
-                            SqlParameter[] cmdParms = (SqlParameter[])myDE.Value;
-                            foreach (SqlParameter q in cmdParms)
+                            var cmdText = myDe.Key.ToString();
+                            var cmdParms = (SqlParameter[]) myDe.Value;
+                            foreach (var q in cmdParms)
                             {
                                 if (q.Direction == ParameterDirection.InputOutput)
                                 {
@@ -672,8 +674,8 @@ namespace SuperBoy.Database.Realize
                                 }
                             }
                             PrepareCommand(cmd, conn, trans, cmdText, cmdParms);
-                            int val = cmd.ExecuteNonQuery();
-                            foreach (SqlParameter q in cmdParms)
+                            var val = cmd.ExecuteNonQuery();
+                            foreach (var q in cmdParms)
                             {
                                 if (q.Direction == ParameterDirection.Output)
                                 {
@@ -694,31 +696,28 @@ namespace SuperBoy.Database.Realize
         }
 
         /// <summary>
-        /// 执行一条计算查询结果语句，返回查询结果（object）。
+        ///     执行一条计算查询结果语句，返回查询结果（object）。
         /// </summary>
-        /// <param name="SQLString">计算查询结果语句</param>
+        /// <param name="sqlString">计算查询结果语句</param>
         /// <returns>查询结果（object）</returns>
-        public static object GetSingle(string SQLString, params SqlParameter[] cmdParms)
+        public static object GetSingle(string sqlString, params SqlParameter[] cmdParms)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand())
+                using (var cmd = new SqlCommand())
                 {
                     try
                     {
-                        PrepareCommand(cmd, connection, null, SQLString, cmdParms);
-                        object obj = cmd.ExecuteScalar();
+                        PrepareCommand(cmd, connection, null, sqlString, cmdParms);
+                        var obj = cmd.ExecuteScalar();
                         cmd.Parameters.Clear();
-                        if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
+                        if ((Equals(obj, null)) || (Equals(obj, DBNull.Value)))
                         {
                             return null;
                         }
-                        else
-                        {
-                            return obj;
-                        }
+                        return obj;
                     }
-                    catch (System.Data.SqlClient.SqlException e)
+                    catch (SqlException e)
                     {
                         throw e;
                     }
@@ -727,47 +726,47 @@ namespace SuperBoy.Database.Realize
         }
 
         /// <summary>
-        /// 执行查询语句，返回SqlDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
+        ///     执行查询语句，返回SqlDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
         /// </summary>
         /// <param name="strSQL">查询语句</param>
         /// <returns>SqlDataReader</returns>
-        public static SqlDataReader ExecuteReader(string SQLString, params SqlParameter[] cmdParms)
+        public static SqlDataReader ExecuteReader(string sqlString, params SqlParameter[] cmdParms)
         {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            SqlCommand cmd = new SqlCommand();
+            var connection = new SqlConnection(ConnectionString);
+            var cmd = new SqlCommand();
             try
             {
-                PrepareCommand(cmd, connection, null, SQLString, cmdParms);
-                SqlDataReader myReader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                PrepareCommand(cmd, connection, null, sqlString, cmdParms);
+                var myReader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 cmd.Parameters.Clear();
                 return myReader;
             }
-            catch (System.Data.SqlClient.SqlException e)
+            catch (SqlException e)
             {
                 throw e;
             }
         }
 
         /// <summary>
-        /// 执行查询语句，返回DataSet
+        ///     执行查询语句，返回DataSet
         /// </summary>
-        /// <param name="SQLString">查询语句</param>
+        /// <param name="sqlString">查询语句</param>
         /// <returns>DataSet</returns>
-        public static DataSet Query(string SQLString, params SqlParameter[] cmdParms)
+        public static DataSet Query(string sqlString, params SqlParameter[] cmdParms)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand();
-                PrepareCommand(cmd, connection, null, SQLString, cmdParms);
-                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                var cmd = new SqlCommand();
+                PrepareCommand(cmd, connection, null, sqlString, cmdParms);
+                using (var da = new SqlDataAdapter(cmd))
                 {
-                    DataSet ds = new DataSet();
+                    var ds = new DataSet();
                     try
                     {
                         da.Fill(ds, "ds");
                         cmd.Parameters.Clear();
                     }
-                    catch (System.Data.SqlClient.SqlException ex)
+                    catch (SqlException ex)
                     {
                         throw new Exception(ex.Message);
                     }
@@ -775,7 +774,9 @@ namespace SuperBoy.Database.Realize
                 }
             }
         }
-        private static void PrepareCommand(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, string cmdText, SqlParameter[] cmdParms)
+
+        private static void PrepareCommand(SqlCommand cmd, SqlConnection conn, SqlTransaction trans, string cmdText,
+            SqlParameter[] cmdParms)
         {
             if (conn.State != ConnectionState.Open)
                 conn.Open();
@@ -783,12 +784,13 @@ namespace SuperBoy.Database.Realize
             cmd.CommandText = cmdText;
             if (trans != null)
                 cmd.Transaction = trans;
-            cmd.CommandType = CommandType.Text;//cmdType;
+            cmd.CommandType = CommandType.Text; //cmdType;
             if (cmdParms != null)
             {
-                foreach (SqlParameter parameter in cmdParms)
+                foreach (var parameter in cmdParms)
                 {
-                    if ((parameter.Direction == ParameterDirection.InputOutput || parameter.Direction == ParameterDirection.Input) &&
+                    if ((parameter.Direction == ParameterDirection.InputOutput ||
+                         parameter.Direction == ParameterDirection.Input) &&
                         (parameter.Value == null))
                     {
                         parameter.Value = DBNull.Value;
@@ -803,26 +805,25 @@ namespace SuperBoy.Database.Realize
         #region 存储过程操作
 
         /// <summary>
-        /// 执行存储过程，返回SqlDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
+        ///     执行存储过程，返回SqlDataReader ( 注意：调用该方法后，一定要对SqlDataReader进行Close )
         /// </summary>
         /// <param name="storedProcName">存储过程名</param>
         /// <param name="parameters">存储过程参数</param>
         /// <returns>SqlDataReader</returns>
         public static SqlDataReader RunProcedure(string storedProcName, IDataParameter[] parameters)
         {
-            SqlConnection connection = new SqlConnection(ConnectionString);
+            var connection = new SqlConnection(ConnectionString);
             SqlDataReader returnReader;
             connection.Open();
-            SqlCommand command = BuildQueryCommand(connection, storedProcName, parameters);
+            var command = BuildQueryCommand(connection, storedProcName, parameters);
             command.CommandType = CommandType.StoredProcedure;
             returnReader = command.ExecuteReader(CommandBehavior.CloseConnection);
             return returnReader;
-
         }
 
 
         /// <summary>
-        /// 执行存储过程
+        ///     执行存储过程
         /// </summary>
         /// <param name="storedProcName">存储过程名</param>
         /// <param name="parameters">存储过程参数</param>
@@ -830,28 +831,29 @@ namespace SuperBoy.Database.Realize
         /// <returns>DataSet</returns>
         public static DataSet RunProcedure(string storedProcName, IDataParameter[] parameters, string tableName)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                DataSet dataSet = new DataSet();
+                var dataSet = new DataSet();
                 connection.Open();
-                SqlDataAdapter sqlDA = new SqlDataAdapter();
-                sqlDA.SelectCommand = BuildQueryCommand(connection, storedProcName, parameters);
-                sqlDA.Fill(dataSet, tableName);
+                var sqlDa = new SqlDataAdapter();
+                sqlDa.SelectCommand = BuildQueryCommand(connection, storedProcName, parameters);
+                sqlDa.Fill(dataSet, tableName);
                 connection.Close();
                 return dataSet;
             }
         }
 
-        public static DataSet RunProcedure(string storedProcName, IDataParameter[] parameters, string tableName, int Times)
+        public static DataSet RunProcedure(string storedProcName, IDataParameter[] parameters, string tableName,
+            int times)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
-                DataSet dataSet = new DataSet();
+                var dataSet = new DataSet();
                 connection.Open();
-                SqlDataAdapter sqlDA = new SqlDataAdapter();
-                sqlDA.SelectCommand = BuildQueryCommand(connection, storedProcName, parameters);
-                sqlDA.SelectCommand.CommandTimeout = Times;
-                sqlDA.Fill(dataSet, tableName);
+                var sqlDa = new SqlDataAdapter();
+                sqlDa.SelectCommand = BuildQueryCommand(connection, storedProcName, parameters);
+                sqlDa.SelectCommand.CommandTimeout = times;
+                sqlDa.Fill(dataSet, tableName);
                 connection.Close();
                 return dataSet;
             }
@@ -859,22 +861,24 @@ namespace SuperBoy.Database.Realize
 
 
         /// <summary>
-        /// 构建 SqlCommand 对象(用来返回一个结果集，而不是一个整数值)
+        ///     构建 SqlCommand 对象(用来返回一个结果集，而不是一个整数值)
         /// </summary>
         /// <param name="connection">数据库连接</param>
         /// <param name="storedProcName">存储过程名</param>
         /// <param name="parameters">存储过程参数</param>
         /// <returns>SqlCommand</returns>
-        private static SqlCommand BuildQueryCommand(SqlConnection connection, string storedProcName, IDataParameter[] parameters)
+        private static SqlCommand BuildQueryCommand(SqlConnection connection, string storedProcName,
+            IDataParameter[] parameters)
         {
-            SqlCommand command = new SqlCommand(storedProcName, connection);
+            var command = new SqlCommand(storedProcName, connection);
             command.CommandType = CommandType.StoredProcedure;
             foreach (SqlParameter parameter in parameters)
             {
                 if (parameter != null)
                 {
                     // 检查未分配值的输出参数,将其分配以DBNull.Value.
-                    if ((parameter.Direction == ParameterDirection.InputOutput || parameter.Direction == ParameterDirection.Input) &&
+                    if ((parameter.Direction == ParameterDirection.InputOutput ||
+                         parameter.Direction == ParameterDirection.Input) &&
                         (parameter.Value == null))
                     {
                         parameter.Value = DBNull.Value;
@@ -887,7 +891,7 @@ namespace SuperBoy.Database.Realize
         }
 
         /// <summary>
-        /// 执行存储过程，返回影响的行数		
+        ///     执行存储过程，返回影响的行数
         /// </summary>
         /// <param name="storedProcName">存储过程名</param>
         /// <param name="parameters">存储过程参数</param>
@@ -895,27 +899,28 @@ namespace SuperBoy.Database.Realize
         /// <returns></returns>
         public static int RunProcedure(string storedProcName, IDataParameter[] parameters, out int rowsAffected)
         {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 int result;
                 connection.Open();
-                SqlCommand command = BuildIntCommand(connection, storedProcName, parameters);
+                var command = BuildIntCommand(connection, storedProcName, parameters);
                 rowsAffected = command.ExecuteNonQuery();
-                result = (int)command.Parameters["ReturnValue"].Value;
+                result = (int) command.Parameters["ReturnValue"].Value;
                 //Connection.Close();
                 return result;
             }
         }
 
         /// <summary>
-        /// 创建 SqlCommand 对象实例(用来返回一个整数值)	
+        ///     创建 SqlCommand 对象实例(用来返回一个整数值)
         /// </summary>
         /// <param name="storedProcName">存储过程名</param>
         /// <param name="parameters">存储过程参数</param>
         /// <returns>SqlCommand 对象实例</returns>
-        private static SqlCommand BuildIntCommand(SqlConnection connection, string storedProcName, IDataParameter[] parameters)
+        private static SqlCommand BuildIntCommand(SqlConnection connection, string storedProcName,
+            IDataParameter[] parameters)
         {
-            SqlCommand command = BuildQueryCommand(connection, storedProcName, parameters);
+            var command = BuildQueryCommand(connection, storedProcName, parameters);
             command.Parameters.Add(new SqlParameter("ReturnValue",
                 SqlDbType.Int, 4, ParameterDirection.ReturnValue,
                 false, 0, 0, string.Empty, DataRowVersion.Default, null));
@@ -924,48 +929,10 @@ namespace SuperBoy.Database.Realize
 
         #endregion
 
-        #region 邮件通知
-        public static void SendEmailToArea(string To, string Body, string Subject)
-        {
-            //1.填写服务器的信息 
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.139.com";
-            smtp.Port = 25;
-
-            //第一个参数 发送者的邮箱号 第二个参数 发送者的密码 
-            NetworkCredential nc = new NetworkCredential("15253936412@139.com", "43dyar");
-            smtp.Credentials = nc;
-
-            //3.填写发送信息 
-            MailMessage mail = new MailMessage();
-            //发送人的邮箱地址 
-            mail.From = new MailAddress("15253936412@139.com");
-            //发送给谁？ 
-            mail.To.Add(To);
-            //发送的标题 
-            mail.Subject = Subject;
-            //发送的内容 
-            mail.Body = Body;
-
-            //4.发送 
-            try
-            {
-                smtp.Send(mail);
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-
-        }
-        #endregion
-
         #region 自定义函数
+
         /// <summary>
-        /// 带list参数返回受影响的行数
+        ///     带list参数返回受影响的行数
         /// </summary>
         /// <param name="sql"></param>
         /// <param name="list"></param>
@@ -974,8 +941,8 @@ namespace SuperBoy.Database.Realize
         {
             try
             {
-                SqlConnection con = new SqlConnection(ConnectionString);
-                SqlCommand com = new SqlCommand(sql, con);
+                var con = new SqlConnection(ConnectionString);
+                var com = new SqlCommand(sql, con);
                 if (list != null && list.Count > 0)
                 {
                     com.Parameters.AddRange(list.ToArray());
@@ -988,20 +955,20 @@ namespace SuperBoy.Database.Realize
                 return null;
                 throw new Exception();
             }
-
         }
+
         /// <summary>
-        ///  带list参数，获取一行一列
+        ///     带list参数，获取一行一列
         /// </summary>
         /// <param name="sql"></param>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static object execuScanner(string sql, List<SqlParameter> list)
+        public static object ExecuScanner(string sql, List<SqlParameter> list)
         {
             try
             {
-                SqlConnection con = new SqlConnection(ConnectionString);
-                SqlCommand com = new SqlCommand(sql, con);
+                var con = new SqlConnection(ConnectionString);
+                var com = new SqlCommand(sql, con);
                 if (list != null && list.Count > 0)
                 {
                     com.Parameters.AddRange(list.ToArray());
@@ -1013,8 +980,8 @@ namespace SuperBoy.Database.Realize
             {
                 return null;
             }
-
         }
+
         #endregion
     }
 }

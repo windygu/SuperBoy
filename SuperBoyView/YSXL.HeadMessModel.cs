@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SuperBoy.Model.Public
 {
@@ -47,7 +44,7 @@ namespace SuperBoy.Model.Public
         {
             this.DataBase = "TableName";
             this.VersionNumber = "VersionNumber";
-            this.VersionType = EnumArryModel.LogType.bak;
+            this.VersionType = EnumArryModel.LogType.Bak;
             this.CreationDate = "CreationDate";
             this.LastUpdateDate = "LastUpdateDate";
             this.CreateMan = "CreateMan";
@@ -59,9 +56,9 @@ namespace SuperBoy.Model.Public
         /// <summary>
         /// not parameter create function ,default create time call default
         /// </summary>
-        public ModelHead(bool IsCreate)
+        public ModelHead(bool isCreate)
         {
-            if (IsCreate)
+            if (isCreate)
             {
                 this.DataBase = "TableName";
                 this.VersionNumber = "Default ysxl_1.0";

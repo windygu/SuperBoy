@@ -8,11 +8,11 @@ namespace SuperBoy.Cloud
     public class SuperBoyICloud : ISuperBoyICloud
     {
 
-        public string SuperBoyCloud(string CloudJson)
+        public string SuperBoyCloud(string cloudJson)
         {
             //调用页面序列化器皿
             ISerializationDynamic ser = new SerializationDynamic();
-            ser.AnalyticalMain(CloudJson);
+            ser.AnalyticalMain(cloudJson);
             return "";
         }
     }

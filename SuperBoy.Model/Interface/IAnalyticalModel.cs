@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SuperBoy.Model.Public;
 
 namespace SuperBoy.Model.Interface
 {
     public interface IAnalyticalModel
     {
-        string SELECT(Public.DatabseSend database);
+        string Select(DatabseSend database);
 
-        string INSTER(Public.DatabseSend database);
+        string Inster(DatabseSend database);
 
-        string UPDATE(Public.DatabseSend database);
+        string Update(DatabseSend database);
+        string Delete(DatabseSend database);
 
-        string DELTE(Public.DatabseSend database);
-
-        string ONLINE(Public.DatabseSend database);
-        string MANAGE(Public.DatabseSend database);
+        string Online(DatabseSend database);
+        string Manage(DatabseSend database);
+       
     }
 }

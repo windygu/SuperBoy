@@ -1,11 +1,10 @@
-﻿using SuperBoy.Database.Interface;
-using SuperBoy.Dynamic.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
+using SuperBoy.Database.Interface;
 using SuperBoy.Database.Realize;
+using SuperBoy.Dynamic.Interface;
 
 namespace SuperBoy.Dynamic
 {
@@ -14,74 +13,78 @@ namespace SuperBoy.Dynamic
         /// <summary>
         /// 在线
         /// </summary>
-        /// <param name="Dic"></param>
+        /// <param name="dic"></param>
         /// <returns></returns>
-        public string OnLine(Dictionary<string, string> Dic)
+        public string OnLine(Dictionary<string, string> dic)
         {
             throw new NotImplementedException();
         }
         /// <summary>
         /// 查询
         /// </summary>
-        /// <param name="Dic"></param>
+        /// <param name="dic"></param>
         /// <returns></returns>
-        public string Select(Dictionary<string, string> Dic)
+        public string Select(Dictionary<string, string> dic)
         {
-            List<SqlParameter> Para = new List<SqlParameter>();
-            StringBuilder sb = new StringBuilder();
+            var para = new List<SqlParameter>();
+            var sb = new StringBuilder();
             sb.Append("SELECT ");
-            if (Dic.ContainsKey("top"))
+            if (dic.ContainsKey("top"))
             {
-                sb.Append("top " + Dic["top"] + " ");
+                sb.Append("top " + dic["top"] + " ");
             }
-            if (Dic.ContainsKey("Field"))
+            if (dic.ContainsKey("Field"))
             {
-                string[] itemField = Dic["Dic"].Split(',');
+                var itemField = dic["Dic"].Split(',');
                 //查询该数据库有无该字段
-                if (connectionDatabaseQueryIsNullCount(itemField))
+                if (ConnectionDatabaseQueryIsNullCount(itemField))
                 {
 
                 }
-
-
             }
             else
             {
-                sb.Append("top " + Dic["top"] + " ");
+                sb.Append("top " + dic["top"] + " ");
 
             }
             return "";
         }
-
-        private bool connectionDatabaseQueryIsNullCount(string[] itemField)
+        /// <summary>
+        /// 查询数据库有无该字段
+        /// </summary>
+        /// <param name="itemField"></param>
+        /// <returns></returns>
+        private static bool ConnectionDatabaseQueryIsNullCount(string[] itemField)
         {
+            //调用本地存储结构
+
             return true;
         }
 
-        public string Inster(Dictionary<string, string> Dic)
+        public string Inster(Dictionary<string, string> dic)
         {
             throw new NotImplementedException();
         }
 
-        public string Delete(Dictionary<string, string> Dic)
+        public string Delete(Dictionary<string, string> dic)
         {
             throw new NotImplementedException();
         }
         /// <summary>
         /// 修改操作
         /// </summary>
-        /// <param name="Dic"></param>
+        /// <param name="dic"></param>
         /// <returns></returns>
-        public string Update(Dictionary<string, string> Dic)
+        public string Update(Dictionary<string, string> dic)
         {
             throw new NotImplementedException();
         }
         /// <summary>
         /// 管理层
         /// </summary>
-        /// <param name="Dic"></param>
+        /// <param name="dic"></param>
         /// <returns></returns>
-        public string MANAGE(Dictionary<string, string> Dic)
+        public string Manage(Dictionary<string, string> dic)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -19,10 +20,10 @@ namespace SuperBoy.View
               mciSendString(@"open "+name+" alias song",null,0,0); //打开
               mciSendString("play song",null,0,0); //播放
          */
-        public static uint SND_ASYNC = 0x0001; // play asynchronously 
-        public static uint SND_FILENAME = 0x00020000; // name is file name
+        public static uint SndAsync = 0x0001; // play asynchronously 
+        public static uint SndFilename = 0x00020000; // name is file name
         [DllImport("winmm.dll")]
-        public static extern int mciSendString(string m_strCmd, string m_strReceive, int m_v1, int m_v2);
+        public static extern int mciSendString(string mStrCmd, string mStrReceive, int mV1, int mV2);
 
         [DllImport("Kernel32", CharSet = CharSet.Auto)]
         public static extern Int32 GetShortPathName(String path, StringBuilder shortPath, Int32 shortPathLength);
@@ -35,8 +36,8 @@ namespace SuperBoy.View
         private static void NewMusic(string pathName)
         {
             pathName = "D:\\自定义\\模板2\\我该干什么1.0\\bin\\Debug\\img\\新娘不是我.mp3";
-            StringBuilder shortpath = new StringBuilder(80);
-            int result = GetShortPathName(pathName, shortpath, shortpath.Capacity);
+            var shortpath = new StringBuilder(80);
+            var result = GetShortPathName(pathName, shortpath, shortpath.Capacity);
             pathName = shortpath.ToString();
             mciSendString(@"close all", null, 0, 0);
             mciSendString(@"open " + pathName + " alias song", null, 0, 0); //打开
@@ -46,12 +47,12 @@ namespace SuperBoy.View
         /// wav音乐播放
         /// </summary>
         /// <param name="path"></param>
-        public void music(string path)
+        public void Music(string path)
         {
             //   MessageBox.Show(Application.StartupPath.ToString());
             try
             {
-                System.Media.SoundPlayer sndPlayer = new System.Media.SoundPlayer(path);
+                var sndPlayer = new SoundPlayer(path);
                 //sndPlayer.PlayLooping(); 
                 sndPlayer.Play();
             }
