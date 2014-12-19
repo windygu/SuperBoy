@@ -1,6 +1,7 @@
 ﻿namespace SuperBoy.YSQL.Model
 {
-    public class EnumArrayYsql
+    // ReSharper disable once InconsistentNaming
+    public class EnumArrayYSQL
     {
         public enum Trigger
          {
@@ -22,6 +23,26 @@
             Select,
             Delete,
 
+        }
+        public enum Jurisdiction
+        {
+
+            Read,
+            Write,
+            Delete,
+            Create,
+            User,
+            Edit,
+        }
+        public enum WriteType
+        {
+            SystemInfo,
+            SysDatabase
+        }
+        public enum ReadType
+        {
+            SystemInfo,
+            SysDatabase
         }
     }
 }

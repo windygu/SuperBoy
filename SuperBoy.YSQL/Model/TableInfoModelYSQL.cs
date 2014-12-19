@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace SuperBoy.YSQL.Model
 {
-    public class TableInfoModel
+    // ReSharper disable once InconsistentNaming
+    public class TableInfoModelYSQL
     {
         /*
          "Address": "D:\\tdb\\table\\table.tdb",
@@ -39,7 +40,7 @@ namespace SuperBoy.YSQL.Model
         public string[] RollbackAddress { get; set; }//回滚地址
         public int RollbackCount { get; set; }//回滚次数/表(一个物理表记录多少次回滚)
         public int LastRollbackCount { get; set; }//最后回滚条数
-        public Dictionary<EnumArrayYsql.Trigger, TriggerModel> Trigger { get; set; }
+        public Dictionary<EnumArrayYSQL.Trigger, TriggerModelYSQL> Trigger { get; set; }
         public string[] JointQuery { get; set; }//链接查询
         public string[] Owner { get; set; }//所有者
         public string[] User { get; set; }//用户权限
@@ -49,10 +50,10 @@ namespace SuperBoy.YSQL.Model
         public string[] Fields { get; set; }//字段
 
 
-        public TableInfoModel()
+        public TableInfoModelYSQL()
         {
-            this.Address = "d:\\\\YSQL\\\\db";
-            this.BakAddress = new[] { "d:\\\\YSQL\\\\bak" };
+            this.Address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\tdb";
+            this.BakAddress = new[] { Lib.DirectoryUtil.GetCurrentDirectory() + "\\bak" };
             this.IsBak = true;
             this.LastUpdateSumCount = 0;
             this.LastRollbackCount = 0;
@@ -61,9 +62,9 @@ namespace SuperBoy.YSQL.Model
             this.RollbackCount = 1000;
             this.Speediness = true;
             this.TableCount = 1000;
-            this.User = new string[] { "jyf=rw", "admin=rw", "sys", "rw" };
-            var triggerMo = new TriggerModel();
-            this.LastUpdateCount = new int[] { 123, 456, 789, 555, 444, 666, 555, 999 };
+            this.User = new string[] { "jyf=rw", "admin=rw", "sys=rw" };
+            var triggerMo = new TriggerModelYSQL();
+            this.LastUpdateCount = new int[] { 0 };
             //triggerMo.BehaviorTrigger.Add(EnumArrayYsql.BehaviorTrigger.Inster, "delete:none");
             //this.Trigger.Add(EnumArrayYsql.Trigger.BehaviorTrigger, triggerMo);
         }
