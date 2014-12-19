@@ -20,13 +20,26 @@ namespace SuperBoy.View
               mciSendString(@"open "+name+" alias song",null,0,0); //打开
               mciSendString("play song",null,0,0); //播放
          */
-        public static uint SndAsync = 0x0001; // play asynchronously 
-        public static uint SndFilename = 0x00020000; // name is file name
+        private static uint _sndAsync = 0x0001; // play asynchronously 
+        private static uint _sndFilename = 0x00020000; // name is file name
+
+        public static uint SndFilename
+        {
+            get { return _sndFilename; }
+            set { _sndFilename = value; }
+        }
+
+        public static uint SndAsync
+        {
+            get { return _sndAsync; }
+            set { _sndAsync = value; }
+        }
+
         [DllImport("winmm.dll")]
-        public static extern int mciSendString(string mStrCmd, string mStrReceive, int mV1, int mV2);
+        private static extern int mciSendString(string mStrCmd, string mStrReceive, int mV1, int mV2);
 
         [DllImport("Kernel32", CharSet = CharSet.Auto)]
-        public static extern Int32 GetShortPathName(String path, StringBuilder shortPath, Int32 shortPathLength);
+        private static extern Int32 GetShortPathName(String path, StringBuilder shortPath, Int32 shortPathLength);
         #endregion
 
         /// <summary>
@@ -35,6 +48,7 @@ namespace SuperBoy.View
         /// <param name="pathName"></param>
         private static void NewMusic(string pathName)
         {
+            if (pathName == null) throw new ArgumentNullException("pathName");
             pathName = "D:\\自定义\\模板2\\我该干什么1.0\\bin\\Debug\\img\\新娘不是我.mp3";
             var shortpath = new StringBuilder(80);
             var result = GetShortPathName(pathName, shortpath, shortpath.Capacity);
@@ -58,7 +72,7 @@ namespace SuperBoy.View
             }
             catch (Exception)
             {
-
+                // ignored
             }
         }
     }

@@ -17,13 +17,13 @@ namespace SuperBoy.Model.Public
 
 
         #region read
-        public List<string> read(string path, Encoding fond)
+        public List<string> read(string path)
         {
             var list = new List<string>();
             if (File.Exists(path))
             {
                 var sread = new StreamReader(path, Encoding.UTF8);
-                var input = "";
+                string input;
                 while ((input = sread.ReadLine()) != null)
                 {
                     list.Add(input);
@@ -36,10 +36,6 @@ namespace SuperBoy.Model.Public
                 return list;
                 //throw new Exception("文件地址不存在！");
             }
-        }
-        public string read(string path, Encoding fond, int index)
-        {
-            return read(path, fond)[index];
         }
         #endregion
 
@@ -72,7 +68,7 @@ namespace SuperBoy.Model.Public
             //默认函数值改为当前路径
             _pathDefault = path;
             //取出所有的数据并存入数组
-            var textRead = read(path, Encoding.UTF8);
+            var textRead = read(path);
 
             //申明
             var write = new StreamWriter(path);
@@ -120,7 +116,6 @@ namespace SuperBoy.Model.Public
         }
 
         #endregion
-
     }
 
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using SuperBoy.Dynamic.Interface;
 
-namespace SuperBoy.Dynamic
+namespace SuperBoy.Dynamic.Realize
 {
     public class SerializationDynamic : ISerializationDynamic
     {

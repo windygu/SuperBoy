@@ -20,7 +20,7 @@ namespace SuperBoy.Model.Interface
         /// 内容1 内容2 内容3 内容4
         /// </summary>
         /// <param name="txt"></param>
-        /// <returns></returns>
+        /// <returns></returns> 
         object AnalyticalKeyValue(object txt);
         /// <summary>
         /// 该方法自动封装并建造属性，例如要三个字段，自动建造三个字段的Model并封装

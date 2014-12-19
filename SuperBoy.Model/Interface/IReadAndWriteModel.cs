@@ -5,8 +5,8 @@ namespace SuperBoy.Model.Interface
 {
     public interface IReadAndWriteModel
     {
-        List<string> read(string path, Encoding fond);
-        string read(string path, Encoding fond, int index);
+        
+        List<string> read(string path);
 
         void write(string text, string path);
         void write(string text, int Index, string path);
