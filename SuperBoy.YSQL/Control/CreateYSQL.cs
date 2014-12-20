@@ -26,30 +26,39 @@ namespace SuperBoy.YSQL.Control
             delege(boo);
         }
 
-        //创建系统信息初始化
+        //创建系统[信息初始化]
         public static void AutoInitSysDatabase()
         {
             //初始化系统信息
             var sysin = new SystemInfoYSQL(true);
             //获取配置文件初始化参数
             var deserializedProduct = JsonConvert.SerializeObject(sysin);
-            //初始化数据库
-            //加入SystemInfo.conf
-            //存储系统信息
+            //初始化数据库信息为默认
+            ServiceYSQL.SystemInfoYsql = sysin;
+            //存储系统信息到本地
             Writes.WriteSys(deserializedProduct, EnumArrayYSQL.WriteType.SystemInfo);
         }
         /// <summary>
-        /// 创建系统数据库
+        /// 创建系统[数据库表信息表]
         /// </summary>
-        /// <param name="boo"></param>
-        public static void AutoDatabase(bool boo)
+        public static void AutoDatabase()
         {
             //创建系统表表
-            var sys = new SysDatabaseYSQL(boo);
+            var sys = new SysDatabaseYSQL(true);
             //序列化
             var deserializedProduct = JsonConvert.SerializeObject(sys);
+            //加载默认数据库信息
+            ServiceYSQL.SysDatabaseYsql = sys;
             //存储系统表
             Writes.WriteSys(deserializedProduct, EnumArrayYSQL.WriteType.SysDatabase);
+        }
+
+        /// <summary>
+        /// 创建系统备份文件
+        /// </summary>
+        public static void AutoDatabaseBak()
+        {
+
         }
         //如果有表信息可以恢复其他表
 

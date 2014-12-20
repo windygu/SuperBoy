@@ -27,7 +27,10 @@ namespace SuperBoy.YSQL.Model
                "true"
            ]
          */
-        public string Address { get; set; }//地址
+        /// <summary>
+        /// 改成dic类型加快加载效率
+        /// </summary>
+        public Dictionary<string, string[]> Address { get; set; }//地址
         public string[] OtherAddress { get; set; }//其他地址
         public DateTime? LastupdateTime { get; set; }//最后修改时间
         public bool IsBak { get; set; }//是否备份
@@ -52,8 +55,10 @@ namespace SuperBoy.YSQL.Model
 
         public TableInfoModelYSQL()
         {
-            this.Address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\tdb";
-            this.BakAddress = new[] { Lib.DirectoryUtil.GetCurrentDirectory() + "\\bak" };
+            this.Address = new Dictionary<string, string[]>();
+            Address.Add("SysDatabase", new[] { Lib.DirectoryUtil.GetCurrentDirectory() + "\\tdb\\SysDatabase.ydbc"});
+            //表实体备份地址
+            this.BakAddress = new[] { Lib.DirectoryUtil.GetCurrentDirectory() + "\\bak\\SysDatabase.ybak" };
             this.IsBak = true;
             this.LastUpdateSumCount = 0;
             this.LastRollbackCount = 0;
@@ -65,6 +70,7 @@ namespace SuperBoy.YSQL.Model
             this.User = new string[] { "jyf=rw", "admin=rw", "sys=rw" };
             var triggerMo = new TriggerModelYSQL();
             this.LastUpdateCount = new int[] { 0 };
+
             //triggerMo.BehaviorTrigger.Add(EnumArrayYsql.BehaviorTrigger.Inster, "delete:none");
             //this.Trigger.Add(EnumArrayYsql.Trigger.BehaviorTrigger, triggerMo);
         }

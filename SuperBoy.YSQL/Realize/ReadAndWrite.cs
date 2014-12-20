@@ -46,7 +46,10 @@ namespace SuperBoy.YSQL.Realize
                     break;
 
                 case EnumArrayYSQL.ReadType.SysDatabase:
-                    address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\tdb\\SysDatabase.tdb";
+                    address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\dbInfo\\SysDatabase.ydbc";
+                    break;
+                case EnumArrayYSQL.ReadType.SystemBak:
+                    address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\dbBak\\SysDatabase.ybak";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("readType");
@@ -62,9 +65,11 @@ namespace SuperBoy.YSQL.Realize
                 case EnumArrayYSQL.WriteType.SystemInfo:
                     address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\conf\\SystemInfo.conf";
                     break;
-
                 case EnumArrayYSQL.WriteType.SysDatabase:
-                    address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\tdb\\SysDatabase.tdb";
+                    address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\dbInfo\\SysDatabase.ydbc";
+                    break;
+                case EnumArrayYSQL.WriteType.SystemBak:
+                    address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\dbBak\\SysDatabase.ybak";
                     break;
             }
             Write(txt, address);

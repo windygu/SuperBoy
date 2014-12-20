@@ -30,21 +30,22 @@ namespace SuperBoy.Dynamic.Realize
             BodyAnalytical(bodyDic);
             return head;
         }
-        public Dictionary<string, string> DictAnalytical(string jsonArray)
+
+        private static Dictionary<string, string> DictAnalytical(string jsonArray)
         {
             // string[] item = JsonArray.Replace("\"", "").Split(',');
             var item = jsonArray.Split(',');
             return item.Select(t => t.Split(':')).ToDictionary(keyValue => keyValue[0].Trim().Trim('\"').ToLower(), keyValue => keyValue[1].Trim().Trim('\"'));
         }
 
-        public string HeadAnalytical(Dictionary<string, string> headDic)
+        private static string HeadAnalytical(Dictionary<string, string> headDic)
         {
             //验证权限
 
             return "";
         }
 
-        public string BodyAnalytical(Dictionary<string, string> boduDic)
+        private static string BodyAnalytical(Dictionary<string, string> boduDic)
         {
             IAnalyticalDynamic anly = new AnalyticalDynamic();
             string returnValue;

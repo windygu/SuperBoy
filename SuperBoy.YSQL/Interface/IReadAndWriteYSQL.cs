@@ -7,6 +7,7 @@ namespace SuperBoy.YSQL.Interface
     {
         string ReadSys(EnumArrayYSQL.ReadType readType);
         void Write(string txt,string path);
+        string Read(string path);
         void WriteSys(string txt, EnumArrayYSQL.WriteType writeType);
     }
 }

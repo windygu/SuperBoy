@@ -1,13 +1,13 @@
 ﻿namespace SuperBoy.YSQL.Model
 {
     // ReSharper disable once InconsistentNaming
-    public class EnumArrayYSQL
+    public static class EnumArrayYSQL
     {
         public enum Trigger
-         {
+        {
             BehaviorTrigger,
             Coltrigger
-         }
+        }
         public enum BehaviorTrigger
         {
             Inster,
@@ -37,12 +37,51 @@
         public enum WriteType
         {
             SystemInfo,
-            SysDatabase
+            SysDatabase,
+            SystemBak
+
         }
         public enum ReadType
         {
             SystemInfo,
-            SysDatabase
+            SysDatabase,
+            SystemBak
+        }
+        //字段属性
+        public enum FieldType
+        {
+            Int,
+            Char,
+            Text,
+            Object,
+            Datetime,
+            Local,
+            Trigger,
+            String,
+            Table,
+            FileAddress
+        }
+        public enum Identity
+        {
+            StartIndex,
+            EndIndex,
+            Increment
+        }
+
+        public enum TableHead
+        {
+            DatabaseName,
+            TableName,
+            Namespace,
+            Subjection,
+            Modifier
+        }
+        public enum Modifier
+        {
+            Public,
+            Private,
+            Lock,
+            Seal
         }
     }
 }

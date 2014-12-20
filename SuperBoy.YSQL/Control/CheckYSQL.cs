@@ -34,24 +34,31 @@ namespace SuperBoy.YSQL.Control
                     //检测系统文件是否异常
                     var sysin = new SystemInfoYSQL(false);
                     //获取配置文件初始化参数
-                    var deserializedProduct = JsonConvert.DeserializeObject<SystemInfoYSQL>(jsonStr);
-
+                    ServiceYSQL.SystemInfoYsql = JsonConvert.DeserializeObject<SystemInfoYSQL>(jsonStr);
+                    //获取初始化数据库
+                    //获取数据库json信息
+                    var sysDatabase = read.ReadSys(EnumArrayYSQL.ReadType.SysDatabase);
+                    //序列化对象
+                    var sysDatabaseModel = JsonConvert.DeserializeObject<Model.SysDatabaseYSQL>(sysDatabase);
+                    ServiceYSQL.SysDatabaseYsql = sysDatabaseModel;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    throw new Exception();
                     //创建所有系统信息
-                    CreateYSQL.AutoInitSysDatabase();
-                    //系统表初始化
-                    CreateYSQL.AutoDatabase(false);
+                    //CreateYSQL.AutoInitSysDatabase();
+                    ////系统表初始化
+                    //CreateYSQL.AutoDatabase();
+                    //CreateYSQL.AutoDatabaseBak();
                 }
-
             }
             else
             {
                 //创建所有系统信息
                 CreateYSQL.AutoInitSysDatabase();
                 //系统表初始化
-                CreateYSQL.AutoDatabase(false);
+                CreateYSQL.AutoDatabase();
+                CreateYSQL.AutoDatabaseBak();
             }
         }
     }

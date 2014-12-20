@@ -29,7 +29,7 @@ possessor:system
         public string[] BakFile { get; set; }//是否备份
         public bool AdminiOpen { get; set; }//管理员账户
         public bool IsAuto { get; set; }//是否自动
-        public Dictionary<string, string> AllDatabasePath { get; set; }
+        public Dictionary<string, string> DatabasePathAll { get; set; }
         //数据库地址
         public bool IsNormalClose { get; set; }//上次关闭是否正常
         public string[] LastControl { get; set; }//最后操作的文件属性
@@ -48,9 +48,9 @@ possessor:system
             this.BakFile = new[] { string.Empty };
             this.IsAuto = false;
 
-            this.AllDatabasePath = new Dictionary<string, string>
+            this.DatabasePathAll = new Dictionary<string, string>
             {
-                {"SysDatabase", @"D:\SuperBoy\SuperBoy\SuperBoy.YSQL\Tdb\SysDatabase.ycdb"}
+                {"SysDatabase", Lib.DirectoryUtil.GetCurrentDirectory() + "\\dbInfo\\SysDatabase.ydbc"}
             };
 
             this.IsNormalClose = true;

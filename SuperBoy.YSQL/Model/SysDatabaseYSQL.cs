@@ -13,7 +13,7 @@ namespace SuperBoy.YSQL.Model
         //初始化的时候加载所有的属性
         public SysDatabaseYSQL(bool boo)
         {
-            if (boo) return;
+            if (!boo) return;
             var table = new TableInfoModelYSQL();
             this.NameSpaceModel = new NameSpaceModelYSQL();
             this.TableInfoModel = new TableInfoModelYSQL();
