@@ -4,7 +4,7 @@
     /// 修复类库
     /// </summary>
     /// ReSharper disable once InconsistentNaming
-    public class RepairYSQL
+    internal class RepairYSQL
     {
          
     }

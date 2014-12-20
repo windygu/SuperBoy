@@ -2,7 +2,7 @@
 
 namespace SuperBoy.YSQL.Model
 {// ReSharper disable once InconsistentNaming
-    public class NameSpaceModelYSQL
+    public class NameSpace
     {
         private readonly List<string> _tableNameArray;
 
@@ -14,7 +14,7 @@ namespace SuperBoy.YSQL.Model
         /// <summary>
         /// 权限集合（该表的使用者权限）
         /// </summary>
-        public Dictionary<EnumArrayYSQL.Jurisdiction, string[]> JurisdictionArrayList { get; set; }
+        public Dictionary<EnumArray.Jurisdiction, string[]> JurisdictionArrayList { get; set; }
 
         /// <summary>
         /// 命名空间集合
@@ -24,19 +24,19 @@ namespace SuperBoy.YSQL.Model
             get { return _tableNameArray; }
         }
 
-        public NameSpaceModelYSQL()
+        public NameSpace()
         {
             this._tableNameArray = new List<string> {"SysTable"};
             this.Owner = new List<string> {"Sys,Admin,jyf"};
-            this.JurisdictionArrayList = new Dictionary<EnumArrayYSQL.Jurisdiction, string[]>
+            this.JurisdictionArrayList = new Dictionary<EnumArray.Jurisdiction, string[]>
             {
-                {EnumArrayYSQL.Jurisdiction.Create, new[] {"Sys", "Admin", "jyf"}},
-                {EnumArrayYSQL.Jurisdiction.User, new[] {"Sys", "Admin", "jyf"}},
-                {EnumArrayYSQL.Jurisdiction.Read, new[] {"Guest", "read"}}
+                {EnumArray.Jurisdiction.Create, new[] {"Sys", "Admin", "jyf"}},
+                {EnumArray.Jurisdiction.User, new[] {"Sys", "Admin", "jyf"}},
+                {EnumArray.Jurisdiction.Read, new[] {"Guest", "read"}}
             };
 
         }
-        public NameSpaceModelYSQL(string nameSpaceName)
+        public NameSpace(string nameSpaceName)
             : this()
         {
             this.TableNameArray.Add(nameSpaceName);

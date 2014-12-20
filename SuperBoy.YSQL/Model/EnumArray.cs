@@ -1,7 +1,9 @@
-﻿namespace SuperBoy.YSQL.Model
+﻿using System;
+
+namespace SuperBoy.YSQL.Model
 {
     // ReSharper disable once InconsistentNaming
-    public static class EnumArrayYSQL
+    public static class EnumArray
     {
         public enum Trigger
         {
@@ -83,5 +85,34 @@
             Lock,
             Seal
         }
+        public static string fieldType(EnumArray.FieldType Type)
+        {
+            switch (Type)
+            {
+                case FieldType.Int:
+                    return "Int";
+                case FieldType.Char:
+                    return "Char";
+                case FieldType.Text:
+                    return "Text";
+                case FieldType.Object:
+                    return "Object";
+                case FieldType.Datetime:
+                    return "Datetime";
+                case FieldType.Local:
+                    return "Local";
+                case FieldType.Trigger:
+                    return "Trigger";
+                case FieldType.String:
+                    return "String";
+                case FieldType.Table:
+                    return "Table";
+                case FieldType.FileAddress:
+                    return "FileAddress";
+                default:
+                    throw new ArgumentOutOfRangeException("Type");
+            }
+        }
+
     }
 }

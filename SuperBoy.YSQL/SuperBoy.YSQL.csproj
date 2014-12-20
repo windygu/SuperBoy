@@ -50,7 +50,8 @@
     <Compile Include="Control\CreateYSQL.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\EntityDatabaseModel.cs" />
+    <Compile Include="Control\LoadDatabaseYSQL.cs" />
+    <Compile Include="Model\EntityTable.cs" />
     <Compile Include="Control\RepairYSQL.cs" />
     <Compile Include="Control\ServiceYSQL.cs" />
     <Compile Include="Interface\IControlYSQL.cs">
@@ -61,24 +62,26 @@
     </Compile>
     <Compile Include="Interface\IReadAndWriteYSQL.cs" />
     <Compile Include="Interface\IServerYSQL.cs" />
-    <Compile Include="Lib\FileHelper.cs" />
-    <Compile Include="Lib\ShellIcon.cs" />
+    <Compile Include="library\FileHelper.cs" />
+    <Compile Include="library\ShellIcon.cs" />
     <Compile Include="Model\AddressModelYSQL.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\EnumArrayYSQL.cs" />
-    <Compile Include="Model\FieldInfoModelYSQL.cs" />
-    <Compile Include="Model\NameSpaceModelYSQL.cs" />
+    <Compile Include="Model\EnumArray.cs" />
+    <Compile Include="Model\Field.cs" />
+    <Compile Include="Model\NameSpace.cs" />
+    <Compile Include="Model\SysDatabase.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Realize\OperatingLibYSQL.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Realize\ReadAndWrite.cs" />
-    <Compile Include="Model\SysDatabaseYSQL.cs" />
-    <Compile Include="Model\SystemInfoYSQL.cs" />
-    <Compile Include="Model\TableInfoModelYSQL.cs">
+    <Compile Include="Model\SystemInfo.cs" />
+    <Compile Include="Model\TableMaster.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\TriggerModelYSQL.cs" />
+    <Compile Include="Model\Trigger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Realize\YsqlControl.cs">
       <SubType>Code</SubType>

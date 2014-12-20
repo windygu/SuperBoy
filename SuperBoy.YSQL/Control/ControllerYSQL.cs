@@ -4,7 +4,7 @@
     /// 控制类库
     /// </summary>
     /// ReSharper disable once InconsistentNaming
-    public class ControllerYSQL
+    internal static class ControllerYSQL
     {
         public static void Main()
         {

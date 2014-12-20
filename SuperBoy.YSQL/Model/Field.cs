@@ -2,7 +2,7 @@
 
 namespace SuperBoy.YSQL.Model
 {
-    public class FieldInfoModelYsql
+    public class Field
     {
         /*
          
@@ -22,11 +22,10 @@ namespace SuperBoy.YSQL.Model
    }
 }
          */
-        public string Name { get; set; }
-        public EnumArrayYSQL.FieldType FieldType { get; set; }//属性
+        public string FieldType { get; set; }//属性
         public bool IsNull { get; set; }//是否为空
         public bool Principal { get; set; }//是否主键 优级查询列
-        public Dictionary<EnumArrayYSQL.Identity, string> Identity { get; set; }//自增属性
+        public Dictionary<EnumArray.Identity, string> Identity { get; set; }//自增属性
         public string Scope { get; set; }//关联
 
     }

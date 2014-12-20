@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace SuperBoy.YSQL.Model
 {
     // ReSharper disable once InconsistentNaming
-    public class TableInfoModelYSQL
+    public class TableMaster
     {
         /*
          "Address": "D:\\tdb\\table\\table.tdb",
@@ -43,7 +43,7 @@ namespace SuperBoy.YSQL.Model
         public string[] RollbackAddress { get; set; }//回滚地址
         public int RollbackCount { get; set; }//回滚次数/表(一个物理表记录多少次回滚)
         public int LastRollbackCount { get; set; }//最后回滚条数
-        public Dictionary<EnumArrayYSQL.Trigger, TriggerModelYSQL> Trigger { get; set; }
+        public Dictionary<EnumArray.Trigger, Trigger> Trigger { get; set; }
         public string[] JointQuery { get; set; }//链接查询
         public string[] Owner { get; set; }//所有者
         public string[] User { get; set; }//用户权限
@@ -53,7 +53,7 @@ namespace SuperBoy.YSQL.Model
         public string[] Fields { get; set; }//字段
 
 
-        public TableInfoModelYSQL()
+        public TableMaster()
         {
             this.Address = new Dictionary<string, string[]>();
             Address.Add("SysDatabase", new[] { Lib.DirectoryUtil.GetCurrentDirectory() + "\\tdb\\SysDatabase.ydbc"});
@@ -68,7 +68,7 @@ namespace SuperBoy.YSQL.Model
             this.Speediness = true;
             this.TableCount = 1000;
             this.User = new string[] { "jyf=rw", "admin=rw", "sys=rw" };
-            var triggerMo = new TriggerModelYSQL();
+            var triggerMo = new Trigger();
             this.LastUpdateCount = new int[] { 0 };
 
             //triggerMo.BehaviorTrigger.Add(EnumArrayYsql.BehaviorTrigger.Inster, "delete:none");

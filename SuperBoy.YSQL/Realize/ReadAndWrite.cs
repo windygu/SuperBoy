@@ -36,19 +36,19 @@ namespace SuperBoy.YSQL.Realize
         }
 
         //读取指定信息
-        public string ReadSys(Model.EnumArrayYSQL.ReadType readType)
+        public string ReadSys(Model.EnumArray.ReadType readType)
         {
             string address;
             switch (readType)
             {
-                case EnumArrayYSQL.ReadType.SystemInfo:
+                case EnumArray.ReadType.SystemInfo:
                     address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\conf\\SystemInfo.conf";
                     break;
 
-                case EnumArrayYSQL.ReadType.SysDatabase:
+                case EnumArray.ReadType.SysDatabase:
                     address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\dbInfo\\SysDatabase.ydbc";
                     break;
-                case EnumArrayYSQL.ReadType.SystemBak:
+                case EnumArray.ReadType.SystemBak:
                     address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\dbBak\\SysDatabase.ybak";
                     break;
                 default:
@@ -57,18 +57,18 @@ namespace SuperBoy.YSQL.Realize
             return Read(address);
         }
         //写入指定信息
-        public void WriteSys(string txt, Model.EnumArrayYSQL.WriteType writeType)
+        public void WriteSys(string txt, Model.EnumArray.WriteType writeType)
         {
             string address = null;
             switch (writeType)
             {
-                case EnumArrayYSQL.WriteType.SystemInfo:
+                case EnumArray.WriteType.SystemInfo:
                     address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\conf\\SystemInfo.conf";
                     break;
-                case EnumArrayYSQL.WriteType.SysDatabase:
+                case EnumArray.WriteType.SysDatabase:
                     address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\dbInfo\\SysDatabase.ydbc";
                     break;
-                case EnumArrayYSQL.WriteType.SystemBak:
+                case EnumArray.WriteType.SystemBak:
                     address = Lib.DirectoryUtil.GetCurrentDirectory() + "\\dbBak\\SysDatabase.ybak";
                     break;
             }

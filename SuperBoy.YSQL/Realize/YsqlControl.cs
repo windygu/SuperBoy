@@ -33,7 +33,7 @@ namespace SuperBoy.YSQL.Realize
         /// </summary>
         /// <param name="txt"></param>
         /// <returns></returns>
-        public List<TableInfoModelYSQL> AnalysisTableInfo(string txt)
+        public List<TableMaster> AnalysisTableInfo(string txt)
         {
             return null;
         }
@@ -43,7 +43,7 @@ namespace SuperBoy.YSQL.Realize
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        public string AnalysisTojson(IEnumerable<TableInfoModelYSQL> list)
+        public string AnalysisTojson(IEnumerable<TableMaster> list)
         {
             var strLongBuilder = new StringBuilder();
             strLongBuilder.Append("[");

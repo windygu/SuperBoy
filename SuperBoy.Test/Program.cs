@@ -9,7 +9,7 @@ namespace SuperBoy.Test
     {
         static void Main(string[] args)
         {
-            YSQL.Control.ServiceYSQL.AutoMainAllDatabase();
+            YSQL.Control.ServiceYSQL.Inster();
         }
     }
 }

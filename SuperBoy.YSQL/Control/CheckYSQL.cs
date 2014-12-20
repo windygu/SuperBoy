@@ -10,11 +10,10 @@ using SuperBoy.YSQL.Realize;
 namespace SuperBoy.YSQL.Control
 {
     // ReSharper disable once InconsistentNaming
-
-    public class CheckYSQL
+    internal class CheckYSQL
     {
         //检查该类有没有配置文件，配置文件是否正常
-        public CheckYSQL()
+        static CheckYSQL()
         {
             //检查系统配置文件是否存在
             IReadAndWriteYSQL read = new ReadAndWrite();
@@ -28,21 +27,22 @@ namespace SuperBoy.YSQL.Control
                 //判断系统文件是否存在
                 var paths = DirectoryUtil.GetCurrentDirectory();
                 if (!File.Exists(paths + "\\conf\\SystemInfo.conf")) return;
-                var jsonStr = read.ReadSys(EnumArrayYSQL.ReadType.SystemInfo);
+                var jsonStr = read.ReadSys(EnumArray.ReadType.SystemInfo);
                 try
                 {
                     //检测系统文件是否异常
-                    var sysin = new SystemInfoYSQL(false);
+                    var sysin = new SystemInfo(false);
                     //获取配置文件初始化参数
-                    ServiceYSQL.SystemInfoYsql = JsonConvert.DeserializeObject<SystemInfoYSQL>(jsonStr);
+                    ServiceYSQL.SystemInfoYsql = JsonConvert.DeserializeObject<SystemInfo>(jsonStr);
                     //获取初始化数据库
                     //获取数据库json信息
-                    var sysDatabase = read.ReadSys(EnumArrayYSQL.ReadType.SysDatabase);
+                    var sysDatabase = read.ReadSys(EnumArray.ReadType.SysDatabase);
                     //序列化对象
-                    var sysDatabaseModel = JsonConvert.DeserializeObject<Model.SysDatabaseYSQL>(sysDatabase);
+                    var sysDatabaseModel = JsonConvert.DeserializeObject<Model.SysDatabase>(sysDatabase);
                     ServiceYSQL.SysDatabaseYsql = sysDatabaseModel;
+
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw new Exception();
                     //创建所有系统信息
@@ -58,7 +58,6 @@ namespace SuperBoy.YSQL.Control
                 CreateYSQL.AutoInitSysDatabase();
                 //系统表初始化
                 CreateYSQL.AutoDatabase();
-                CreateYSQL.AutoDatabaseBak();
             }
         }
     }

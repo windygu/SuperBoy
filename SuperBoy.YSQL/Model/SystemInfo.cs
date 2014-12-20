@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace SuperBoy.YSQL.Model
 {
     // ReSharper disable once InconsistentNaming
-    public class SystemInfoYSQL
+    public class SystemInfo
     {
 
         /*
@@ -38,7 +38,7 @@ possessor:system
         public string Versions { get; set; }//版本号
         public string[] Owner { get; set; }//所有者
 
-        public SystemInfoYSQL(bool boo)
+        public SystemInfo(bool boo)
         {
             if (!boo) return;
             // Dictionary<string, string> dic;
