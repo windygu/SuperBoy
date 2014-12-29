@@ -11,13 +11,13 @@ namespace Core.IO
     ///</summary>
     public class FileDialogHelper
     {
-        private static readonly string _excelFilter = "Excel(*.xls)|*.xls|All File(*.*)|*.*";
-        private static readonly string _imageFilter = "Image Files(*.BMP;*.bmp;*.JPG;*.jpg;*.GIF;*.gif;*.png)|(*.BMP;*.bmp;*.JPG;*.jpg;*.GIF;*.gif;*.png)|All File(*.*)|*.*";
-        private static readonly string _htmlFilter = "HTML files (*.html;*.htm)|*.html;*.htm|All files (*.*)|*.*";
-        private static readonly string _accessFilter = "Access(*.mdb)|*.mdb|All File(*.*)|*.*";
-        private static readonly string _zipFillter = "Zip(*.zip)|*.zip|All files (*.*)|*.*";
+        private static readonly string ExcelFilter = "Excel(*.xls)|*.xls|All File(*.*)|*.*";
+        private static readonly string ImageFilter = "Image Files(*.BMP;*.bmp;*.JPG;*.jpg;*.GIF;*.gif;*.png)|(*.BMP;*.bmp;*.JPG;*.jpg;*.GIF;*.gif;*.png)|All File(*.*)|*.*";
+        private static readonly string HtmlFilter = "HTML files (*.html;*.htm)|*.html;*.htm|All files (*.*)|*.*";
+        private static readonly string AccessFilter = "Access(*.mdb)|*.mdb|All File(*.*)|*.*";
+        private static readonly string ZipFillter = "Zip(*.zip)|*.zip|All files (*.*)|*.*";
         private const string ConfigFilter = "配置文件(*.cfg)|*.cfg|All File(*.*)|*.*";
-        private static readonly string _txtFilter = "(*.txt)|*.txt|All files (*.*)|*.*";
+        private static readonly string TxtFilter = "(*.txt)|*.txt|All files (*.*)|*.*";
 
         ///<summary>
         ///Initializes a new instance of the <see cref="FileDialogHelper"/> class.
@@ -33,7 +33,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string OpenText()
         {
-            return Open("文本文件选择", _txtFilter);
+            return Open("文本文件选择", TxtFilter);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string SaveText(string filename)
         {
-            return Save("保存文本文件", _txtFilter, filename);
+            return Save("保存文本文件", TxtFilter, filename);
         } 
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string SaveText(string filename, string initialDirectory)
         {
-            return Save("保存文本文件", _txtFilter, filename, initialDirectory);
+            return Save("保存文本文件", TxtFilter, filename, initialDirectory);
         }
 
         #endregion
@@ -72,7 +72,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string OpenExcel()
         {
-            return Open("Excel选择", _excelFilter);
+            return Open("Excel选择", ExcelFilter);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string SaveExcel(string filename)
         {
-            return Save("保存Excel", _excelFilter, filename);
+            return Save("保存Excel", ExcelFilter, filename);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string SaveExcel(string filename, string initialDirectory)
         {
-            return Save("保存Excel", _excelFilter, filename, initialDirectory);
+            return Save("保存Excel", ExcelFilter, filename, initialDirectory);
         } 
 
         #endregion
@@ -112,7 +112,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string OpenHtml()
         {
-            return Open("Html选择", _htmlFilter);
+            return Open("Html选择", HtmlFilter);
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string SaveHtml(string filename)
         {
-            return Save("保存Html", _htmlFilter, filename);
+            return Save("保存Html", HtmlFilter, filename);
         } 
         
         /// <summary>
@@ -139,7 +139,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string SaveHtml(string filename, string initialDirectory)
         {
-            return Save("保存Html", _htmlFilter, filename, initialDirectory);
+            return Save("保存Html", HtmlFilter, filename, initialDirectory);
         } 
 
         #endregion
@@ -151,7 +151,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string OpenZip()
         {
-            return Open("压缩文件选择", _zipFillter);
+            return Open("压缩文件选择", ZipFillter);
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string OpenZip(string filename)
         {
-            return Open("压缩文件选择", _zipFillter, filename);
+            return Open("压缩文件选择", ZipFillter, filename);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string SaveZip(string filename)
         {
-            return Save("压缩文件保存", _zipFillter, filename);
+            return Save("压缩文件保存", ZipFillter, filename);
         } 
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string SaveZip(string filename, string initialDirectory)
         {
-            return Save("压缩文件保存", _zipFillter, filename, initialDirectory);
+            return Save("压缩文件保存", ZipFillter, filename, initialDirectory);
         } 
 
         #endregion
@@ -199,7 +199,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string OpenImage()
         {
-            return Open("图片选择", _imageFilter);
+            return Open("图片选择", ImageFilter);
         }
 
 
@@ -218,7 +218,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string SaveImage(string filename)
         {
-            return Save("保存图片", _imageFilter, filename);
+            return Save("保存图片", ImageFilter, filename);
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace Core.IO
         /// <returns></returns>
         public static string SaveImage(string filename, string initialDirectory)
         {
-            return Save("保存图片", _imageFilter, filename, initialDirectory);
+            return Save("保存图片", ImageFilter, filename, initialDirectory);
         }
 
         #endregion
@@ -240,7 +240,7 @@ namespace Core.IO
         /// <returns>数据库备份路径</returns>
         public static string SaveAccessDb()
         {
-            return Save("数据库备份", _accessFilter);
+            return Save("数据库备份", AccessFilter);
         }
 
         public static string SaveBakDb()
@@ -260,7 +260,7 @@ namespace Core.IO
         /// <returns>数据库还原路径</returns>
         public static string OpenAccessDb()
         {
-            return Open("数据库还原", _accessFilter);
+            return Open("数据库还原", AccessFilter);
         } 
         #endregion
 

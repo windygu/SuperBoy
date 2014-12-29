@@ -38,7 +38,7 @@ namespace SuperBoy.YSQL.Control
                     //获取数据库json信息
                     var sysDatabase = read.ReadSys(EnumArray.ReadType.SysDatabase);
                     //序列化对象
-                    var sysDatabaseModel = JsonConvert.DeserializeObject<Model.SysDatabase>(sysDatabase);
+                    var sysDatabaseModel = JsonConvert.DeserializeObject<Model.DatabaseInfo>(sysDatabase);
                     ServiceYSQL.SysDatabaseYsql = sysDatabaseModel;
 
                 }

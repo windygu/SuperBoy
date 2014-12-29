@@ -17,7 +17,7 @@ namespace SuperBoy.Model.Public
 
 
         #region read
-        public List<string> read(string path)
+        public List<string> Read(string path)
         {
             var list = new List<string>();
             if (File.Exists(path))
@@ -68,7 +68,7 @@ namespace SuperBoy.Model.Public
             //默认函数值改为当前路径
             _pathDefault = path;
             //取出所有的数据并存入数组
-            var textRead = read(path);
+            var textRead = Read(path);
 
             //申明
             var write = new StreamWriter(path);

@@ -72,22 +72,26 @@ namespace SuperBoy.YSQL.Model
 
         public enum TableHead
         {
-            DatabaseName,
-            TableName,
-            Namespace,
-            Subjection,
-            Modifier
+            DatabaseName,//数据库名
+            TableName,//表名
+            Namespace,//命名空间名
+            server,//服务器地址（实例）
+            Subjection,//奴属
+            Modifier,
+            DataType,//数据类型
+            LocalAddress,//自己所在的地址
+            HostAddress,//信息所在地址
         }
         public enum Modifier
         {
-            Public,
-            Private,
-            Lock,
-            Seal
+            Public,//公开的（所有人都能修改）
+            Private,//私有的（创建者拥有所有权）
+            Lock,//上锁的（只有上锁的人才能开启与更改，上锁者不是创建者）
+            Seal,//密封的（谁都不能更改，只定义一次）
         }
-        public static string fieldType(EnumArray.FieldType Type)
+        public static string fieldType(EnumArray.FieldType type)
         {
-            switch (Type)
+            switch (type)
             {
                 case FieldType.Int:
                     return "Int";
@@ -110,7 +114,7 @@ namespace SuperBoy.YSQL.Model
                 case FieldType.FileAddress:
                     return "FileAddress";
                 default:
-                    throw new ArgumentOutOfRangeException("Type");
+                    throw new ArgumentOutOfRangeException("type");
             }
         }
 

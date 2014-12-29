@@ -23,7 +23,7 @@ namespace SuperBoy.YSQL.Control
                     {
                         var json = ServiceYSQL.ReadAndWrite.Read(addres);
                         //当前数据库信息
-                        ServiceYSQL.EntityDatabase = JsonConvert.DeserializeObject<EntityTable>(json);
+                        ServiceYSQL.EntityDatabase = JsonConvert.DeserializeObject<Entity>(json);
                         //取当前数据库名
                         //ServiceYSQL.CurrentDatabase = ServiceYSQL.EntityDatabase.TableHead[]
                     }

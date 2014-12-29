@@ -15,9 +15,9 @@ namespace SuperBoy.YSQL.Interface
         //修改系统信息并更新
         string UpdateMasterInfo(string key, string value);
         //系统信息
-        List<TableMaster> AnalysisTableInfo(string txt);
+        List<MasterTable> AnalysisTableInfo(string txt);
         //解析json方法
-        string AnalysisTojson(IEnumerable<TableMaster> list);
+        string AnalysisTojson(IEnumerable<MasterTable> list);
 
     }
 }

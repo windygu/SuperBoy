@@ -12,7 +12,7 @@ namespace SuperBoy.YSQL.Control
     /// 创建类库
     /// </summary>
     // ReSharper disable once InconsistentNaming
-    internal static class CreateYSQL
+    public static class CreateYSQL
     {
         public delegate void DeleCreate(bool boo);
         static readonly IReadAndWriteYSQL Writes = new ReadAndWrite();
@@ -45,7 +45,7 @@ namespace SuperBoy.YSQL.Control
         public static void AutoDatabase()
         {
             //创建系统表表
-            var sys = new SysDatabase(true);
+            var sys = new DatabaseInfo(true);
             //序列化
             var deserializedProduct = JsonConvert.SerializeObject(sys);
             //加载默认数据库信息
@@ -83,9 +83,42 @@ namespace SuperBoy.YSQL.Control
             /*
              Dictionary<string, EnumArrayYSQL.FieldType> fieldTypes, string tableName, string databaseName, string modifier, string sysNamespace, IEnumerable<string> userName
              */
-            var entityDatabase = new EntityTable(fieldTypes, tableName, databaseName, modifier, sysNamespace, userName);
+            var entityDatabase = new Entity(fieldTypes, tableName, databaseName, modifier, sysNamespace, userName);
             var json = JsonConvert.SerializeObject(entityDatabase);
             return json;
+        }
+        /// <summary>
+        /// 添加数据（空数据库）表结构
+        /// </summary>
+        /// <param name="valueDictionary">添加的内容</param>
+        public static void CreateEntity(Dictionary<string, string[]> valueDictionary)
+        {
+
+            var str = ServiceYSQL.CurrentStatusget;
+            //查看内存有没有这个数据库
+            if (ServiceYSQL.CurrentDatabaseArray.ContainsKey(str))
+            {
+                //如果有，加载数据
+                var entity = ServiceYSQL.CurrentDatabaseArray[str];
+
+                //判断列是否
+                entity.Value = valueDictionary;
+            }
+            else
+            {
+                //如果没有，读取数据库
+
+            }
+        }
+
+        /// <summary>
+        /// 一次插入一条数据
+        /// </summary>
+        /// <param name="name">列数组</param>
+        /// <param name="value">值数组</param>
+        public static void CreateEntity(string[] name, string value)
+        {
+
         }
     }
 }

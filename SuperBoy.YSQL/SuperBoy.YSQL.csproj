@@ -33,6 +33,14 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="MongoDB.Bson, Version=1.1.0.4184, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.1.0.4184, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,7 +59,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Control\LoadDatabaseYSQL.cs" />
-    <Compile Include="Model\EntityTable.cs" />
+    <Compile Include="Model\Entity.cs" />
     <Compile Include="Control\RepairYSQL.cs" />
     <Compile Include="Control\ServiceYSQL.cs" />
     <Compile Include="Interface\IControlYSQL.cs">
@@ -64,13 +72,10 @@
     <Compile Include="Interface\IServerYSQL.cs" />
     <Compile Include="library\FileHelper.cs" />
     <Compile Include="library\ShellIcon.cs" />
-    <Compile Include="Model\AddressModelYSQL.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Model\EnumArray.cs" />
     <Compile Include="Model\Field.cs" />
-    <Compile Include="Model\NameSpace.cs" />
-    <Compile Include="Model\SysDatabase.cs">
+    <Compile Include="Model\NameSpaceInfo.cs" />
+    <Compile Include="Model\DatabaseInfo.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Realize\OperatingLibYSQL.cs">
@@ -78,7 +83,7 @@
     </Compile>
     <Compile Include="Realize\ReadAndWrite.cs" />
     <Compile Include="Model\SystemInfo.cs" />
-    <Compile Include="Model\TableMaster.cs">
+    <Compile Include="Model\MasterTable.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\Trigger.cs" />
@@ -86,9 +91,6 @@
     <Compile Include="Realize\YsqlControl.cs">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

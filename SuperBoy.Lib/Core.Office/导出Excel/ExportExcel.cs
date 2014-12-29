@@ -1,10 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Web;
 using System.Web.UI;
-using System.IO;
 using System.Web.UI.WebControls;
 
-namespace Core.Office
+namespace Core.Office.导出Excel
 {
     public class ExportExcel
     {
@@ -37,15 +37,7 @@ namespace Core.Office
         {
             try
             {
-                var style = "";
-                if (obj.Rows.Count > 0)
-                {
-                    style = @"<style> .text { mso-number-format:\@; } </script> ";
-                }
-                else
-                {
-                    style = "no data.";
-                }
+                var style = obj.Rows.Count > 0 ? @"<style> .text { mso-number-format:\@; } </script> " : "no data.";
 
                 HttpContext.Current.Response.ClearContent();
                 var dt = DateTime.Now;
@@ -63,6 +55,7 @@ namespace Core.Office
             }
             catch
             {
+                // ignored
             }
         }
     }
