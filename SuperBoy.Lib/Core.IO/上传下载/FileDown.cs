@@ -101,14 +101,15 @@ namespace Core.IO
         }
      
         #region ResponseFile 输出硬盘文件，提供下载 支持大文件、续传、速度限制、资源占用小
+
         /// <summary>
         ///  输出硬盘文件，提供下载 支持大文件、续传、速度限制、资源占用小
         /// </summary>
-        /// <param name="_Request">Page.Request对象</param>
-        /// <param name="_Response">Page.Response对象</param>
-        /// <param name="_fileName">下载文件名</param>
-        /// <param name="_fullPath">带文件名下载路径</param>
-        /// <param name="_speed">每秒允许下载的字节数</param>
+        /// <param name="request">Page.Request对象</param>
+        /// <param name="response">Page.Response对象</param>
+        /// <param name="fileName">下载文件名</param>
+        /// <param name="fullPath">带文件名下载路径</param>
+        /// <param name="speed">每秒允许下载的字节数</param>
         /// <returns>返回是否成功</returns>
         //---------------------------------------------------------------------
         //调用：
@@ -128,8 +129,8 @@ namespace Core.IO
 
                     var fileLength = myFile.Length;
                     long startBytes = 0;
-                    var pack = 10240;  //10K bytes
-                    var sleep = (int)Math.Floor((double)(1000 * pack / speed)) + 1;
+                    const int pack = 10240; //10K bytes
+                    var sleep = (int)Math.Floor(d: (double)(1000 * pack / speed)) + 1;
 
                     if (request.Headers["Range"] != null)
                     {
@@ -148,7 +149,7 @@ namespace Core.IO
                     response.AddHeader("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode(fileName, System.Text.Encoding.UTF8));
 
                     br.BaseStream.Seek(startBytes, SeekOrigin.Begin);
-                    var maxCount = (int)Math.Floor((double)((fileLength - startBytes) / pack)) + 1;
+                    var maxCount = (int)Math.Floor(d: (double)((fileLength - startBytes) / pack)) + 1;
 
                     for (var i = 0; i < maxCount; i++)
                     {
